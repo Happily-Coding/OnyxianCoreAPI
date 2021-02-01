@@ -1,26 +1,20 @@
 package me.onyxiansoul.onyxiancoreapi;
 
-import com.sun.istack.internal.NotNull;
+import javax.validation.constraints.NotNull;
 import me.onyxiansoul.onyxiancoreapi.actions.FunctionToRun;
 import me.onyxiansoul.onyxiancoreapi.parameters.FunctionToGetValue;
-import me.onyxiansoul.onyxiancoreapi.parameters.SignalType;
+import me.onyxiansoul.onyxiancoreapi.parameters.SignalLocation;
+import org.jetbrains.annotations.Nullable;
 
 
+/**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
     
-    public String getTestString();
-    
-    public String prefixMessage(String messageToPrefix, int prefixIndex);
-    
-    public Prefix createPrefix(String message);
-    
-    public void registerPrefix(Prefix prefix);
-    
-    //-------------Real API-----------------
     
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
     * all values between braces inside the config are considered placeholders. 
     * @param representedClass = the class of the value which will be obtainable from this placeholder. ie: Color.class;
+    * @param collectionObjectType = the expected class of the object inside the collection. Should be null, unless the representedClass is a colllection.
     * @param stringSignal = The string that signals that a placeholder (aka a string inside braces) is of this type. ie: "Color:" . That example signal would make (Color:Red) a placeholder of this type.
     * @param signalType = The location of the signal inside of a placeholder. 
     *   START would mean that the first text after the start brace needs to be color to be detected as this placeholder, ie: (Color:Red);
@@ -33,14 +27,14 @@ public interface OnyxianCoreAPI {
             }
         };
     */  
-    public void RegisterPlaceholderType( @NotNull Class representedClass, @NotNull String stringSignal, @NotNull SignalType signalType, @NotNull FunctionToGetValue functionToGetValue);
+    public void RegisterPlaceholderType( @NotNull Class representedClass, @Nullable Class collectionObjectType, @NotNull String stringSignal, @NotNull SignalLocation signalType, @NotNull FunctionToGetValue functionToGetValue);
     
-    /**Register a new Parameter, which can be used inside any actionType, read off the config of all OnyxianSoul plugins.
+    /**Register a new ConfigParameter, which can be used inside any actionType, read off the config of all OnyxianSoul plugins.
      * @param configKey = the config key which will contain the placeholder from which to obtain the value on runtime. ie: "Player:"
      * @param expectedClass = the type of object that's expected to be represented by the placeholder. ie: "Player.class"
      * @param defaultPlaceholderString = the default string from which to extract the placeholder, if the config key is missing or has a placeholder of an unexpected type. ie: "(event.player)"
      */
-    public void RegisterParameter(@NotNull String configKey, @NotNull Class expectedClass, String defaultPlaceholderString);
+    public void RegisterConfigParameter(@NotNull String configKey, @Nullable String defaultPlaceholderString, @NotNull Class expectedClass);
     
     /**Register a new ActionType, which can be used inside the results sections of the config of all OnyxianSoul plugins, to generate an action when combined with the parameters specified on the config.
      * @param configSignal = the string that tells the plugin the action to be created is of this type. ie: "SendMessage"
@@ -57,7 +51,6 @@ public interface OnyxianCoreAPI {
     *  
      */
     public void RegisterActionType(@NotNull String configSignal, @NotNull FunctionToRun actionTypeExecution, String... parametersConfigKey);
-    
     
     
 }

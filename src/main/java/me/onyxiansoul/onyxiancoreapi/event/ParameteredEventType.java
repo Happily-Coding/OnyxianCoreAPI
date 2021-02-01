@@ -1,8 +1,10 @@
 package me.onyxiansoul.onyxiancoreapi.event;
 
+import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
@@ -28,8 +30,9 @@ public enum ParameteredEventType {
         @Override
         public List<Block> getAffectedBlocks(Event e) {
            List<Block> blocksList = new ArrayList<>();
+           System.out.println("Parametered event type:");
+           System.out.println("About to return:" +(Arrays.asList(((BlockDamageEvent)e).getBlock())).toString() );
            return Arrays.asList(((BlockDamageEvent)e).getBlock());
-
         }
     },
     BLOCK_BREAK{
@@ -96,7 +99,7 @@ public enum ParameteredEventType {
            return Arrays.asList(((BlockPlaceEvent)e).getBlockPlaced());
         }
     },
-    SHIFT_BLOCK_PLACE{
+    /*SHIFT_BLOCK_PLACE{
         @Override
         public Player getTriggerPlayer(Event e) {
             return ((BlockPlaceEvent)e).getPlayer();
@@ -105,7 +108,7 @@ public enum ParameteredEventType {
         public List<Block> getAffectedBlocks(Event e) {
            return Arrays.asList(((BlockPlaceEvent)e).getBlockPlaced());
         }
-    },
+    },*/
     BLOCK_EXPLOSION{
         @Override
         public Player getTriggerPlayer(Event e) {
@@ -119,15 +122,15 @@ public enum ParameteredEventType {
         public EntityType explosionCause(Event e){
             return  ((EntityExplodeEvent)e).getEntityType();
         }
-        
-        
     };
-    
+
+    public static final Map<String,ParameteredEventType> CONFIG_ALIASES = ImmutableMap.of("LEFT_CLICK_BLOCK", BLOCK_DAMAGE, "RIGHT_CLICK_BLOCK", BLOCK_INTERACT);
     //Lista de los getters para cualquier parametro que puedan tener los eventos.
     public Player getTriggerPlayer(Event e) { return null; }  //Gets the player that caused the event
     public List<Block> getAffectedBlocks(Event e) { return null; } //Gets a list of all affected blocks
     public BlockFace getPistonMovementDirection(Event e) {return null; } //Gets the direction the blocks are moved to
     public EntityType explosionCause(Event e){ return null; } //Get the explosion cause if the event has one.
+    
 
     
     
