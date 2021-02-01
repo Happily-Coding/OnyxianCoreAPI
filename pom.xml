@@ -10,11 +10,21 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+    <repositories>
+      <repository>
+          <id>jitpack.io</id>
+          <url>https://jitpack.io</url>
+      </repository>
+    </repositories>
     <parent>
-        <groupId>me.onyxiansoul</groupId>
+        <groupId>com.github.OnyxianSoul</groupId>
         <artifactId>OnyxianBase</artifactId>
-        <version>0.0.1</version>
-        <relativePath>../OnyxianBase</relativePath>
+        <version>4c88ee6426</version>
+        <!--<relativePath>../OnyxianBase</relativePath>-->
+        <!--<groupId>com.github.OnyxianSoul</groupId>
+        <artifactId>OnyxianBase</artifactId>
+        <version>aef6e2abbb</version>-->
+        <!--<relativePath>../OnyxianBase</relativePath>-->
     </parent>
     <build>
         <pluginManagement>
