@@ -1,4 +1,4 @@
-package me.onyxiansoul.onyxiancoreapi.parameters;
+package com.github.onyxiansoul.onyxiancoreapi.parameters;
 
 /**
  * Class that says at what part of the string the signal is located.

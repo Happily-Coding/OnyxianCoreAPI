@@ -1,4 +1,4 @@
-package me.onyxiansoul.onyxiancoreapi.actions;
+package com.github.onyxiansoul.onyxiancoreapi.actions;
 
 import java.util.HashMap;
 import java.util.Map;

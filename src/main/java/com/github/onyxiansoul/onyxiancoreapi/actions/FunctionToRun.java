@@ -1,5 +1,5 @@
 
-package me.onyxiansoul.onyxiancoreapi.actions;
+package com.github.onyxiansoul.onyxiancoreapi.actions;
 
 import java.util.Map;
 

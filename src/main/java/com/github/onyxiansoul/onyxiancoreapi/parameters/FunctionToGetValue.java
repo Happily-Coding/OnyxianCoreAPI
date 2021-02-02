@@ -1,5 +1,5 @@
 
-package me.onyxiansoul.onyxiancoreapi.parameters;
+package com.github.onyxiansoul.onyxiancoreapi.parameters;
 
 import java.util.Map;
 

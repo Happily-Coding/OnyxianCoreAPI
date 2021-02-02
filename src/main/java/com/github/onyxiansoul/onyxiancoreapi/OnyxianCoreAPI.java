@@ -1,9 +1,9 @@
-package me.onyxiansoul.onyxiancoreapi;
+package com.github.onyxiansoul.onyxiancoreapi;
 
 import javax.validation.constraints.NotNull;
-import me.onyxiansoul.onyxiancoreapi.actions.FunctionToRun;
-import me.onyxiansoul.onyxiancoreapi.parameters.FunctionToGetValue;
-import me.onyxiansoul.onyxiancoreapi.parameters.SignalLocation;
+import com.github.onyxiansoul.onyxiancoreapi.actions.FunctionToRun;
+import com.github.onyxiansoul.onyxiancoreapi.parameters.FunctionToGetValue;
+import com.github.onyxiansoul.onyxiancoreapi.parameters.SignalLocation;
 import org.jetbrains.annotations.Nullable;
 
 

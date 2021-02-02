@@ -1,4 +1,4 @@
-package me.onyxiansoul.onyxiancoreapi.event;
+package com.github.onyxiansoul.onyxiancoreapi.event;
 
 /**
  An event that has been classified by the plugin to be of a certain type.

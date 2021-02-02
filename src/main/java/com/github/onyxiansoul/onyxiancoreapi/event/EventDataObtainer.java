@@ -1,4 +1,4 @@
-package me.onyxiansoul.onyxiancoreapi.event;
+package com.github.onyxiansoul.onyxiancoreapi.event;
 
 import java.util.List;
 import javax.validation.constraints.NotNull;

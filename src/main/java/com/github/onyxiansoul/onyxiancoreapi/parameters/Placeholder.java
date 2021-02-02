@@ -1,8 +1,8 @@
-package me.onyxiansoul.onyxiancoreapi.parameters;
+package com.github.onyxiansoul.onyxiancoreapi.parameters;
 
 import java.util.ArrayList;
 import java.util.List;
-import me.onyxiansoul.onyxiancoreapi.event.ParameteredEventType;
+import com.github.onyxiansoul.onyxiancoreapi.event.ParameteredEventType;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.Event;
 

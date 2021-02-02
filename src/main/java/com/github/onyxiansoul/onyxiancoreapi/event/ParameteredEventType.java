@@ -1,4 +1,4 @@
-package me.onyxiansoul.onyxiancoreapi.event;
+package com.github.onyxiansoul.onyxiancoreapi.event;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.ArrayList;
