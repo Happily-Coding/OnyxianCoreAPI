@@ -4,12 +4,12 @@ import javax.validation.constraints.NotNull;
 import com.github.onyxiansoul.onyxiancoreapi.actions.FunctionToRun;
 import com.github.onyxiansoul.onyxiancoreapi.parameters.FunctionToGetValue;
 import com.github.onyxiansoul.onyxiancoreapi.parameters.SignalLocation;
+import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
-    
     
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
     * all values between braces inside the config are considered placeholders. 
@@ -52,5 +52,5 @@ public interface OnyxianCoreAPI {
      */
     public void RegisterActionType(@NotNull String configSignal, @NotNull FunctionToRun actionTypeExecution, String... parametersConfigKey);
     
-    
+    public void RunAction(String actionName, Map<String, Object> usableParameters) throws ImpossibleActionException;
 }
