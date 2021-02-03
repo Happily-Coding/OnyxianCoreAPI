@@ -1,5 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi;
+package com.github.onyxiansoul.onyxiancoreapi.v2;
 
+import com.github.onyxiansoul.onyxiancoreapi.OnyxianCoreAPI;
 import org.bukkit.plugin.Plugin;
 
 /**The class which gives your plugin access to the OnyxianCoreAPI*/

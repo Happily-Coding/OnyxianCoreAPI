@@ -52,5 +52,7 @@ public interface OnyxianCoreAPI {
      */
     public void RegisterActionType(@NotNull String configSignal, @NotNull FunctionToRun actionTypeExecution, String... parametersConfigKey);
     
-    public void RunAction(String actionName, Map<String, Object> usableParameters) throws ImpossibleActionException;
+    //public void RunAction(String actionName, Map<String, Object> usableParameters) throws ImpossibleActionException;
+    
+    public void obtainInfo();
 }
