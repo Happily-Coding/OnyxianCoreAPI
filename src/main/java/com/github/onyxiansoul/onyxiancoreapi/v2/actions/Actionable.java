@@ -11,4 +11,18 @@ import java.util.Map;
   /**Executes the action, given a set of Circumstances*/
   public T enact(Map<String,Object> runCircumstances) throws ImpossibleActionException;
 
+  
+  
+    /**Get the type of object this actionable produces
+     * @return the class of object this transformer produces*/
+    default Class<?> getT() {
+      try {
+          return this.getClass().getMethod("enact", Map.class).getReturnType();
+      } catch (NoSuchMethodException | SecurityException ex) {
+          throw new IllegalArgumentException("Could not find the type of an actionable. This is really unexpected! "+ this.getClass());
+      }
+    }
+    
+    
+    
 }
