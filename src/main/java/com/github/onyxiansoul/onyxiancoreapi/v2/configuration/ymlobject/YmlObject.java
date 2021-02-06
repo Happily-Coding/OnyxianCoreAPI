@@ -20,4 +20,5 @@ public abstract class YmlObject {
      * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
     public abstract <T> Actionable<T> getField(String fieldName, Actionable<T> defaultValue) throws IllegalArgumentException;
         
+    public abstract String getName();
 }
