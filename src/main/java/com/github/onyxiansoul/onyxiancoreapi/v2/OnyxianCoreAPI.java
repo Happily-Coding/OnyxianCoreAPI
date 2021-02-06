@@ -1,11 +1,15 @@
 package com.github.onyxiansoul.onyxiancoreapi.v2;
 
 import com.github.onyxiansoul.onyxiancoreapi.v2.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.OnyxianConfiguration;
+import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
 
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
-     
+  
+  public abstract OnyxianConfiguration getConfiguration() throws UnexpectedConfigurationException;
+  
   //Registers an object of an actionable that is a producer (aka any action that produces a variable, and therefore can be used in the config as both a 'action' & a 'variable')
   public abstract void registerProducer(Actionable<?> actionableToRegister, String referenceName) throws IllegalArgumentException;
   

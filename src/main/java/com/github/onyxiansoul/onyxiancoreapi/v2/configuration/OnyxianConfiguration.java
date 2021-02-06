@@ -9,13 +9,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class OnyxianConfiguration extends YamlConfiguration {
+public interface OnyxianConfiguration {
        
-    /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
-     * @param plugin The plugin requesting the creation of the config.
-     * @param fileName The name of the file itself without yml
-     * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnexpectedConfigurationException if the file couldn't be read.*/
-    public OnyxianConfiguration(Plugin plugin, @NotNull String fileName) throws UnexpectedConfigurationException{}
+
     
     //INDIVIDUALS-------------------------------------------------------------------------------------
     
