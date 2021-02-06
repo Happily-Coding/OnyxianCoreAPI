@@ -22,6 +22,13 @@ public interface OnyxianCoreAPI {
   /*Registers an actionable that doesn't return anything, aka is only usable as an action & that is constructable with values from the configuration, allowing the configuration to change it's settings(& of course, has a constructor which take YmlObject as its only parameter)**/
   public abstract void registerConfigurableAction(Class<Actionable<Void>> actionableClass, String referenceName);
   
+  /**Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.
+   *  For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
+   *  This allows the definition of values for the biome field such as "biome: Taiga".
+   *  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
+   */
+  public abstract void addFieldWrapper(Class<? extends Actionable<?>> wrapperClass, String fieldName) throws IllegalArgumentException;
+  
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
     * all values between braces inside the config are considered placeholders. 
     * @param representedClass = the class of the value which will be obtainable from this placeholder. ie: Color.class;
