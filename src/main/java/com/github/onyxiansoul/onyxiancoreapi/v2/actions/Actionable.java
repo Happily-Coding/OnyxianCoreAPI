@@ -11,8 +11,6 @@ import java.util.Map;
   /**Executes the action, given a set of Circumstances*/
   public T enact(Map<String,Object> runCircumstances) throws ImpossibleActionException;
 
-  
-  
     /**Get the type of object this actionable produces
      * @return the class of object this transformer produces*/
     default Class<?> getT() {

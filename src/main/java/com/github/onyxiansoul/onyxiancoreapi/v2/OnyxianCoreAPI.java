@@ -30,8 +30,8 @@ public interface OnyxianCoreAPI {
    *  This allows the definition of values for the biome field such as "biome: Taiga".
    *  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
    */
-  public abstract void addFieldWrapper(Class<? extends Actionable<?>> wrapperClass, String fieldName) throws IllegalArgumentException;
-  
+  public abstract void registerFieldWrapper(Class<? extends Actionable<?>> type, String string, Object... additionalFieldWrapperParameters)  throws IllegalArgumentException;
+
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
     * all values between braces inside the config are considered placeholders. 
     * @param representedClass = the class of the value which will be obtainable from this placeholder. ie: Color.class;
