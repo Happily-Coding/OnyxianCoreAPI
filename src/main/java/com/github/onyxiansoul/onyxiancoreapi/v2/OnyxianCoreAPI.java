@@ -7,8 +7,11 @@ import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.Unexpec
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
-  
-  public abstract OnyxianConfiguration getConfiguration() throws UnexpectedConfigurationException;
+
+  /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
+  * @param fileName The name of the file itself without yml
+  * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnlocatedConfigurationException if the file couldn't be read.*/
+  public abstract OnyxianConfiguration getConfiguration(String fileName) throws UnexpectedConfigurationException;
   
   //Registers an object of an actionable that is a producer (aka any action that produces a variable, and therefore can be used in the config as both a 'action' & a 'variable')
   public abstract void registerProducer(Actionable<?> actionableToRegister, String referenceName) throws IllegalArgumentException;
