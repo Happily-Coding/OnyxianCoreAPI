@@ -27,8 +27,7 @@ public abstract class OnyxianConfiguration extends YamlConfiguration {
      * @param cousinSection An additional section, that contains objects of the same configurable type.
      * @return The Configurable read from the config section.
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnexpectedConfigurationException if an error prevented the object from being obtained. */
-    public abstract <T> T getConfigurable(String field, ConfigurationSection compoundObjectSection, ConfigurationSection localReferencesSection, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
-    
+    public abstract <T> T getConfigurable(String field, ConfigurationSection localReferencesSection, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
     /**Gets a configurable (aka any object type registered in the util) defined in a map that is part of list of objects
      * @param <T> The type of the configurable
      * @param configurableType The class of the configurable type.
