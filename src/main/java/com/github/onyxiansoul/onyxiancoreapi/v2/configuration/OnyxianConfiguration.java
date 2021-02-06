@@ -27,7 +27,7 @@ public abstract class OnyxianConfiguration extends YamlConfiguration {
      * @param cousinSection An additional section, that contains objects of the same configurable type.
      * @return The Configurable read from the config section.
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnexpectedConfigurationException if an error prevented the object from being obtained. */
-    public abstract <T> T getConfigurable(Class<T> configurableType, ConfigurationSection compoundObjectSection, ConfigurationSection localReferencesSection, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
+    public abstract <T> T getConfigurable(String field, ConfigurationSection compoundObjectSection, ConfigurationSection localReferencesSection, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
     
     /**Gets a configurable (aka any object type registered in the util) defined in a map that is part of list of objects
      * @param <T> The type of the configurable
@@ -38,7 +38,7 @@ public abstract class OnyxianConfiguration extends YamlConfiguration {
      * @return The configurable created from the entry.
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnexpectedConfigurationException If the object field values couldn't be properly read.
      */
-    public abstract <T> T getConfigurableFromListedMap(Class<T> configurableType, Map<String,Object> objectEntry, String listName, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
+    //public abstract <T> T getConfigurableFromListedMap(Class<T> configurableType, Map<String,Object> objectEntry, String listName, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
       
     //INDIVIDUALS-------------------------------------------------------------------------------------
     
@@ -55,7 +55,7 @@ public abstract class OnyxianConfiguration extends YamlConfiguration {
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnexpectedConfigurationException If an object inside the list is not a valid reference
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnlocatedConfigurationException If an objet inside the list can't be created
      */
-    public abstract <T> List<T> getConfigurablesFromList(Class<T> configurableType, ConfigurationSection containingSection, String listName, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
+    //public abstract <T> List<T> getConfigurablesFromList(Class<T> configurableType, ConfigurationSection containingSection, String listName, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
     
     /**Read all the configurables (aka any object type registered in the util) from a section
      * @param <T> The type of the configurable
@@ -66,7 +66,7 @@ public abstract class OnyxianConfiguration extends YamlConfiguration {
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnexpectedConfigurationException If an object inside the section is not a valid object/reference
      * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnlocatedConfigurationException If an objet inside the section can't be created
      */
-    public abstract <T> List<T> getConfigurablesFromSection(Class<T> configurableType, ConfigurationSection configurablesSection, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
+    //public abstract <T> List<T> getConfigurablesFromSection(Class<T> configurableType, ConfigurationSection configurablesSection, ConfigurationSection cousinSection) throws UnexpectedConfigurationException;
     
     //LISTS-------------------------------------------------------------------------------------------
 
@@ -83,12 +83,12 @@ public abstract class OnyxianConfiguration extends YamlConfiguration {
      * @param valueName The config name of the key element. Used to know what subsection to read it from.
      * @return A Map of <KeyElement, LIST of all valueElements related to it, in the order they appeared on the config>. May be empty, if there are problems reading it.
      */
-    public abstract @NotNull <K,V> LinkedListMultimap<K,V> getRelationMap(ConfigurationSection relationsSection, Class<K> keyType, String keyName, ConfigurationSection kSection, Class<V> valueType, ConfigurationSection vSection,  String valueName) throws UnexpectedConfigurationException;
+    //public abstract @NotNull <K,V> LinkedListMultimap<K,V> getRelationMap(ConfigurationSection relationsSection, Class<K> keyType, String keyName, ConfigurationSection kSection, Class<V> valueType, ConfigurationSection vSection,  String valueName) throws UnexpectedConfigurationException;
     
     //RELATIONS---------------------------------------------------------------------------------------
     
     //VALID-------------------------------------------------------------------------------------------
-    public abstract ConfigurationSection getValidSection(ConfigurationSection parentSection, String key) throws UnexpectedConfigurationException;
+    //public abstract ConfigurationSection getValidSection(ConfigurationSection parentSection, String key) throws UnexpectedConfigurationException;
     
     //VALID-------------------------------------------------------------------------------------------
 
