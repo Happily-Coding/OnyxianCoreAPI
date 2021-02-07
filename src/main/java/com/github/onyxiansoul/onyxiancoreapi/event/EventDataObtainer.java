@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  *  Only onyxian plugins should extend this interface directly. All other plugins should extend the implementation located on the api of one of the onyxianPlugins.
  */
 public abstract class EventDataObtainer<T extends Event> {
-    private final T e;
+    protected final T e;
   
     public EventDataObtainer(T e){
       this.e = e;
