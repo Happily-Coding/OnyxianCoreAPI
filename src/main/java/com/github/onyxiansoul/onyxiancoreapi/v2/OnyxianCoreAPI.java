@@ -1,8 +1,10 @@
 package com.github.onyxiansoul.onyxiancoreapi.v2;
 
+import com.github.onyxiansoul.onyxiancoreapi.event.EventDataObtainer;
 import com.github.onyxiansoul.onyxiancoreapi.v2.actions.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.OnyxianConfiguration;
 import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
+import org.bukkit.event.Event;
 
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
@@ -32,6 +34,8 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(Class<? extends Actionable<?>> type, String string, Object... additionalFieldWrapperParameters)  throws IllegalArgumentException;
 
+  public abstract void registerEventDataObtainer(Class<? extends EventDataObtainer> eventDataObtainer, Class<? extends Event> eventItObtainsFrom) throws IllegalArgumentException;
+  
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
     * all values between braces inside the config are considered placeholders. 
     * @param representedClass = the class of the value which will be obtainable from this placeholder. ie: Color.class;
