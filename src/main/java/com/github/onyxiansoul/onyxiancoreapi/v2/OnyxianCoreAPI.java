@@ -32,7 +32,7 @@ public interface OnyxianCoreAPI {
    *  This allows the definition of values for the biome field such as "biome: Taiga".
    *  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
    */
-  public abstract void registerFieldWrapper(Class<? extends Actionable<?>> type, String string, Object... additionalFieldWrapperParameters)  throws IllegalArgumentException;
+  public abstract void registerFieldWrapper(Class<? extends Actionable> type, String string, Object... additionalFieldWrapperParameters)  throws IllegalArgumentException;
 
   public abstract void registerEventDataObtainer(Class<? extends EventDataObtainer> eventDataObtainer, Class<? extends Event> eventItObtainsFrom) throws IllegalArgumentException;
   
