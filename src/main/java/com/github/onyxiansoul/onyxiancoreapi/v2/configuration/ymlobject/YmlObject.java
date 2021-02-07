@@ -10,7 +10,7 @@ public abstract class YmlObject {
      * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
      * @throws NullPointerException if the field isn't listed.
      * @return the value of the fieldOfInterest*/
-    public abstract <T> Actionable<T> getField(String fieldName) throws IllegalArgumentException, NullPointerException;
+    public abstract <T extends Actionable> T getField(String fieldName) throws IllegalArgumentException, NullPointerException;
     
     /**Gets a fieldOfInterest or returns a default value if its not available
      * @param <T> The type of the fieldOfInterest.
@@ -18,7 +18,7 @@ public abstract class YmlObject {
      * @param defaultValue The default value for the fieldOfInterest
      * @return the value of the fieldOfInterest or the default value if its not listed
      * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
-    public abstract <T,T2 extends Actionable<T>> T2 getField(String fieldName, Actionable<T> defaultValue) throws IllegalArgumentException;
+    public abstract <T extends Actionable<T1>, T1> T getField(String fieldName, T defaultValue) throws IllegalArgumentException;
         
     public abstract String getName();
 }
