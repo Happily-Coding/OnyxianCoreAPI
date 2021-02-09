@@ -31,8 +31,12 @@ public interface OnyxianCoreAPI {
    *  For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
    *  This allows the definition of values for the biome field such as "biome: Taiga".
    *  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
+   * @param fieldItReads The name of the field that will be readable thanks to this wrapper.
+   * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
+   * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
+   * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
    */
-  public abstract void registerFieldWrapper(Class<? extends Actionable> type, String string, Object... additionalFieldWrapperParameters)  throws IllegalArgumentException;
+  public abstract void registerFieldWrapper(String fieldItReads, Class<? extends Actionable> wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
 
   public abstract void registerEventDataObtainer(Class<? extends EventDataObtainer> eventDataObtainer, Class<? extends Event> eventItObtainsFrom) throws IllegalArgumentException;
   
