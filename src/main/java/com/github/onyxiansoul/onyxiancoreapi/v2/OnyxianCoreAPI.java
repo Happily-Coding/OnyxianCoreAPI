@@ -19,7 +19,7 @@ public interface OnyxianCoreAPI {
   public abstract void registerProducer(Actionable<?> actionableToRegister, String referenceName) throws IllegalArgumentException;
   
   /**Registers a producer that is constructable with values from the configuration, allowing the configuration to change it's settings (& of course, has a constructor which take YmlObject as its only parameter)*/
-  public abstract void registerConfigurableProducer(Class<? extends Actionable> actionableClass, String referenceName) throws IllegalArgumentException;
+  public abstract void registerConfigurableProducer(String fieldItReads, Class<? extends Actionable> actionableClass, Object... additionalActionableParameters) throws IllegalArgumentException;
   
   /*Registers an actionable that doesn't return anything, aka is only usable as an action**/
   public abstract void registerAction(Actionable<Void> actionableToRegister, String referenceName) throws IllegalArgumentException;
