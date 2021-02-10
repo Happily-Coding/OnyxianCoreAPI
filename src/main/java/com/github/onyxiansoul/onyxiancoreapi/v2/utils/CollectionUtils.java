@@ -14,7 +14,7 @@ public class CollectionUtils {
     
     //Should be called externaly only when trying to read particular map entries from a list.
     //Uses hashmap nodes instead of AbstractMap.SimpleENtry
-    public static LinkedList<Entry<String,Object>> createNamedListFromMap(Map<String, Object> baseMap){
+    /*public static LinkedList<Entry<String,Object>> createNamedListFromMap(Map<String, Object> baseMap){
         LinkedList<Entry<String,Object>> namedList= new LinkedList<>();
         namedList.addAll(baseMap.entrySet());
         for(Entry<String,Object> entry: namedList){
@@ -24,7 +24,7 @@ public class CollectionUtils {
             }
         }
         return namedList;
-    }
+    }*/
     
     public static<K,V> HashMap<K,V> safelyCastMap(Map mapToCast, Class<K> keyClass, Class<V> valueClass){
         Set<Entry> entriesToCast = mapToCast.entrySet();

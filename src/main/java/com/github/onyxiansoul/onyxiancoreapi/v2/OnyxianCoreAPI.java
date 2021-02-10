@@ -16,16 +16,19 @@ public interface OnyxianCoreAPI {
   public abstract OnyxianConfiguration getConfiguration(String fileName) throws UnexpectedConfigurationException;
   
   //Registers an object of an actionable that is a producer (aka any action that produces a variable, and therefore can be used in the config as both a 'action' & a 'variable')
-  public abstract void registerProducer(Actionable<?> actionableToRegister, String referenceName) throws IllegalArgumentException;
+  public abstract void registerProducer(String referenceName, Actionable actionableToRegister) throws IllegalArgumentException;
   
   /**Registers a producer that is constructable with values from the configuration, allowing the configuration to change it's settings (& of course, has a constructor which take YmlObject as its only parameter)*/
-  public abstract void registerConfigurableProducer(String fieldItReads, Class<? extends Actionable> actionableClass, Object... additionalActionableParameters) throws IllegalArgumentException;
+  //@Deprecated
+  //public abstract void registerConfigurableProducer(String fieldItReads, Class<? extends Actionable> actionableClass, Object... additionalActionableParameters) throws IllegalArgumentException;
   
   /*Registers an actionable that doesn't return anything, aka is only usable as an action**/
-  public abstract void registerAction(Actionable<Void> actionableToRegister, String referenceName) throws IllegalArgumentException;
+  //@Deprecated
+  //public abstract void registerAction(Actionable<Void> actionableToRegister, String referenceName) throws IllegalArgumentException;
   
   /*Registers an actionable that doesn't return anything, aka is only usable as an action & that is constructable with values from the configuration, allowing the configuration to change it's settings(& of course, has a constructor which take YmlObject as its only parameter)**/
-  public abstract void registerConfigurableAction(Class<Actionable<Void>> actionableClass, String referenceName);
+  //@Deprecated
+  //public abstract void registerConfigurableAction(Class<Actionable<Void>> actionableClass, String referenceName);
   
   /**Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.
    *  For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
