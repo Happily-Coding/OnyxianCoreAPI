@@ -19,6 +19,7 @@ com\github\onyxiansoul\onyxiancoreapi\event\ParameteredEventType$2.class
 com\github\onyxiansoul\onyxiancoreapi\v2\OnyxianCoreAPI.class
 com\github\onyxiansoul\onyxiancoreapi\actions\FunctionToRun.class
 com\github\onyxiansoul\onyxiancoreapi\event\ParameteredEventType$7.class
+com\github\onyxiansoul\onyxiancoreapi\v2\utils\ReflectionUtils.class
 com\github\onyxiansoul\onyxiancoreapi\event\ParameteredEventType$3.class
 com\github\onyxiansoul\onyxiancoreapi\event\ParameteredEventType.class
 com\github\onyxiansoul\onyxiancoreapi\event\ParameteredEventType$8.class
