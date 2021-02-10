@@ -2,6 +2,7 @@ package com.github.onyxiansoul.onyxiancoreapi.v2.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import org.apache.commons.lang.reflect.ConstructorUtils;
 
 public class ReflectionUtils {
@@ -24,4 +25,17 @@ public class ReflectionUtils {
       throw new IllegalArgumentException("Created a  "+ objectClass.getSimpleName() + " Utilizing the arguments: "+ Arrays.toString(constructionArguments) + "But it could not be cast to the required class", e);
     }
   }
+  
+    public static <T> T create(Class objectClass, LinkedList<?> constructionArguments) throws IllegalArgumentException{
+    try {
+      return (T) ConstructorUtils.invokeConstructor(objectClass, constructionArguments.toArray());
+    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+      throw new IllegalArgumentException("Could not instantiate a "+ objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments,e);
+    } catch(NullPointerException e){
+      throw new IllegalArgumentException("Caught a null pointer while trying to create a " + objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments+ " This is likely the result of passing a null parameter to the create method! That is not allowed!!!");
+    } catch (ClassCastException e){
+      throw new IllegalArgumentException("Created a  "+ objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments + "But it could not be cast to the required class", e);
+    }
+  }
+  
 }

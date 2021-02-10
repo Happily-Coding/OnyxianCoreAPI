@@ -1,13 +1,12 @@
 package com.github.onyxiansoul.onyxiancoreapi.v2.utils;
 
-import com.google.common.collect.LinkedListMultimap;
+import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import org.bukkit.configuration.ConfigurationSection;
 
 //TODO: MOVE TO API!
 public class CollectionUtils {
@@ -38,6 +37,17 @@ public class CollectionUtils {
         return newMap;
     }
           
+    public static List<?> obtainList(Object object) throws UnexpectedConfigurationException {
+        if(object instanceof List){
+            return (List)object;
+        }
+        else{
+            LinkedList list = new LinkedList<>();
+            list.add(object);
+            return list;
+        }
+    }
+    
     /** Transform a map that has creators as values to a map that has their creation as values.
      * @param <K> The key type
      * @param <V1>The original (creator) value type.
