@@ -19,7 +19,6 @@ public final class ConfigurationUtil {
 
   public static String getHumanFieldName(String fieldName) {
     //Falla al splitear 'message'
-    System.out.println("Trying to split: "+fieldName);
     String[] fieldWords = StringUtils.splitByCharacterTypeCamelCase(fieldName);
     StringBuilder humanNameBuilder = new StringBuilder();
     for (String word : fieldWords) {
