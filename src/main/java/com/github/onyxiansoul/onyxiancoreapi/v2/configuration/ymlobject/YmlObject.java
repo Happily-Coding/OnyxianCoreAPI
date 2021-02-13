@@ -24,5 +24,5 @@ public abstract class YmlObject {
         
     public abstract String getName();
     
-    protected abstract <T extends Actionable> List<T> getListField(String fieldKey, ConfigurationSection objectTypeReferenceSection, String objectType);
+    public abstract <T extends Actionable> List<T> getListField(String fieldKey, ConfigurationSection objectTypeReferenceSection, String objectType);
 }
