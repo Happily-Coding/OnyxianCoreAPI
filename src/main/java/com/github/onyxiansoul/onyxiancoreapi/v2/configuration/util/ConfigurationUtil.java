@@ -1,5 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.util;
 
+import com.github.onyxiansoul.onyxiancoreapi.v2.actions.ImpossibleActionException;
+import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.ymlobject.YmlObject;
 import org.bukkit.configuration.ConfigurationSection;
 import org.apache.commons.lang.StringUtils;
 
@@ -17,17 +19,14 @@ public final class ConfigurationUtil {
     return "Configuration Section: {"+sectionPath + "}";
   }
 
-  public static String getHumanFieldName(String fieldName) {
-    //Falla al splitear 'message'
-    String[] fieldWords = StringUtils.splitByCharacterTypeCamelCase(fieldName);
-    StringBuilder humanNameBuilder = new StringBuilder();
-    for (String word : fieldWords) {
-      humanNameBuilder.append(word.toLowerCase());
-      humanNameBuilder.append(" ");
+    public static String getActionableType(YmlObject object) throws IllegalArgumentException{
+      try{
+        return (String) object.getField("action type").enact(null); //Podria ser remplazable por directo invocar string
+      }
+      catch(ClassCastException |ImpossibleActionException | IllegalArgumentException | NullPointerException e){
+        throw new IllegalArgumentException("Could not find the action type of: "+ object.toString(), e);
+      }
     }
-    humanNameBuilder.deleteCharAt(humanNameBuilder.length() - 1);
-    return humanNameBuilder.toString();
-  }
 
   public static boolean isLocalReferenceAttempt(String stringToCheck) {
     String homogeniezedStringToCheck = StringUtils.strip(stringToCheck.toUpperCase());
