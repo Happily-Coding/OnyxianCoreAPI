@@ -21,7 +21,7 @@ public final class ConfigurationUtil {
 
     public static String getActionableType(YmlObject object) throws IllegalArgumentException{
       try{
-        return (String) object.getField("action type").enact(null); //Podria ser remplazable por directo invocar string
+        return (String) object.getField("action type", "action type").enact(null); //Podria ser remplazable por directo invocar string
       }
       catch(ClassCastException |ImpossibleActionException | IllegalArgumentException | NullPointerException e){
         throw new IllegalArgumentException("Could not find the action type of: "+ object.toString(), e);

@@ -12,7 +12,7 @@ public abstract class YmlObject {
      * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
      * @throws NullPointerException if the field isn't listed.
      * @return the value of the fieldOfInterest*/
-    public abstract <T extends Actionable> T getField(String fieldName) throws IllegalArgumentException, NullPointerException;
+    public abstract <T extends Actionable> T getField(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
     
     /**Gets a fieldOfInterest or returns a default value if its not available
      * @param <T> The type of the fieldOfInterest.
