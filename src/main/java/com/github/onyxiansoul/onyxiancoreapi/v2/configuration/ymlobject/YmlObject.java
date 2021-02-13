@@ -1,6 +1,8 @@
 package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.ymlobject;
 
 import com.github.onyxiansoul.onyxiancoreapi.v2.actions.Actionable;
+import java.util.List;
+import org.bukkit.configuration.ConfigurationSection;
 
 public abstract class YmlObject {
 
@@ -21,4 +23,6 @@ public abstract class YmlObject {
     public abstract <T extends Actionable<T1>, T1> T getField(String fieldName, T defaultValue) throws IllegalArgumentException;
         
     public abstract String getName();
+    
+    protected abstract <T extends Actionable> List<T> getListField(String fieldKey, ConfigurationSection objectTypeReferenceSection, String objectType);
 }
