@@ -12,35 +12,31 @@ public interface OnyxianCoreAPI {
 
   /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
   * @param fileName The name of the file itself without yml
-  * @throws com.github.onyxiansoul.damagepotioneffects.configuration.base.exceptions.UnlocatedConfigurationException if the file couldn't be read.*/
+  * @throws com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
+  */
   public abstract OnyxianConfiguration getConfiguration(String fileName) throws UnexpectedConfigurationException;
   
-  //Registers an object of an actionable that is a producer (aka any action that produces a variable, and therefore can be used in the config as both a 'action' & a 'variable')
-  public abstract void registerProducer(String referenceName, Actionable actionableToRegister) throws IllegalArgumentException;
-  
-  /**Registers a producer that is constructable with values from the configuration, allowing the configuration to change it's settings (& of course, has a constructor which take YmlObject as its only parameter)*/
-  //@Deprecated
-  //public abstract void registerConfigurableProducer(String fieldItReads, Class<? extends Actionable> actionableClass, Object... additionalActionableParameters) throws IllegalArgumentException;
-  
-  /*Registers an actionable that doesn't return anything, aka is only usable as an action**/
-  //@Deprecated
-  //public abstract void registerAction(Actionable<Void> actionableToRegister, String referenceName) throws IllegalArgumentException;
-  
-  /*Registers an actionable that doesn't return anything, aka is only usable as an action & that is constructable with values from the configuration, allowing the configuration to change it's settings(& of course, has a constructor which take YmlObject as its only parameter)**/
-  //@Deprecated
-  //public abstract void registerConfigurableAction(Class<Actionable<Void>> actionableClass, String referenceName);
+  /**Registers an object of an actionable, AKA an element that can run, and can produce a variable, and therefore can be used in the config as both a 'action' & a 'variable')
+  * Configurable objects inside Onyxian Plugins, use almost exclusevily producers as variables, this allows for the value of a field to be modifiable by parameters obtained at runtime, such as the value of a placeholder, or the event that triggered an action.
+  * @param <T1> The type of variable that will be produced by the actionable. Can be Void if its an action that doesn't produce any variable.
+  * @param <T2> Any class implementing actionable.
+  * @param referenceName The name that will represent this actionable in the OnyxianCore index.
+  * @param actionableToRegister The actionable to register.
+  */
+  public abstract <T1,T2 extends Actionable<T1>> void registerActionable(String referenceName, T2 actionableToRegister) throws IllegalArgumentException;
   
   /**Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.
    *  For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
    *  This allows the definition of values for the biome field such as "biome: Taiga".
    *  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
-   * @param fieldItReads The name of the field that will be readable thanks to this wrapper.
+   * @param referenceName The name that will represent this wrapper in the OnyxianCore index.
    * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
    * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
    * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
    */
-  public abstract void registerFieldWrapper(String fieldItReads, Class<? extends Actionable> wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
-
+  public abstract void registerFieldWrapper(String referenceName, Class<? extends Actionable> wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
+  
+  
   public abstract void registerEventDataObtainer(Class<? extends EventDataObtainer> eventDataObtainer, Class<? extends Event> eventItObtainsFrom) throws IllegalArgumentException;
   
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.

@@ -1,6 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi.v2.utils;
 
 import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -47,6 +48,13 @@ public class CollectionUtils {
             return list;
         }
     }
+    public static <T extends Collection> T requireNotEmpty(T collection, String collectionName) throws IllegalArgumentException{
+      if(collection != null && !collection.isEmpty()){
+        return collection;
+      }
+      throw new IllegalArgumentException(collectionName + " Needs to exist and have at least 1 element listed!");
+    }
+    
     
     /** Transform a map that has creators as values to a map that has their creation as values.
      * @param <K> The key type
