@@ -5,17 +5,17 @@
     <artifactId>OnyxianCoreAPI</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
+    <parent>
+        <groupId>com.github.OnyxianSoul</groupId>
+        <artifactId>OnyxianBase</artifactId>
+        <version>06544b7673</version>
+    </parent>
     <repositories>
       <repository>
           <id>jitpack.io</id>
           <url>https://jitpack.io</url>
       </repository>
     </repositories>
-    <parent>
-        <groupId>com.github.OnyxianSoul</groupId>
-        <artifactId>OnyxianBase</artifactId>
-        <version>06544b7673</version>
-    </parent>
     <build>
         <pluginManagement>
             <plugins>
