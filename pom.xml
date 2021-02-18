@@ -12,7 +12,7 @@
       </repository>
     </repositories>
     <parent>
-        <groupId>com.github.OnyxianSoul</groupId>
+        <groupId>com.github.onyxiansoul</groupId>
         <artifactId>OnyxianBase</artifactId>
         <version>06544b7673</version>
     </parent>
