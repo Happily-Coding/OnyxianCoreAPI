@@ -10,7 +10,10 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 public interface OnyxianConfiguration {   
-    
+  
+  	public void setLoseless(String path, Object value, boolean additionsAreCommented, boolean replacementsAreCommentedInsertions, boolean valueShouldBeNameless);
+  
+  
     //INDIVIDUALS-------------------------------------------------------------------------------------
     
     /**Gets a configurable (aka any object type registered in the util) defined in a map that is part of list of objects
