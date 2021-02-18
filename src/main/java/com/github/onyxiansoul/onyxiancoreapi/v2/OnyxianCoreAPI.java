@@ -57,6 +57,7 @@ public interface OnyxianCoreAPI {
     */  
     //public void RegisterPlaceholderType( @NotNull Class representedClass, @Nullable Class collectionObjectType, @NotNull String stringSignal, @NotNull SignalLocation signalType, @NotNull FunctionToGetValue functionToGetValue);
     
+  
     /**Register a new ConfigParameter, which can be used inside any actionType, read off the config of all OnyxianSoul plugins.
      * @param configKey = the config key which will contain the placeholder from which to obtain the value on runtime. ie: "Player:"
      * @param expectedClass = the type of object that's expected to be represented by the placeholder. ie: "Player.class"
