@@ -8,7 +8,7 @@
     <parent>
         <groupId>com.github.OnyxianSoul</groupId>
         <artifactId>OnyxianBase</artifactId>
-        <version>06544b7673</version>
+        <version>db987acf48</version>
     </parent>
     <repositories>
       <repository>
