@@ -10,9 +10,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.Nullable;
 
-/** The base for any RuntimeSupplier aka any class that from an object is able to return useful data for at least one of the methods in this class.
- *  All Onyxian plugins that require obtaining data have their unique implementation of this class
- *  Only onyxian plugins should extend this interface directly. All other plugins should extend the implementation located on the api of one of the onyxianPlugins.
+/** The base for any RuntimeSupplier aka any class that from an object is able to return useful data for at least one of the methods in this class.All Onyxian plugins that require obtaining data have their unique implementation of this class
+ * Only onyxian plugins should extend this interface directly.
+ * All other plugins should extend the implementation located on the api of one of the onyxianPlugins.
+ * @param <T> The type of object it uses internally for supplying methods.
  */
 public abstract class RuntimeSupplier<T> {
     protected final T e;
