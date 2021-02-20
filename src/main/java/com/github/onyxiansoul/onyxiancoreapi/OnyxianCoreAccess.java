@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2;
+package com.github.onyxiansoul.onyxiancoreapi;
 
 import org.bukkit.plugin.Plugin;
 

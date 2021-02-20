@@ -1,6 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.configuration;
+package com.github.onyxiansoul.onyxiancoreapi.configuration;
 
-import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.google.common.collect.LinkedListMultimap;
 import java.util.List;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.ymlobject;
+package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 
-import com.github.onyxiansoul.onyxiancoreapi.v2.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
 import java.util.List;
 
 public abstract class YmlObject {

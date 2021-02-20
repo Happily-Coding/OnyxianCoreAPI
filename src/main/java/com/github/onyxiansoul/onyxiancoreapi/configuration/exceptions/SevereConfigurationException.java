@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions;
+package com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions;
 
 /**A configuration exception so severe the plugin can't properly function.*/
 public class SevereConfigurationException extends Exception {

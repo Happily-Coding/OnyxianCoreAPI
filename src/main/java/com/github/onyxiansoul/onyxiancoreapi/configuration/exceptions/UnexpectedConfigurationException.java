@@ -1,6 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions;
+package com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions;
 
-import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.util.ConfigurationUtil;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.util.ConfigurationUtil;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**An exception thrown when the configuration file contains entry/entries that don't follow the plugin's config formatting

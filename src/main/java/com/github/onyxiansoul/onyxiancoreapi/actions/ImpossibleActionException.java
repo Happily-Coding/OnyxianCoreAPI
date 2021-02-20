@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.actions;
+package com.github.onyxiansoul.onyxiancoreapi.actions;
 
 /**The exception thrown when an action cannot be executed*/
 public class ImpossibleActionException extends Exception {

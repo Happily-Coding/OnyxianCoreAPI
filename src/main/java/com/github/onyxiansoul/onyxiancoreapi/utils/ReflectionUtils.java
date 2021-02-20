@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.utils;
+package com.github.onyxiansoul.onyxiancoreapi.utils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

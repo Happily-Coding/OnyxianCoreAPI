@@ -1,6 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.utils;
+package com.github.onyxiansoul.onyxiancoreapi.utils;
 
-import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;

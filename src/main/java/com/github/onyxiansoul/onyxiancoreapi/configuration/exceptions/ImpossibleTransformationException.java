@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions;
+package com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions;
 
 /**An exception thrown when its impossible to craft an object of a certain type from an 'Object'.
  */

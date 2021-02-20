@@ -1,7 +1,7 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2.configuration.util;
+package com.github.onyxiansoul.onyxiancoreapi.configuration.util;
 
-import com.github.onyxiansoul.onyxiancoreapi.v2.actions.ImpossibleActionException;
-import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.ymlobject.YmlObject;
+import com.github.onyxiansoul.onyxiancoreapi.actions.ImpossibleActionException;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
 import org.bukkit.configuration.ConfigurationSection;
 import org.apache.commons.lang.StringUtils;
 

@@ -1,10 +1,8 @@
-package com.github.onyxiansoul.onyxiancoreapi.v2;
+package com.github.onyxiansoul.onyxiancoreapi;
 
-import com.github.onyxiansoul.onyxiancoreapi.event.EventDataObtainer;
-import com.github.onyxiansoul.onyxiancoreapi.v2.actions.Actionable;
-import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.OnyxianConfiguration;
-import com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException;
-import org.bukkit.event.Event;
+import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.OnyxianConfiguration;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
@@ -12,7 +10,7 @@ public interface OnyxianCoreAPI {
 
   /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
   * @param fileName The name of the file itself without yml
-  * @throws com.github.onyxiansoul.onyxiancoreapi.v2.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
+  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
   */
   public abstract OnyxianConfiguration getConfiguration(String fileName) throws UnexpectedConfigurationException;
   
@@ -36,8 +34,7 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(String referenceName, Class<? extends Actionable> wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
   
-  
-  public abstract void registerEventDataObtainer(Class<? extends EventDataObtainer> eventDataObtainer, Class<? extends Event> eventItObtainsFrom) throws IllegalArgumentException;
+  //public abstract void registerInterpreter(Class<? extends DataInterpreter> eventDataObtainer, Class interpretedClass) throws IllegalArgumentException;
   
     /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
     * all values between braces inside the config are considered placeholders. 

@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.event;
+package com.github.onyxiansoul.onyxiancoreapi.actions.interpreters;
 
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -7,60 +7,47 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.Nullable;
 
-/** The base for any event data obtainer.
+/** The base for any RuntimeSupplier aka any class that from an object is able to return useful data for at least one of the methods in this class.
  *  All Onyxian plugins that require obtaining data have their unique implementation of this class
  *  Only onyxian plugins should extend this interface directly. All other plugins should extend the implementation located on the api of one of the onyxianPlugins.
  */
-public abstract class EventDataObtainer<T extends Event> {
+public abstract class RuntimeSupplier<T> {
     protected final T e;
   
-    public EventDataObtainer(T e){
-      this.e = e;
+    public RuntimeSupplier(@NotNull T runtimeObject){
+      this.e = runtimeObject;
     }
     
     /**Get the name of the event
      * @param e = an event of this type
      * @return  The name of the event
      */
-    @NotNull
-    public String getEventName(){
-        return e.getEventName();
-    }
+    @Nullable
+    public String getEventName(){return null; }
     
     /**Get the handlers list for the event
      * @param e = an event of this type
      * @return  The handlers for the event.
      */
-    @NotNull
-    public HandlerList getHandlersList(){
-        return e.getHandlers();
-    }
+    @Nullable
+    public HandlerList getHandlersList() { return null; }
     
     /**Get the class of the event
      * @param e = an event of this type
      * @return  The class of the event
      */
-    @NotNull
-    public Class<?> getEventClass(){
-        return e.getClass();
-    }
+    @Nullable
+    public Class<?> getEventClass(){ return null; }
     
     /**Check if the event has been cancelled (usually by another plugin)
      * @param e = an event of this type
      * @return  true if it has been cancelled, false if it hasn't (or isn't cancellable).
      */
     @NotNull
-    public boolean isCancelled(){
-        if (e instanceof Cancellable){
-            return ((Cancellable) e).isCancelled();
-        }
-        return false;
-    }
+    public boolean isCancelled(){ return false; }
     
     /**Get the name of the data obtainer, it will be used as a unique ID when registering the data obtainer And as string signal, when reading the config file.
      * Please, DO NOT include EVENT, OBTAINER or DATA_OBTAINER in the name & separate worlds with underscores.
@@ -126,7 +113,23 @@ public abstract class EventDataObtainer<T extends Event> {
      * @param e = an event of this type
      * @return the list of blockStates which are involved on an event. Usually a single entry, representing the past or future of a cube.
     */
+    @Nullable
     public List<BlockState> getInvolvedStates(){ return null; }
 
-
+    /**Get the type of element this obtainer is using as its source.*/
+    @NotNull
+    public final Class getType(){
+      return e.getClass();
+    }
+    
+    /**Get the element this obtainer is using as its source*/
+    @NotNull
+    public final T getRaw(){
+      return e;
+    }
+    
+    //To allow adding additional gettables to any data obtainer. (hay que registrar el additional en data obtainer name, con un default value tambien o algo asi.
+    /*public <T1> getAdditional(String additonalName){
+    }*/
+    
 }
