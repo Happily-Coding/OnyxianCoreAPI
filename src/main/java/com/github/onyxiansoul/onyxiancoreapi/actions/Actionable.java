@@ -9,13 +9,17 @@ import java.util.Map;
  public interface Actionable<T> {
   
   /**Executes the action, given a set of Circumstances*/
-  public <T1 extends T> T1 enact(Map<String,Object> runCircumstances) throws ImpossibleActionException;
-  //public T enact(Map<String,Object> runCircumstances) throws ImpossibleActionException;
+  //public <T1 extends T> T1 enact(Map<String,Object> runCircumstances) throws ImpossibleActionException;
+  public T enact(Map<String,Object> runCircumstances) throws ImpossibleActionException;
   
   /**Executes the action, with no circumstances. Might throw an impossibleActionException if it required circumstances*/
-  public default <T1 extends T> T1 enact() throws ImpossibleActionException{
+  public default T enact()throws ImpossibleActionException{ 
     return enact(null);
   }
+
+ /* public default <T1 extends T> T1 enact() throws ImpossibleActionException{
+    return enact(null);
+  }*/
   
   //TODO: Asegurarse que todos los fields requeridos esten.
   //public List<String> getRequiredFields
