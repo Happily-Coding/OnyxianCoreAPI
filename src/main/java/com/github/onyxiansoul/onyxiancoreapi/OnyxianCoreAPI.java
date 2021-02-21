@@ -1,6 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 
 import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.actions.interpreters.AdditionalFieldGetter;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.OnyxianConfiguration;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
@@ -34,6 +35,21 @@ public interface OnyxianCoreAPI {
    * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
    */
   public abstract void registerFieldWrapper(String referenceName, Class<? extends Actionable> wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
+  
+  //Intencionalmente no hay un supplier registry, no tiene sentido ya que cada supplier debeira ser especifico por plugin.
+  
+  /**Adds a getter that can be used by suppliers of a certain type, to provide a certain field.
+   * @param supplierName the name of the supplier type.
+   * @param field The name of the new field they will be able to provide
+   * @param fieldGetter The AdditionalFieldGetter that will allow them to provide it (an implementation created by you)
+   * @throws IllegalArgumentException If there already is an additional getter for that field.
+   */
+  public abstract void registerAdditionalFieldGetterForSupplier(String supplierName, String field, AdditionalFieldGetter fieldGetter) throws IllegalArgumentException;
+  
+  
+  /**Gets the field getter that allows getting a field value */
+  public abstract AdditionalFieldGetter getAdditionalFieldGetter(String supplierName, String fieldName)throws IllegalArgumentException;
+  
   
   //public abstract void registerInterpreter(Class<? extends DataInterpreter> eventDataObtainer, Class interpretedClass) throws IllegalArgumentException;
   

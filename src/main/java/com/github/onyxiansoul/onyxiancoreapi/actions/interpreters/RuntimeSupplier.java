@@ -18,19 +18,6 @@ import org.jetbrains.annotations.Nullable;
  * @param <T> The type of object it uses internally for supplying methods.
  */
 public abstract class RuntimeSupplier<T> {
-  private static final Map<Class<? extends RuntimeSupplier>, Map<String,AdditionalFieldGetter>> additionalSupplierFields = new HashMap<>();
-  //TODO add plugin info; consider moving to index and locking behind the api.
-  
-  public static final void addFieldGetterToSupplier(Class<? extends RuntimeSupplier> supplierClass, String fieldName, AdditionalFieldGetter fieldGetter) throws IllegalArgumentException{
-    Map<String, AdditionalFieldGetter> supplierAdditionalGettersMap = additionalSupplierFields.getOrDefault(supplierClass, new HashMap<String, AdditionalFieldGetter>());
-    if(!supplierAdditionalGettersMap.containsKey(fieldName)){
-      supplierAdditionalGettersMap.put(fieldName, fieldGetter);
-      additionalSupplierFields.put(supplierClass, supplierAdditionalGettersMap);
-    }
-    else{
-      throw new IllegalArgumentException("The supplier: "+ supplierClass.getSimpleName() + " Already has a getter for the additional field: "+ fieldName);
-    }
-  }  
   
   protected final T e;
 
@@ -143,11 +130,6 @@ public abstract class RuntimeSupplier<T> {
   @NotNull
   public final T getRaw(){
     return e;
-  }
-
-  @Nullable
-  public Object getField(String fieldName){
-    return additionalSupplierFields.getOrDefault(getClass(), new HashMap<>()).getOrDefault(fieldName,null);
   }
     
 }
