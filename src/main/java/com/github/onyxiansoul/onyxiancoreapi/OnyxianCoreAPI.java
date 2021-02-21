@@ -1,6 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 
 import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.OnyxianConfiguration;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 
@@ -12,7 +13,7 @@ public interface OnyxianCoreAPI {
   * @param fileName The name of the file itself without yml
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
   */
-  public abstract OnyxianConfiguration getConfiguration(String fileName) throws UnexpectedConfigurationException;
+  public abstract OnyxianConfiguration getConfiguration(String fileName, ConfigUpdate[] configUpdates) throws UnexpectedConfigurationException;
   
   /**Registers an object of an actionable, AKA an element that can run, and can produce a variable, and therefore can be used in the config as both a 'action' & a 'variable')
   * Configurable objects inside Onyxian Plugins, use almost exclusevily producers as variables, this allows for the value of a field to be modifiable by parameters obtained at runtime, such as the value of a placeholder, or the event that triggered an action.
