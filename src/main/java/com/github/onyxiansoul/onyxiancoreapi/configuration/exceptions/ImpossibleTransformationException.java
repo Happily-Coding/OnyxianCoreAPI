@@ -23,8 +23,8 @@ public class ImpossibleTransformationException extends Exception {
         super(craftMessage(className,baseObject,additionalMessage), e);
     }
 
-  ImpossibleTransformationException(String string) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-  }
+    public ImpossibleTransformationException(String string) {
+      super(string);
+    }
         
 }

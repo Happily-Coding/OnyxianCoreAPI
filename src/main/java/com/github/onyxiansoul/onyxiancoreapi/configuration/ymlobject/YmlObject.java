@@ -4,7 +4,7 @@ import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
 import java.util.List;
 
 public abstract class YmlObject {
-
+  /**Gets the name of the YmlObject, usually the name of the section*/
   public abstract String getName();
 
   /**Gets the value of a fieldOfInterest, or throws an exception if it is invalid or wasn't found
