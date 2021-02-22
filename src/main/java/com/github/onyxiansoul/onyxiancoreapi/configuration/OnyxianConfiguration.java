@@ -1,19 +1,24 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration;
 
+import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
-import com.google.common.collect.LinkedListMultimap;
-import java.util.List;
-import java.util.Map;
+import java.util.LinkedList;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.Plugin;
-import org.jetbrains.annotations.NotNull;
 
 public interface OnyxianConfiguration {   
   
   	public void setLoseless(String path, Object value, boolean additionsAreCommented, boolean replacementsAreCommentedInsertions, boolean valueShouldBeNameless);
-  
-  
+    
+    public abstract <T> T getConfigObject(String fieldName, ConfigurationSection containingSection, ConfigurationSection referenceSection, String objectType) throws UnexpectedConfigurationException;
+    
+    public <T> LinkedList<T> getSectionObjects(String fieldName, ConfigurationSection containingSection, ConfigurationSection objectTypeReferenceSection, String objectType) throws UnexpectedConfigurationException;
+    
+    public <T> LinkedList<T> getListObjects(String fieldName, ConfigurationSection containingSection, ConfigurationSection objectTypeReferenceSection, String objectType) throws UnexpectedConfigurationException;
+
+    //TODO: Hay cosas que no tienen sentido que sean actionables pero si legibles de la configuración. Reworkear para que se pueda? Se deberian construir igual simplemente es tener o no el actionable me da la impresión.
+    //CROSS THAT BRIDGE WHEN YOU COME TO IT I GUESS PERO LAS RELACIONES SON UN CLARO EJEMPLO Y DEBE HABER OTRO. EJ BLOQUES?
+    //Definitivamente hacer que haya metodos que no devuelvan actionable. dejar los que devuelven actionable para las variables internas yu sar los otros para los objectos que las usan.
+    
     //INDIVIDUALS-------------------------------------------------------------------------------------
     
     /**Gets a configurable (aka any object type registered in the util) defined in a map that is part of list of objects

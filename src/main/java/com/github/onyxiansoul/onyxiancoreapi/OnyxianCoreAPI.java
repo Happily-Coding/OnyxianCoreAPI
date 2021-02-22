@@ -1,7 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 
 import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
-import com.github.onyxiansoul.onyxiancoreapi.actions.interpreters.AdditionalFieldGetter;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.OnyxianConfiguration;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
@@ -34,68 +33,10 @@ public interface OnyxianCoreAPI {
    * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
    * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
    */
-  public abstract void registerFieldWrapper(String referenceName, Class<? extends Actionable> wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
+  public abstract void registerFieldWrapper(String referenceName, Class wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
   
-  //Intencionalmente no hay un supplier registry, no tiene sentido ya que cada supplier debeira ser especifico por plugin.
+  //There is no actionable registry access since they should be directly read from the config.
   
-  /**Adds a getter that can be used by suppliers of a certain type, to provide a certain field.
-   * @param supplierName the name of the supplier type.
-   * @param field The name of the new field they will be able to provide
-   * @param fieldGetter The AdditionalFieldGetter that will allow them to provide it (an implementation created by you)
-   * @throws IllegalArgumentException If there already is an additional getter for that field.
-   */
-  public abstract void registerAdditionalFieldGetterForSupplier(String supplierName, String field, AdditionalFieldGetter fieldGetter) throws IllegalArgumentException;
-  
-  
-  /**Gets the field getter that allows getting a field value */
-  public abstract AdditionalFieldGetter getAdditionalFieldGetter(String supplierName, String fieldName)throws IllegalArgumentException;
-  
-  
-  //public abstract void registerInterpreter(Class<? extends DataInterpreter> eventDataObtainer, Class interpretedClass) throws IllegalArgumentException;
-  
-    /**Register a new PlaceholderType, which can be used inside the config of all OnyxianSoul plugins.
-    * all values between braces inside the config are considered placeholders. 
-    * @param representedClass = the class of the value which will be obtainable from this placeholder. ie: Color.class;
-    * @param collectionObjectType = the expected class of the object inside the collection. Should be null, unless the representedClass is a colllection.
-    * @param stringSignal = The string that signals that a placeholder (aka a string inside braces) is of this type. ie: "Color:" . That example signal would make (Color:Red) a placeholder of this type.
-    * @param signalType = The location of the signal inside of a placeholder. 
-    *   START would mean that the first text after the start brace needs to be color to be detected as this placeholder, ie: (Color:Red);
-    *   END would mean that the text to the left of the end brace needs to be color to be detected as this placeholder, ie: (redColor:);
-    * @param functionToGetValue = The code that will be executed to get the value of a placeholder. for example:
-    * new FunctionToGetValue(){
-            @Override
-            public boolean run(String cleansedPlaceholderString, EventOfType eventOfType) {
-                return Color.valueOf(cleansedPlaceholderString);
-            }
-        };
-    */  
-    //public void RegisterPlaceholderType( @NotNull Class representedClass, @Nullable Class collectionObjectType, @NotNull String stringSignal, @NotNull SignalLocation signalType, @NotNull FunctionToGetValue functionToGetValue);
-    
-  
-    /**Register a new ConfigParameter, which can be used inside any actionType, read off the config of all OnyxianSoul plugins.
-     * @param configKey = the config key which will contain the placeholder from which to obtain the value on runtime. ie: "Player:"
-     * @param expectedClass = the type of object that's expected to be represented by the placeholder. ie: "Player.class"
-     * @param defaultPlaceholderString = the default string from which to extract the placeholder, if the config key is missing or has a placeholder of an unexpected type. ie: "(event.player)"
-     */
-    //public void RegisterConfigParameter(@NotNull String configKey, @Nullable String defaultPlaceholderString, @NotNull Class expectedClass);
-    
-    /**Register a new ActionType, which can be used inside the results sections of the config of all OnyxianSoul plugins, to generate an action when combined with the parameters specified on the config.
-     * @param configSignal = the string that tells the plugin the action to be created is of this type. ie: "SendMessage"
-     * @param actionTypeExecution = what to do when the action is triggered, ie:
-     *  new FunctionToRun(){
-            @Override
-            public void run(Map<String, Object> parameterValues) {
-                Conversable target =(Conversable) parameterValues.get("Target");
-                String message  = (String) parameterValues.get("Message");
-                target.sendRawMessage(message);
-            }
-        }
-    * @param parametersConfigKey = the config key of every single parameter that should be read from the config, and therefore be available on parameterValues on the run method. Keep in mind that it needs to be a registeredParameter in the OnyxianCore.
-    *  
-     */
-    //public void RegisterActionType(@NotNull String configSignal, @NotNull FunctionToRun actionTypeExecution, String... parametersConfigKey);
-    
-    //public void RunAction(String actionName, Map<String, Object> usableParameters) throws ImpossibleActionException;
-    
-    //public void obtainInfo();
+  //There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
+
 }
