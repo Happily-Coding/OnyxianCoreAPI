@@ -6,7 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 
 public interface OnyxianConfiguration {   
   
-  	public void setLoseless(String path, Object value, boolean additionsAreCommented, boolean replacementsAreCommentedInsertions, boolean valueShouldBeNameless);
+  	public void setLoseless(String path, Object value, boolean additionsAreCommented, boolean replacementsAreCommentedInsertions, boolean valueShouldBeNameless) throws UnexpectedConfigurationException;
     
     public <T> T getConfigObject(String fieldName, ConfigurationSection containingSection, ConfigurationSection referenceSection, String objectType) throws UnexpectedConfigurationException;
     
