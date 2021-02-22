@@ -4,6 +4,7 @@ import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.OnyxianConfiguration;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
+import org.bukkit.configuration.ConfigurationSection;
 
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
@@ -23,6 +24,7 @@ public interface OnyxianCoreAPI {
   * @param actionableToRegister The actionable to register.
   */
   public abstract <T1,T2 extends Actionable<T1>> void registerActionable(String referenceName, T2 actionableToRegister) throws IllegalArgumentException;
+  //There is no actionable registry access since they should be directly read from the config.
   
   /**Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.
    *  For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
@@ -35,8 +37,15 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(String referenceName, Class wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
   
-  //There is no actionable registry access since they should be directly read from the config.
+  /**Sets the secion objects of a certain type can reference with copy: or default_from:
+  * @param fieldThatReferencesIt The type of objects that can reference it.
+  * @param sectionReference The section.
+  * @throws IllegalArgumentException if that type of object already has a referenced section assigned.
+  */
+  public abstract void registerReferenceSection(String fieldThatReferencesIt, ConfigurationSection sectionReference) throws IllegalArgumentException;
+
+//There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
   
-  //There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
+  
 
 }
