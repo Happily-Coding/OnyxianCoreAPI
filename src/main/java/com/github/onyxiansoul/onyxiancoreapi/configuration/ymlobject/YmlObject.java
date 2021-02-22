@@ -1,7 +1,8 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 
-import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
+import org.bukkit.configuration.ConfigurationSection;
 
 public abstract class YmlObject {
   /**Gets the name of the YmlObject, usually the name of the section*/
@@ -57,5 +58,7 @@ public abstract class YmlObject {
   */
   public abstract <T> List<T> getSectionListField(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
   
+  /**Re-reads the fields available for this object, but using another reference section, for default from & copy values.*/
+  public abstract void reDefineWithReference(ConfigurationSection referenceSection) throws UnexpectedConfigurationException;
     
 }

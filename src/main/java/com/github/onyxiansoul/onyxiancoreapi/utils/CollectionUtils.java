@@ -56,6 +56,16 @@ public class CollectionUtils {
     }
     
     
+    public static Map<String,Object> mergeValues(Map<String,Object> baseMap, Map<String,Object> mapToComplete){
+      for(String entry: mapToComplete.keySet()){
+          if(!baseMap.containsKey(entry)){
+              baseMap.put(entry, mapToComplete.get(entry));
+          }
+      }
+      return baseMap;
+  }
+    
+    
     /** Transform a map that has creators as values to a map that has their creation as values.
      * @param <K> The key type
      * @param <V1>The original (creator) value type.
