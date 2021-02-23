@@ -1,5 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.utils;
 
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.ImpossibleTransformationException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import org.bukkit.Material;
 
 //TODO: MOVE TO API!
 public class CollectionUtils {
@@ -63,7 +65,28 @@ public class CollectionUtils {
           }
       }
       return baseMap;
-  }
+    }
+    
+    /**Gets the the member of an enum, from the string value of an object.
+   * @param <T> The type of the enum.
+   * @param object The object that will be used as a key(after its tranformation to string)
+   * @param enumClass The class of the enum, for example Material.class
+   * @return the enum element (or null if the object had a string of value "ANY" .
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.ImpossibleTransformationException If there the object string doesn't exist inside the enum. */
+    public static <T extends Enum<T>> T getEnumValue(Object object, Class<T> enumClass) throws ImpossibleTransformationException{
+      String objectAsS = object.toString().toUpperCase();
+      try{
+          return Enum.valueOf(enumClass, objectAsS);
+      }
+      catch(IllegalArgumentException e){ //if the enum constant doesn't exist
+        if(objectAsS.equals("ANY")){ //But is 'any'
+          return null;
+        }
+        else{ //And isnt any
+          throw new ImpossibleTransformationException(enumClass.getSimpleName(), objectAsS, e);
+        }
+      }
+    }
     
     
     /** Transform a map that has creators as values to a map that has their creation as values.
