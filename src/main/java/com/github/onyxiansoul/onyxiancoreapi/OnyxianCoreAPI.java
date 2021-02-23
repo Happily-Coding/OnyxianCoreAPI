@@ -26,16 +26,16 @@ public abstract OnyxianConfiguration getConfiguration(String fileName, ConfigUpd
 public abstract <T1,T2 extends Actionable<T1>> void registerActionable(String referenceName, T2 actionableToRegister) throws IllegalArgumentException;
 //There is no actionable registry access since they should be directly read from the config.
 
-/**Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.
- *  For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
- *  This allows the definition of values for the biome field such as "biome: Taiga".
- *  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
+/** * Assigns a field wrapper to a certain field.Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value. For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.
+  This allows the definition of values for the biome field such as "biome: Taiga".
+  Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
  * @param referenceName The name that will represent this wrapper in the OnyxianCore index.
  * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
+ * @param isDirectField Wether the wrappers helps to interpret single field objects. (instead of interpreting configuration sections/equivalent)
  * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
  * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
  */
-public abstract void registerFieldWrapper(String referenceName, Class wrapperClass, Object... additionalWrapperParameters)  throws IllegalArgumentException;
+public abstract void registerFieldWrapper(String referenceName, Class wrapperClass, boolean isDirectField, Object... additionalWrapperParameters)  throws IllegalArgumentException;
 
 /**Sets the secion objects of a certain type can reference with copy: or default_from:
 * @param fieldThatReferencesIt The type of objects that can reference it.
