@@ -44,7 +44,7 @@ public interface OnyxianCoreAPI {
     * @param fieldName The name that will represent this wrapper in the OnyxianCore index.
     * @param wrapperName The name of the field whose wrapper will be used.
   */
-  public abstract void assignWrapperToField(@NotNull String fieldName, @NotNull String wrapperName)  throws IllegalArgumentException;
+  public abstract void expandWrapperToField(@NotNull String fieldName, @NotNull String wrapperName)  throws IllegalArgumentException;
 
   /**Sets the section objects of a certain type can reference with copy: or default_from:
   * @param fieldThatReferencesIt The type of objects that can reference it.
