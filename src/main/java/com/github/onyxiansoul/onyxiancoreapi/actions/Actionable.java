@@ -30,7 +30,5 @@ import java.util.Map;
         throw new IllegalArgumentException("Could not find the type of an actionable. This is really unexpected! "+ this.getClass());
     }
   }
-  
-    
     
 }
