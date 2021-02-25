@@ -1,11 +1,11 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
-import com.github.onyxiansoul.onyxiancoreapi.utils.Named;
 import java.util.List;
 import org.bukkit.configuration.ConfigurationSection;
+import com.github.onyxiansoul.onyxiancoreapi.utils.Nameable;
 
-public abstract class YmlObject implements Named{
+public abstract class YmlObject implements Nameable{
   /**Gets the name of the YmlObject, usually the name of the section*/
   public abstract String getName();
 
