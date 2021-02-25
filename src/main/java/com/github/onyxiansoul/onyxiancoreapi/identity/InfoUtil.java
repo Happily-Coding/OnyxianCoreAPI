@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.utils;
+package com.github.onyxiansoul.onyxiancoreapi.identity;
 
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;

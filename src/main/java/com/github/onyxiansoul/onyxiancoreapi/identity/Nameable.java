@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.utils;
+package com.github.onyxiansoul.onyxiancoreapi.identity;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -3,7 +3,7 @@ package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
 import org.bukkit.configuration.ConfigurationSection;
-import com.github.onyxiansoul.onyxiancoreapi.utils.Nameable;
+import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 
 public abstract class YmlObject implements Nameable{
   /**Gets the name of the YmlObject, usually the name of the section*/
