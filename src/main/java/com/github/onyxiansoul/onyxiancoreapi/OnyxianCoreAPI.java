@@ -39,12 +39,12 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine,@Nullable Object... additionalWrapperParameters)  throws IllegalArgumentException;
 
-  /** Makes a field by read by an already registered wrapper
+  /** Registers a field to be read by an already registered wrapper
     * It allows you to read a field of your choosing be read in the same way another field is, without requiring owning/having access to the original wrapper class.
     * @param fieldName The name that will represent this wrapper in the OnyxianCore index.
     * @param wrapperName The name of the field whose wrapper will be used.
   */
-  public abstract void expandWrapperToField(@NotNull String fieldName, @NotNull String wrapperName)  throws IllegalArgumentException;
+  public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull String wrapperName)  throws IllegalArgumentException;
 
   /**Sets the section objects of a certain type can reference with copy: or default_from:
   * @param fieldThatReferencesIt The type of objects that can reference it.
