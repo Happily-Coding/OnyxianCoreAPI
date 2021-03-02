@@ -1,15 +1,12 @@
 package com.github.onyxiansoul.onyxiancoreapi.actions.interpreters;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.validation.constraints.NotNull;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.Nullable;
 
 /** The base for any RuntimeSupplier aka any class that from an object is able to return useful data for at least one of the methods in this class.All Onyxian plugins that require obtaining data have their unique implementation of this class
@@ -19,39 +16,18 @@ import org.jetbrains.annotations.Nullable;
  */
 public abstract class RuntimeSupplier<T> {
   
-  protected final T e;
+  protected final T t;
 
   public RuntimeSupplier(@NotNull T runtimeObject){
-    this.e = runtimeObject;
+    this.t = runtimeObject;
   }
 
-  /**Get the name of the event
-   * @param e = an event of this type
-   * @return  The name of the event
-   */
-  @Nullable
-  public String getEventName(){return null; }
-
-  /**Get the handlers list for the event
-   * @param e = an event of this type
-   * @return  The handlers for the event.
-   */
-  @Nullable
-  public HandlerList getHandlersList() { return null; }
-
-  /**Get the class of the event
-   * @param e = an event of this type
+  /**Get the class required by this supplier
    * @return  The class of the event
+   * Deprecated because it may be removed.
    */
-  @Nullable
-  public Class<?> getEventClass(){ return null; }
-
-  /**Check if the event has been cancelled (usually by another plugin)
-   * @param e = an event of this type
-   * @return  true if it has been cancelled, false if it hasn't (or isn't cancellable).
-   */
-  @NotNull
-  public boolean isCancelled(){ return false; }
+  @Nullable @Deprecated
+  public abstract Class<?> getRequiredSourceType();
 
   /**Get the name of the data obtainer, it will be used as a unique ID when registering the data obtainer And as string signal, when reading the config file.
    * Please, DO NOT include EVENT, OBTAINER or DATA_OBTAINER in the name & separate worlds with underscores.
@@ -120,16 +96,10 @@ public abstract class RuntimeSupplier<T> {
   @Nullable
   public List<BlockState> getInvolvedStates(){ return null; }
 
-  /**Get the type of element this obtainer is using as its source.*/
-  @NotNull
-  public final Class getType(){
-    return e.getClass();
-  }
-
   /**Get the element this obtainer is using as its source*/
   @NotNull
-  public final T getRaw(){
-    return e;
+  public final T getRawSource(){
+    return t;
   }
     
 }
