@@ -1,13 +1,14 @@
 package com.github.onyxiansoul.onyxiancoreapi.actions;
 
 import com.github.onyxiansoul.onyxiancoreapi.actions.interpreters.RuntimeSupplier;
+import java.io.Serializable;
 import java.util.Map;
 
 /**Anything that can be executed.
- *It should not be directly implemented, instead use:
- *@CircumstancialAction if what it does/affects depends on the run circumstances, for example, the event that caused it to occur.
- *@StaticAction if the action works independently of the run circumstances, for example, it sends a console message*/
- public interface Actionable<T> {
+ *It should not be directly implemented, instead use:+
+ *Extends serializable, so the api can give a clone of actionable instead of the actionable itself, to safeguard it from modification.
+ */
+ public interface Actionable<T> extends Serializable {
   
   /**Executes the action, given a set of Circumstances
    * @param supplier The runtime supplier, a class that supplies a wide variety of fields, obtaining them from an object used during the supplier creation, such as an event.
