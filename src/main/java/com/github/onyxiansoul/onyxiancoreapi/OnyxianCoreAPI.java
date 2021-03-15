@@ -1,13 +1,12 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 
-import com.github.onyxiansoul.onyxiancoreapi.actions.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.OnyxianConfiguration;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
@@ -27,7 +26,13 @@ public interface OnyxianCoreAPI {
   * @param actionableToRegister The actionable to register.
   */
   public abstract <T1,T2 extends Actionable<T1>> void registerActionable(@NotNull String referenceName, @NotNull T2 actionableToRegister) throws IllegalArgumentException;
-  //There is no actionable registry access since they should be directly read from the config.
+  
+  /**Registers an actionable that simply wraps a value, and returns it any time its enacted
+   * @param <T> The type of object produced by the actionable
+   * @param referenceName The name of the actionable inside the config & the name that will represent this wrapper in the OnyxianCore index.
+   * @param value The value the actionable will wrap (and then return at runtime whenever enacted).
+   * @throws IllegalArgumentException if an actionable by that name had already been registered.*/
+  public abstract <T> void registerWrapperActionable(@NotNull String referenceName, T value) throws IllegalArgumentException;
 
   /** Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.This allows the definition of values for the biome field such as "biome: Taiga". Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
    * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
@@ -53,6 +58,6 @@ public interface OnyxianCoreAPI {
   */
   public abstract void registerReferenceSection(@NotNull String fieldThatReferencesIt, @NotNull ConfigurationSection sectionReference) throws IllegalArgumentException;
 
-  //There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
+  //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
 }

@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.actions.interpreters;
+package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
 
 import java.util.List;
 import javax.validation.constraints.NotNull;

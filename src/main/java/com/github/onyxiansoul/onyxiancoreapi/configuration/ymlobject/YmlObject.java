@@ -1,8 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 
-import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
-import org.bukkit.configuration.ConfigurationSection;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 
 public abstract class YmlObject implements Nameable{
@@ -16,7 +14,7 @@ public abstract class YmlObject implements Nameable{
    * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the fieldOfInterest*/
-  public abstract <T> T getField(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
+  public abstract <T> T getFieldWithType(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
 
    /**Gets the value of a fieldOfInterest, using its fieldName as its objectType. Throws an exception if it the value is invalid or wasn't found
    * @param <T> The type of the fieldOfInterest.
@@ -33,7 +31,7 @@ public abstract class YmlObject implements Nameable{
    * @param defaultValue The default value for the fieldOfInterest
    * @return the value of the fieldOfInterest or the default value if its not listed
    * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
-  public abstract <T> T getField(String fieldName, String objectType, T defaultValue) throws IllegalArgumentException;
+  public abstract <T> T getFieldWithTypeOrDefault(String fieldName, String objectType, T defaultValue) throws IllegalArgumentException;
 
   /**Gets a fieldOfInteres, using its fieldName as its objectType, or returns a default value if the field is not available
    * @param <T> The type of the fieldOfInterest.
@@ -41,8 +39,16 @@ public abstract class YmlObject implements Nameable{
    * @param defaultValue The default value for the fieldOfInterest
    * @return the value of the fieldOfInterest or the default value if its not listed
    * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
-  public abstract <T> T getField(String fieldName, T defaultValue) throws IllegalArgumentException, NullPointerException;
+  public abstract <T> T getFieldOrDefault(String fieldName, T defaultValue) throws IllegalArgumentException, NullPointerException;
 
+  /**Gets a fieldOfInteres, using its fieldName as its objectType, or returns a registered variable, if the field is not available
+   * @param <T> The type of the fieldOfInterest.
+   * @param fieldName The name of the fieldOfInterest.
+   * @param defaultValue The default value for the fieldOfInterest
+   * @return the value of the fieldOfInterest or the default value if its not listed
+   * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
+  public abstract <T> T getFieldOrDefaultToVariable(String fieldName, String variableName) throws IllegalArgumentException, NullPointerException;
+  
   /**Gets a list inside this YmlObject
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
@@ -58,8 +64,5 @@ public abstract class YmlObject implements Nameable{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
   public abstract <T> List<T> getSectionListField(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
-  
-  /**Re-reads the fields available for this object, but using another reference section, for default from & copy values.*/
-  public abstract void reDefineWithReference(ConfigurationSection referenceSection) throws UnexpectedConfigurationException;
     
 }

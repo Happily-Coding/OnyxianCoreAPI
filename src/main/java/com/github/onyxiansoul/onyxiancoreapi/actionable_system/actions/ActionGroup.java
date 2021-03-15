@@ -1,5 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.actions;
+package com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions;
 
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import org.bukkit.event.Event;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 
