@@ -1,11 +1,11 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
+import org.bukkit.configuration.ConfigurationSection;
 
 public abstract class YmlObject implements Nameable{
-  /**Gets the name of the YmlObject, usually the name of the section*/
-  public abstract String getName();
 
   /**Gets the value of a fieldOfInterest, or throws an exception if it is invalid or wasn't found
    * @param <T> The type of the fieldOfInterest.
@@ -16,7 +16,7 @@ public abstract class YmlObject implements Nameable{
    * @return the value of the fieldOfInterest*/
   public abstract <T> T getFieldWithType(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
 
-   /**Gets the value of a fieldOfInterest, using its fieldName as its objectType. Throws an exception if it the value is invalid or wasn't found
+  /**Gets the value of a fieldOfInterest, using its fieldName as its objectType. Throws an exception if it the value is invalid or wasn't found
    * @param <T> The type of the fieldOfInterest.
    * @param fieldName: The name of the fieldOfInterest.
    * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
@@ -64,5 +64,11 @@ public abstract class YmlObject implements Nameable{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
   public abstract <T> List<T> getSectionListField(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
-    
+  
+  /**Sets the reference section for this object & completes the YmlObject values using its values for default_from & copy fields
+   * This is used by the core but its unlikely that you should need it as an external plugin.
+   * @param referenceSection The section containing ymlobjects used to produced elements of the same type as the object represented by this YmlObject
+   * @throws UnexpectedConfigurationException if there was a problem while using the new reference section to modify the values of the YmlObject.
+   */
+  public abstract void setReferenceSection(ConfigurationSection referenceSection) throws UnexpectedConfigurationException;
 }
