@@ -4,7 +4,7 @@ import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.Unexpected
 import java.util.LinkedList;
 import org.bukkit.configuration.ConfigurationSection;
 
-public interface OnyxianConfiguration extends ConfigurationSection {   
+public interface OnyxianConfiguration {   
   
   /**
    *
