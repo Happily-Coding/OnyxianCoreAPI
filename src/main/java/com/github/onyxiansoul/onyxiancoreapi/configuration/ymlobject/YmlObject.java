@@ -7,46 +7,46 @@ import org.bukkit.configuration.ConfigurationSection;
 
 public abstract class YmlObject implements Nameable{
 
-  /**Gets the value of a fieldOfInterest, or throws an exception if it is invalid or wasn't found
-   * @param <T> The type of the fieldOfInterest.
-   * @param fieldName The name of the fieldOfInterest.
+  /**Gets the value of a field, or throws an exception if it is invalid or wasn't found
+   * @param <T> The type of the field.
+   * @param fieldName The name of the field.
    * @param objectType The name of the type of variable (as it was registered in the API)
-   * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
+   * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
-   * @return the value of the fieldOfInterest*/
+   * @return the value of the field*/
   public abstract <T> T getFieldWithType(String fieldName, String objectType) throws IllegalArgumentException, NullPointerException;
 
-  /**Gets the value of a fieldOfInterest, using its fieldName as its objectType. Throws an exception if it the value is invalid or wasn't found
-   * @param <T> The type of the fieldOfInterest.
-   * @param fieldName: The name of the fieldOfInterest.
-   * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
+  /**Gets the value of a field, using its fieldName as its objectType. Throws an exception if it the value is invalid or wasn't found
+   * @param <T> The type of the field.
+   * @param fieldName: The name of the field.
+   * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
-   * @return the value of the fieldOfInterest*/
+   * @return the value of the field*/
   public abstract <T> T getField(String fieldName) throws IllegalArgumentException, NullPointerException;
  
-  /**Gets a fieldOfInterest or returns a default value if its not available
-   * @param <T> The type of the fieldOfInterest.
-   * @param fieldName The name of the fieldOfInterest.
+  /**Gets a field or returns a default value if its not available
+   * @param <T> The type of the field.
+   * @param fieldName The name of the field.
    * @param objectType The name of the type of variable (as it was registered in the API)
-   * @param defaultValue The default value for the fieldOfInterest
-   * @return the value of the fieldOfInterest or the default value if its not listed
-   * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
+   * @param defaultValue The default value for the field
+   * @return the value of the field or the default value if its not listed
+   * @throws IllegalArgumentException If the field was listed, but is invalid*/
   public abstract <T> T getFieldWithTypeOrDefault(String fieldName, String objectType, T defaultValue) throws IllegalArgumentException;
 
   /**Gets a fieldOfInteres, using its fieldName as its objectType, or returns a default value if the field is not available
-   * @param <T> The type of the fieldOfInterest.
-   * @param fieldName The name of the fieldOfInterest.
-   * @param defaultValue The default value for the fieldOfInterest
-   * @return the value of the fieldOfInterest or the default value if its not listed
-   * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
+   * @param <T> The type of the field.
+   * @param fieldName The name of the field.
+   * @param defaultValue The default value for the field
+   * @return the value of the field or the default value if its not listed
+   * @throws IllegalArgumentException If the field was listed, but is invalid*/
   public abstract <T> T getFieldOrDefault(String fieldName, T defaultValue) throws IllegalArgumentException, NullPointerException;
 
   /**Gets a fieldOfInteres, using its fieldName as its objectType, or returns a registered variable, if the field is not available
-   * @param <T> The type of the fieldOfInterest.
-   * @param fieldName The name of the fieldOfInterest.
-   * @param defaultValue The default value for the fieldOfInterest
-   * @return the value of the fieldOfInterest or the default value if its not listed
-   * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
+   * @param <T> The type of the field.
+   * @param fieldName The name of the field.
+   * @param defaultValue The default value for the field
+   * @return the value of the field or the default value if its not listed
+   * @throws IllegalArgumentException If the field was listed, but is invalid*/
   public abstract <T> T getFieldOrDefaultToVariable(String fieldName, String variableName) throws IllegalArgumentException, NullPointerException;
   
   /**If the object has a field matching fieldName, returns the value of a field of fieldName, otherwise returns Otherwise, returns the actionable used as definition as if it was the field.
@@ -57,11 +57,11 @@ public abstract class YmlObject implements Nameable{
    * 
    * MyObject: red
    * 
-   * @param <T> The type of the fieldOfInterest.
-   * @param fieldName: The name of the fieldOfInterest.
-   * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
+   * @param <T> The type of the field.
+   * @param fieldName: The name of the field.
+   * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
-   * @return the value of the fieldOfInterest*/
+   * @return the value of the field*/
   public abstract <T> T getFieldOrDefinition(String fieldName) throws IllegalArgumentException, NullPointerException;
   
   /**Gets a list inside this YmlObject
@@ -86,4 +86,62 @@ public abstract class YmlObject implements Nameable{
    * @throws UnexpectedConfigurationException if there was a problem while using the new reference section to modify the values of the YmlObject.
    */
   public abstract void setReferenceSection(ConfigurationSection referenceSection) throws UnexpectedConfigurationException;
+  
+  
+  //ERAN DE OnyxianConfiguration:
+  /**Gets the yml object at path
+   *
+   * @param key
+   * @return
+   * @throws UnexpectedConfigurationException
+   */
+  //public abstract YmlObject getYmlObject(String key) throws UnexpectedConfigurationException;
+  
+  /**
+   *
+   * @param path
+   * @param value
+   * @param additionsAreCommented
+   * @param replacementsAreCommentedInsertions
+   * @param valueShouldBeNameless
+   * @throws UnexpectedConfigurationException
+   */
+  //public void setLoseless(String path, Object value, boolean additionsAreCommented, boolean replacementsAreCommentedInsertions, boolean valueShouldBeNameless) throws UnexpectedConfigurationException;
+    
+  /**
+   *
+   * @param <T>
+   * @param fieldName
+   * @param containingSection
+   * @param referenceSection
+   * @param objectType
+   * @return
+   * @throws UnexpectedConfigurationException
+   */
+  //public abstract <T> T getConfigObject(String fieldName, ConfigurationSection containingSection, ConfigurationSection referenceSection, String objectType) throws UnexpectedConfigurationException;
+    
+  /**
+   *
+   * @param <T>
+   * @param fieldName
+   * @param containingSection
+   * @param objectTypeReferenceSection
+   * @param objectType
+   * @return
+   * @throws UnexpectedConfigurationException
+   */
+  //public abstract <T> LinkedList<T> getSectionObjects(String fieldName, ConfigurationSection containingSection, ConfigurationSection objectTypeReferenceSection, String objectType) throws UnexpectedConfigurationException;
+    
+  /**
+   *
+   * @param <T>
+   * @param fieldName
+   * @param containingSection
+   * @param objectTypeReferenceSection
+   * @param objectType
+   * @return
+   * @throws UnexpectedConfigurationException
+   */
+  //public abstract <T> LinkedList<T> getListObjects(String fieldName, ConfigurationSection containingSection, ConfigurationSection objectTypeReferenceSection, String objectType) throws UnexpectedConfigurationException;
+
 }
