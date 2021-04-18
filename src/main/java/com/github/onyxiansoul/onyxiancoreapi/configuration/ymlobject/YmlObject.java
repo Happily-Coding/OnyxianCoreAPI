@@ -23,7 +23,7 @@ public abstract class YmlObject implements Nameable{
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the fieldOfInterest*/
   public abstract <T> T getField(String fieldName) throws IllegalArgumentException, NullPointerException;
-
+ 
   /**Gets a fieldOfInterest or returns a default value if its not available
    * @param <T> The type of the fieldOfInterest.
    * @param fieldName The name of the fieldOfInterest.
@@ -48,6 +48,21 @@ public abstract class YmlObject implements Nameable{
    * @return the value of the fieldOfInterest or the default value if its not listed
    * @throws IllegalArgumentException If the fieldOfInterest was listed, but is invalid*/
   public abstract <T> T getFieldOrDefaultToVariable(String fieldName, String variableName) throws IllegalArgumentException, NullPointerException;
+  
+  /**If the object has a field matching fieldName, returns the value of a field of fieldName, otherwise returns Otherwise, returns the actionable used as definition as if it was the field.
+   * for example getFieldOrDefinition("color") in any of this two configs would yield red:
+   * MyObject:
+   *   color: red
+   *   stripy: true
+   * 
+   * MyObject: red
+   * 
+   * @param <T> The type of the fieldOfInterest.
+   * @param fieldName: The name of the fieldOfInterest.
+   * @throws IllegalArgumentException if the fieldOfInterest was listed, but is invalid
+   * @throws NullPointerException if the field isn't listed.
+   * @return the value of the fieldOfInterest*/
+  public abstract <T> T getFieldOrDefinition(String fieldName) throws IllegalArgumentException, NullPointerException;
   
   /**Gets a list inside this YmlObject
   * @param <T> The type of the elements held in the list.
