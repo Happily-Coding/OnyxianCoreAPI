@@ -76,7 +76,7 @@ public abstract class YmlObject implements Nameable{
    * @param referenceSection
    * @return The YmlObject located inside of this one.
   */
-  public abstract <T> T getYmlObject(String fieldName, ConfigurationSection referenceSection) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract YmlObject getYmlObject(String fieldName, ConfigurationSection referenceSection) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a list inside this YmlObject
   * @param <T> The type of the elements held in the list.
