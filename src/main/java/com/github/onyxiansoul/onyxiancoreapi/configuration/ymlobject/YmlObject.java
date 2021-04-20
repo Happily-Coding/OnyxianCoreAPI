@@ -36,39 +36,47 @@ public abstract class YmlObject implements Nameable{
    * @param referenceSection
    * @param variableName The name the variable was registered by.
    * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid*/
+   * @throws IllegalArgumentException If the field was listed, but is invalid
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
   public abstract <T> T getFieldOfRTypeOrDefaultToVariable(String fieldName, String objectType, ConfigurationSection referenceSection, String variableName) throws IllegalArgumentException, UnexpectedConfigurationException;
   
-  /**Gets the value of a field, using its fieldName as its objectType. Throws an exception if it the value is invalid or wasn't found
+  /** * Gets the value of a field, using its fieldName as its objectType.Throws an exception if it the value is invalid or wasn't found
    * @param <T> The type of the field.
    * @param fieldName: The name of the field.
+   * @param referenceSection
    * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
-   * @return the value of the field*/
-  public abstract <T> T getRField(String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+   * @return the value of the field
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
+  public abstract <T> T getRField(String fieldName, ConfigurationSection referenceSection) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
 
   /**Gets the value of a field, using its fieldName as its objectType, or returns a default value if the field is not available
    * @param <T> The type of the field.
    * @param fieldName The name of the field.
    * @param defaultValue The default value for the field
+   * @param referenceSection
    * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid*/
-  public abstract <T> T getRFieldOrDefault(String fieldName, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
+   * @throws IllegalArgumentException If the field was listed, but is invalid
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
+  public abstract <T> T getRFieldOrDefault(String fieldName, T defaultValue, ConfigurationSection referenceSection) throws IllegalArgumentException, UnexpectedConfigurationException;
 
   /**Gets the value of a field, using its fieldName as its objectType, or returns the value of a registered variable, if the field is not available
    * @param <T> The type of the field.
    * @param fieldName The name of the field.
    * @param variableName The name the variable was registered by.
+   * @param referenceSection
    * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid*/
-  public abstract <T> T getRFieldOrDefaultToVariable(String fieldName, String variableName) throws IllegalArgumentException, UnexpectedConfigurationException;
+   * @throws IllegalArgumentException If the field was listed, but is invalid
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
+  public abstract <T> T getRFieldOrDefaultToVariable(String fieldName, String variableName, ConfigurationSection referenceSection) throws IllegalArgumentException, UnexpectedConfigurationException;
   
   /**Gets a sub YmlObject inside of this one
    * @param <T> The type of the field
    * @param fieldName The key of the field
+   * @param referenceSection
    * @return The YmlObject located inside of this one.
   */
-  public abstract <T> T getYmlObject(String fieldName) throws IllegalArgumentException, NullPointerException;
+  public abstract <T> T getYmlObject(String fieldName, ConfigurationSection referenceSection) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a list inside this YmlObject
   * @param <T> The type of the elements held in the list.
