@@ -65,12 +65,11 @@ public abstract class YmlObject implements Nameable{
 
   /**Gets all the yml object containing which can be used as a reference by this yml object.
    Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
-  protected abstract List<YmlObject> getReferencesContainers();
+  public abstract List<YmlObject> getReferencesContainers();
   
   /**Gets all the value of every field of the yml object, included ones inherited from defaulting from other objects.
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
-  protected abstract Map<String,Object> getFullRawValues();
-
+  public abstract Map<String,Object> getFullRawValues();
 
 }
 
