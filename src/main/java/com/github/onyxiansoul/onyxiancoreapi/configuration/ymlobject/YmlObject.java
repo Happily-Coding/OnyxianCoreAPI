@@ -71,10 +71,12 @@ public abstract class YmlObject implements Nameable{
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
   protected abstract Map<String,Object> getFullRawValues();
 
+
+}
+
   /**Gets all the value of every field of the yml object, excluiding ones inherited from defaulting from other objects.
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
-  protected abstract Map<String,Object> getObjectRawValues();
-}
+  //protected abstract Map<String,Object> getObjectRawValues();
 
   /**Returns the value of a yml object's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the yml object.
    * for example getFieldOrDefinition("color") in any of this two configs would yield red:
