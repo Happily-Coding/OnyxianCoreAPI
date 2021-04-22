@@ -3,6 +3,7 @@ package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
+import java.util.Map;
 
 public abstract class YmlObject implements Nameable{
 
@@ -61,6 +62,15 @@ public abstract class YmlObject implements Nameable{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
   public abstract <T> List<T> getSectionObjects(String fieldName, List<YmlObject> referencesContainers, String objectType) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+
+  /**Gets all the yml object containing which can be used as a reference by this yml object.
+   Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
+  protected abstract List<YmlObject> getReferencesContainers();
+  
+  /**Gets all the value of every field of the yml object, included ones inherited from defaulting from other objects.
+   Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
+  protected abstract Map<String,Object> getFullRawValues();
+
 }
 
   /**Returns the value of a yml object's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the yml object.
