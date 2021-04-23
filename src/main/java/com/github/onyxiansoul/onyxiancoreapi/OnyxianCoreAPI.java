@@ -4,7 +4,6 @@ import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
-import org.bukkit.configuration.ConfigurationSection;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,7 +12,8 @@ public interface OnyxianCoreAPI {
 
   /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
   * @param fileName The name of the file itself without yml
-   *@param configUpdates
+  * @param configUpdates The updates that will be applied to the configuration if its not up to date.
+  * @return a Yml Object representing the file's values.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
   */
   public abstract YmlObject getConfiguration(@NotNull String fileName, @Nullable ConfigUpdate[] configUpdates) throws UnexpectedConfigurationException;
@@ -51,13 +51,13 @@ public interface OnyxianCoreAPI {
   */
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull String wrapperName)  throws IllegalArgumentException;
 
+  //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
+
   /**Sets the section objects of a certain type can reference with copy: or default_from:
   * @param fieldThatReferencesIt The type of objects that can reference it.
   * @param sectionReference The section.
   * @throws IllegalArgumentException if that type of object already has a referenced section assigned.
   */
-  public abstract void registerReferenceSection(@NotNull String fieldThatReferencesIt, @NotNull ConfigurationSection sectionReference) throws IllegalArgumentException;
-
-  //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
-
+  //Removed becuase it seems pointless due to recent changes
+  //public abstract void registerReferenceSection(@NotNull String fieldThatReferencesIt, @NotNull ConfigurationSection sectionReference) throws IllegalArgumentException;
 }
