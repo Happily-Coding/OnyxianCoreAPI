@@ -74,6 +74,10 @@ public abstract class YmlObject implements Nameable{
   /**Gets all the value of every field of the yml object, excluiding ones inherited from defaulting from other objects.
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
   public abstract Map<String,Object> getObjectRawValues();
+  
+  /**Gets the raw value of a field.
+   Discouraged since the actionable system should be used and therefor getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
+  public abstract Object getFieldRawValue();
 
 }
 
