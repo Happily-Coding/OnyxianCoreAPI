@@ -34,6 +34,33 @@ public interface OnyxianCoreAPI {
    * @throws IllegalArgumentException if an actionable by that name had already been registered.*/
   public abstract <T> void registerWrapperActionable(@NotNull String referenceName, T value) throws IllegalArgumentException;
 
+  
+  /** Makes a field be read by the wrappers another field uses
+    * It allows you to read a field of your choosing be read in the same way another field is, without requiring owning/having access to the original wrapper class.
+    * @param fieldName The name that will represent this wrapper in the OnyxianCore index.
+    * @param wrapperName The name of the field whose wrapper will be used.
+  */
+  public abstract void assignFieldWrapper(@NotNull String fieldName, @NotNull String wrapperName) throws IllegalArgumentException;
+
+  /** Registers a class responsible for interpreting a field when its of  (non-YML)object type, aka a field that is not a configuration section or map, and therefore has no sub-fields, for example a boolean or a biome from name.
+   * That class needs to have a constructor that takes an object and needs to be an actionable of the type that it produces.
+   * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
+   * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
+   * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
+   * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
+   */
+  public abstract void registerSimpleFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, @Nullable Object... additionalWrapperParameters) throws IllegalArgumentException;
+  
+  /** Registers a class responsible for interpreting a field when its of compound object type, aka a YmlObject, made from a configuration section or map, for example any action that has multiple parameters
+   * That class needs to have a constructor that takes an object and needs to be an actionable of the type that it produces.
+   * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
+   * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
+   * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
+   * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
+   */
+  public abstract void registerCompoundFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, @Nullable Object... additionalWrapperParameters) throws IllegalArgumentException;
+  
+  
   /** Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.This allows the definition of values for the biome field such as "biome: Taiga". Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
    * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
    * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
@@ -43,14 +70,8 @@ public interface OnyxianCoreAPI {
    * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
    */
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine,@Nullable Object... additionalWrapperParameters)  throws IllegalArgumentException;
-
-  /** Registers a field to be read by an already registered wrapper
-    * It allows you to read a field of your choosing be read in the same way another field is, without requiring owning/having access to the original wrapper class.
-    * @param fieldName The name that will represent this wrapper in the OnyxianCore index.
-    * @param wrapperName The name of the field whose wrapper will be used.
-  */
-  public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull String wrapperName)  throws IllegalArgumentException;
-
+  
+  
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
   /**Sets the section objects of a certain type can reference with copy: or default_from:
