@@ -82,11 +82,9 @@ public abstract class YmlObject implements Nameable{
   /**Gets the raw value of a field, following references for example: (copy:nameOfYmlObjectToImitate)
    Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
   public abstract Object getFieldRawValueFollowingReferences(String key) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-}
-
-
-
+  
   /**Returns the value of a yml object's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the yml object.
+   * Used mainly on object types that can have a single parameter.
    * for example getFieldOrDefinition("color") in any of this two configs would yield red:
    * MyObject:
    *   color: red
@@ -99,7 +97,12 @@ public abstract class YmlObject implements Nameable{
    * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field*/
-  //public abstract <T> T getRFieldOrDefinition(String fieldName) throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefinition(String fieldName) throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+}
+
+
+
+
 
 
   /** * Returns the value of a yml object's field of objectType.If it doesn't exist, returns the definition of the yml object. for example getFieldOrDefinition("color") in any of this two configs would yield red:
