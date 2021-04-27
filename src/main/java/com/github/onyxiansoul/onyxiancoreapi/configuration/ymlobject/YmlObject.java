@@ -98,6 +98,9 @@ public abstract class YmlObject implements Nameable{
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field*/
   public abstract <T> T getRFieldOrDefinition(String fieldName) throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  
+  /**Gets the raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
+  public abstract Object getDefinition() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
 }
 
 
