@@ -6,7 +6,16 @@ import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import java.util.Map;
 
 public abstract class YmlObject implements Nameable{
-
+  
+  /** * Gets the value of a field, using its fieldName as its objectType and no reference containers.Throws an exception if it the value is invalid or wasn't found
+   * @param <T> The type of the field.
+   * @param fieldName: The name of the field.
+   * @throws IllegalArgumentException if the field was listed, but is invalid
+   * @throws NullPointerException if the field isn't listed.
+   * @return the value of the field
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
+  public abstract <T> T getRField(String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  
   /** * Gets the value of a field, using its fieldName as its objectType.Throws an exception if it the value is invalid or wasn't found
    * @param <T> The type of the field.
    * @param fieldName: The name of the field.
@@ -17,6 +26,15 @@ public abstract class YmlObject implements Nameable{
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
   public abstract <T> T getRField(String fieldName, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
 
+  /**Gets the value of a field, using its fieldName as its objectType and no reference containers, or returns a default value if the field is not available
+   * @param <T> The type of the field.
+   * @param fieldName The name of the field.
+   * @param defaultValue The default value for the field
+   * @return the value of the field or the default value if its not listed
+   * @throws IllegalArgumentException If the field was listed, but is invalid
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
+  public abstract <T> T getRFieldOrDefault(String fieldName, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
+  
   /**Gets the value of a field, using its fieldName as its objectType, or returns a default value if the field is not available
    * @param <T> The type of the field.
    * @param fieldName The name of the field.

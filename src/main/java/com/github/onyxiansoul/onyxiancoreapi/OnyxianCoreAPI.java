@@ -34,7 +34,6 @@ public interface OnyxianCoreAPI {
    * @throws IllegalArgumentException if an actionable by that name had already been registered.*/
   public abstract <T> void registerWrapperActionable(@NotNull String referenceName, T value) throws IllegalArgumentException;
 
-  
   /** Makes a field be read by the wrappers another field uses
     * It allows you to read a field of your choosing be read in the same way another field is, without requiring owning/having access to the original wrapper class.
     * @param fieldName The name that will represent this wrapper in the OnyxianCore index.
