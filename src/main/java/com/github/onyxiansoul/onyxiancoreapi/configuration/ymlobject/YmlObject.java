@@ -7,6 +7,9 @@ import java.util.Map;
 
 public abstract class YmlObject implements Nameable{
   
+  /**Gets the key for which this YmlObject is a value*/
+  public abstract String getKey();
+  
   /** * Gets the value of a field, using its fieldName as its objectType and no reference containers.Throws an exception if it the value is invalid or wasn't found
    * @param <T> The type of the field.
    * @param fieldName: The name of the field.
