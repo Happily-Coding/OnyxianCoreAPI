@@ -1,5 +1,5 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
-
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
@@ -54,6 +54,12 @@ public abstract class YmlObject implements Nameable{
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
   public abstract <T> T getRFieldOrDefaultToVariable(String fieldName, String variableName, List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
+  
+  /**Gets the result of enacting the value of a field with null runtime cirumstances, or defaults to the default value if its null.*/
+  protected abstract <T> T getRFieldWrappedValueOrDefault(YmlObject object, String fieldName, T defaultValue) throws ImpossibleActionException, UnexpectedConfigurationException;
+
+  /**Gets the result of enacting the value of a field with null runtime circumstances*/
+  protected abstract <T> T getRFieldWrappedValue(YmlObject object, String fieldName) throws ImpossibleActionException, UnexpectedConfigurationException;
   
   /**Gets a sub YmlObject inside of this one
    * @param <T> The type of the field
