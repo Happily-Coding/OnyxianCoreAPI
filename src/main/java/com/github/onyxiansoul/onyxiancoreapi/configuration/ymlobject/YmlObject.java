@@ -128,6 +128,9 @@ public abstract class YmlObject implements Nameable{
   
   /**Gets the raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
   public abstract Object getDefinition() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  
+  /**Gets the value this object was created to wrap.*/
+  public abstract Object getRawValue() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
 }
 
 
