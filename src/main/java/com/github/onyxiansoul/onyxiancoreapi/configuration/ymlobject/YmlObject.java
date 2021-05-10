@@ -75,21 +75,11 @@ public abstract class YmlObject implements Nameable{
   /**Gets a list inside this YmlObject
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
-  * @param objectTypeReferenceSection 
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
-  */
-  public abstract <T> List<T> getListObjects(String fieldName, List<YmlObject> referencesContainers, String objectType) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a list inside this YmlObject
-  * @param <T> The type of the elements held in the list.
-  * @param fieldName The config name of the list. 
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
   public abstract <T> List<T> getSectionObjects(String fieldName, List<YmlObject> referencesContainers, String objectType) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-
+  
   /**Gets all the yml object containing which can be used as a reference by this yml object.
    Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
   public abstract List<YmlObject> getReferencesContainers();
