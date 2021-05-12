@@ -121,6 +121,13 @@ public abstract class YmlObject implements Nameable{
   
   /**Gets the value this object was created to wrap.*/
   public abstract Object getRawValue() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  
+  /**Sets the defaultFromFieldValue section for this object & completes the YmlObject values using its values for default_from & copy fields
+   * This is used by the core but its unlikely that you should need it as an external plugin.
+   * @param referencesContainers The section containing ymlobjects used to produced elements of the same type as the object represented by this YmlObject
+   * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the YmlObject.
+   */
+  public abstract void setReferenceSection(List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
 }
 
 
