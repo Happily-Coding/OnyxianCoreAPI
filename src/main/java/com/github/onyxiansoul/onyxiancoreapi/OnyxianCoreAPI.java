@@ -1,7 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
-import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.MissingEntryException;
+import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
 import org.jetbrains.annotations.NotNull;

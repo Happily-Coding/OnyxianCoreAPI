@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions;
+package com.github.onyxiansoul.onyxiancoreapi.index_system;
 import org.jetbrains.annotations.NotNull;
 
 /**An exception signaling that the index does not have the requested entry.
