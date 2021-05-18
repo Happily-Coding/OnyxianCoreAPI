@@ -3,6 +3,7 @@ import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionE
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
+import java.util.Collection;
 import java.util.Map;
 
 public abstract class YmlObject implements Nameable{
@@ -82,13 +83,21 @@ public abstract class YmlObject implements Nameable{
   */
   public abstract <T> List<T> getListObjects(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets a list inside this YmlObject
+  /**Gets a collection of all the objects of objectType created from the objects inside the section. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> List<T> getSectionObjects(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Collection<T> getSectionObjects(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  
+  /**Gets a map of all the keys located inside the section & the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
+  * @param <T> The type of the elements held in the list.
+  * @param fieldName The config name of the list. 
+  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
+  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
+  */
+  public abstract <T> Map<String,T> getSectionObjectsMap(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets all the yml object containing which can be used as a reference by this yml object.
    Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
