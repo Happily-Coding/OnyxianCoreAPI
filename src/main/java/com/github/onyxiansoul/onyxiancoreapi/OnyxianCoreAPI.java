@@ -1,7 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi;
-
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
 import org.jetbrains.annotations.NotNull;
@@ -59,7 +59,6 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerCompoundFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, @Nullable Object... additionalWrapperParameters) throws IllegalArgumentException;
   
-  
   /** Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.This allows the definition of values for the biome field such as "biome: Taiga". Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
    * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
    * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
@@ -68,8 +67,10 @@ public interface OnyxianCoreAPI {
    * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
    * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
    */
-  public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine,@Nullable Object... additionalWrapperParameters)  throws IllegalArgumentException;
+  public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine, @Nullable Object... additionalWrapperParameters)  throws IllegalArgumentException;
   
+  /**Get an actionable of a specified name, be it provided by the plugin, or read from the actions.yml or variables.yml*/
+  public abstract Actionable<?> getActionable(@NotNull String actionName) throws MissingEntryException;
   
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
