@@ -69,9 +69,6 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine, @Nullable Object... additionalWrapperParameters)  throws IllegalArgumentException;
   
-  /**Get an actionable of a specified name, be it provided by the plugin, or read from the actions.yml or variables.yml*/
-  public abstract Actionable<?> getActionable(@NotNull String actionName) throws MissingEntryException;
-  
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
   /**Sets the section objects of a certain type can reference with copy: or default_from:
