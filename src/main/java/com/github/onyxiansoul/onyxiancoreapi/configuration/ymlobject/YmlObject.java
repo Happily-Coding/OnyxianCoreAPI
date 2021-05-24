@@ -5,6 +5,8 @@ import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import java.util.Collection;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class YmlObject implements Nameable{
   
@@ -18,7 +20,7 @@ public abstract class YmlObject implements Nameable{
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRField(String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> T getRField(@NotNull String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /** * Gets the value of a field, using its fieldName as its objectType.Throws an exception if it the value is invalid or wasn't found
    * @param <T> The type of the field.
@@ -28,7 +30,7 @@ public abstract class YmlObject implements Nameable{
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRField(String fieldName, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> T getRField(@NotNull String fieldName,@Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
 
   /**Gets the value of a field, using its fieldName as its objectType and no reference containers, or returns a default value if the field is not available
    * @param <T> The type of the field.
@@ -37,7 +39,7 @@ public abstract class YmlObject implements Nameable{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefault(String fieldName, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefault(@NotNull String fieldName, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
   
   /**Gets the value of a field, using its fieldName as its objectType, or returns a default value if the field is not available
    * @param <T> The type of the field.
@@ -47,7 +49,7 @@ public abstract class YmlObject implements Nameable{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefault(String fieldName, T defaultValue, List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefault(@NotNull String fieldName, T defaultValue, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
 
   /**Gets the value of a field, using its fieldName as its objectType, or returns the value of a registered variable, if the field is not available
    * @param <T> The type of the field.
@@ -57,13 +59,13 @@ public abstract class YmlObject implements Nameable{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefaultToVariable(String fieldName, String variableName, List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefaultToVariable(@NotNull String fieldName,@NotNull String variableName, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
   
   /**Gets the result of enacting the value of a field with null runtime cirumstances, or defaults to the default value if its null.*/
-  public abstract <T> T getRFieldWrappedValueOrDefault(String fieldName, T defaultValue) throws ImpossibleActionException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldWrappedValueOrDefault(@NotNull String fieldName, T defaultValue) throws ImpossibleActionException, UnexpectedConfigurationException;
 
   /**Gets the result of enacting the value of a field with null runtime circumstances*/
-  public abstract <T> T getRFieldWrappedValue(String fieldName) throws ImpossibleActionException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldWrappedValue(@NotNull String fieldName) throws ImpossibleActionException, UnexpectedConfigurationException;
   
   /**Gets a sub YmlObject inside of this one
    * @param <T> The type of the field
@@ -71,7 +73,7 @@ public abstract class YmlObject implements Nameable{
    * @param referencesContainers
    * @return The YmlObject located inside of this one.
   */
-  public abstract YmlObject getYmlObject(String fieldName, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract YmlObject getYmlObject(@NotNull String fieldName, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a list inside this YmlObject
   * @param <T> The type of the elements held in the list.
@@ -81,7 +83,7 @@ public abstract class YmlObject implements Nameable{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
   */
-  public abstract <T> List<T> getListObjects(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a collection of all the objects of objectType created from the objects inside the section. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
@@ -89,7 +91,7 @@ public abstract class YmlObject implements Nameable{
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Collection<T> getSectionObjects(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Collection<T> getSectionObjects(@NotNull String fieldName,@NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a map of all the keys located inside the section & the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
   * @param <T> The type of the elements held in the list.
@@ -97,7 +99,7 @@ public abstract class YmlObject implements Nameable{
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Map<String,T> getSectionObjectsMap(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets all the yml object containing which can be used as a reference by this yml object.
    Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
@@ -113,11 +115,11 @@ public abstract class YmlObject implements Nameable{
   
   /**Gets the raw value of a field.
    Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
-  public abstract Object getFieldRawValue(String key);
+  public abstract Object getFieldRawValue(@NotNull String key);
 
   /**Gets the raw value of a field, following references for example: (copy:nameOfYmlObjectToImitate)
    Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
-  public abstract Object getFieldRawValueFollowingReferences(String key) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract Object getFieldRawValueFollowingReferences(@NotNull String key) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Returns the value of a yml object's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the yml object.
    * Used mainly on object types that can have a single parameter.
@@ -133,7 +135,7 @@ public abstract class YmlObject implements Nameable{
    * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field*/
-  public abstract <T> T getRFieldOrDefinition(String fieldName) throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefinition(@NotNull String fieldName) throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
   
   /**Gets the raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
   public abstract Object getDefinition() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
@@ -146,7 +148,7 @@ public abstract class YmlObject implements Nameable{
    * @param referencesContainers The section containing ymlobjects used to produced elements of the same type as the object represented by this YmlObject
    * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the YmlObject.
    */
-  public abstract void setReferenceSection(List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
+  public abstract void setReferenceSection(@Nullable List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
 }
 
 
