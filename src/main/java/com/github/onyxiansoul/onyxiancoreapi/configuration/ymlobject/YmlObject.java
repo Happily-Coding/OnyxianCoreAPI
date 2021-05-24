@@ -115,7 +115,7 @@ public abstract class YmlObject implements Nameable{
   
   /**Gets the raw value of a field.
    Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
-  public abstract Object getFieldRawValue(@NotNull String key);
+  public abstract Object getFieldRawValue(@NotNull String key) throws UnexpectedConfigurationException;
 
   /**Gets the raw value of a field, following references for example: (copy:nameOfYmlObjectToImitate)
    Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
