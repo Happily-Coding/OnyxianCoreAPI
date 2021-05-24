@@ -29,8 +29,10 @@ public class ReflectionUtils {
     public static <T> T create(Class objectClass, LinkedList<?> constructionArguments) throws IllegalArgumentException{
     try {
       return (T) ConstructorUtils.invokeConstructor(objectClass, constructionArguments.toArray());
-    } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-      throw new IllegalArgumentException("Could not instantiate a "+ objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments,e);
+    } catch(InvocationTargetException e){
+      throw new IllegalArgumentException("Could not instantiate a "+ objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments, e.getCause());
+    } catch (NoSuchMethodException | IllegalAccessException | InstantiationException e) {
+      throw new IllegalArgumentException("Could not instantiate a "+ objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments + ". This may be a programming error, please report it.", e);
     } catch(NullPointerException e){
       throw new IllegalArgumentException("Caught a null pointer while trying to create a " + objectClass.getSimpleName() + " Utilizing the arguments: "+ constructionArguments+ " This is likely the result of passing a null parameter to the create method! That is not allowed!!!");
     } catch (ClassCastException e){
