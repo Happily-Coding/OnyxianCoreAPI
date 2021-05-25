@@ -10,6 +10,6 @@ public class DuplicateEntryException extends Exception {
    * @param entry: The name of the element being requested.
   */
   public DuplicateEntryException(@NotNull String indexName, @NotNull String entry, String newRegistrant, String previousRegistrant){
-    super("{"+newRegistrant+"}"+" is attempting to register {"+ entry+ "} to "+indexName + "index, but it already has an entry which was registered by "+previousRegistrant);
+    super("{"+newRegistrant+"}"+" is attempting to register {"+ entry+ "} to "+indexName + " index, but it already has an entry which was registered by "+previousRegistrant);
   }
 }

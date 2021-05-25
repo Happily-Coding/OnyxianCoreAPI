@@ -4,6 +4,7 @@ import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.Unexpected
 import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -75,7 +76,7 @@ public abstract class YmlObject implements Nameable{
   */
   public abstract YmlObject getYmlObject(@NotNull String fieldName, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets a list inside this YmlObject
+  /**Gets a list inside a field of this YmlObject
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
   * @param objectTypeReferenceSection 
@@ -84,6 +85,15 @@ public abstract class YmlObject implements Nameable{
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
   */
   public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  
+  /**Gets a list inside a field of this YmlObject or the object definition
+  * @param <T> The type of the elements held in the list.
+  * @param fieldName The config name of the list. 
+  * @param objectTypeReferenceSection 
+  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
+  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
+  */
+  public abstract <T> List<T> getListFieldOrDefinitionObjects(String fieldName, List<YmlObject> objectTypeReferenceSection) throws UnexpectedConfigurationException;
   
   /**Gets a collection of all the objects of objectType created from the objects inside the section. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
