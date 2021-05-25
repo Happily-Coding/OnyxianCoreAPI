@@ -93,7 +93,7 @@ public abstract class YmlObject implements Nameable{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
   */
-  public abstract <T> List<T> getListFieldOrDefinitionObjects(String fieldName, List<YmlObject> objectTypeReferenceSection) throws UnexpectedConfigurationException;
+  public abstract <T> List<T> getListFieldOrDefinitionObjects(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> objectTypeReferenceSection) throws UnexpectedConfigurationException;
   
   /**Gets a collection of all the objects of objectType created from the objects inside the section. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
