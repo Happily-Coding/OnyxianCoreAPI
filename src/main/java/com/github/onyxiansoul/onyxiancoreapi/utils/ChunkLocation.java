@@ -1,5 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.utils;
 
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 
 public class ChunkLocation {
@@ -8,8 +9,14 @@ public class ChunkLocation {
     
     //Create the chunk location from chunk x and z
     public ChunkLocation(int x, int z){
-        this.x = x;
-        this.z = z;
+      this.x = x;
+      this.z = z;
+    }
+    
+    //Create the chunk location from chunk
+    public ChunkLocation(Chunk chunk){
+      this.x = chunk.getX();
+      this.z = chunk.getZ();
     }
     
     //Create the chunk location from a normal location

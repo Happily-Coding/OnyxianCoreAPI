@@ -10,11 +10,11 @@ public class UnexpectedConfigurationException extends Exception {
 
   /**Construct an exception of message: 'Found a problem while whatYouWereTryingToDo. This happened inside the yml object: yourYmlObject' */
   public UnexpectedConfigurationException (String whatYouWereTryingToDo, YmlObject yourYmlObject){
-    super(FOUND_A_PROBLEM+ whatYouWereTryingToDo+ THIS_HAPPENED+ "");
+    super(FOUND_A_PROBLEM+ whatYouWereTryingToDo+ THIS_HAPPENED+ yourYmlObject);
   }
   /**Construct an exception of message: 'Found a problem while whatYouWereTryingToDo. This happened inside the yml object: yourYmlObject' and also stores the exception cause. */
   public UnexpectedConfigurationException (String whatYouWereTryingToDo, YmlObject yourYmlObject, Exception cause){
-    super(FOUND_A_PROBLEM+ whatYouWereTryingToDo+ THIS_HAPPENED+ "", cause);
+    super(FOUND_A_PROBLEM+ whatYouWereTryingToDo+ THIS_HAPPENED+ yourYmlObject, cause);
   }
   
   /**Construct an exception of message: 'Found a problem while whatYouWereTryingToDo, and also stores the exception cause. It should be used only if there is no YmlObject at the point the exception is thrown*/

@@ -88,7 +88,17 @@ public class CollectionUtils {
       }
     }
     
-    
+    /**Gets the current value of a key, and if it doesn't exist, add the default value & return it*/
+    public static final<K,V> V getOrAddDefault(Map<K,V> container, K key, V defaultValue){
+      if(container.containsKey(key)){
+       return container.get(key);
+      }
+      else{
+        V value = defaultValue;
+        container.put(key,value);
+        return value; 
+      }
+    }
     
     /** Transform a map that has creators as values to a map that has their creation as values.
      * @param <K> The key type
