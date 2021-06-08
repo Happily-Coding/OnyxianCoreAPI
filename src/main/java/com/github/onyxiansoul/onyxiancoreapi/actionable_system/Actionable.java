@@ -1,11 +1,10 @@
 package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
-
 import java.io.Serializable;
 import java.util.Map;
 
 /**Anything that can be executed.
- *It should not be directly implemented, instead use:+
- *Extends serializable, so the api can give a clone of actionable instead of the actionable itself, to safeguard it from modification.
+ * To create an aditional action type, you should implement this & register it with the core's API
+ * Extends serializable, so the api can give a clone of actionable instead of the actionable itself, to safeguard it from modification.
  */
  public interface Actionable<T> extends Serializable {
   
