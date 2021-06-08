@@ -4,7 +4,6 @@ import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.Unexpected
 import java.util.List;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -110,6 +109,20 @@ public abstract class YmlObject implements Nameable{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
   public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  
+  /**Gets a collection of all the objects of objectType created from the objects in the definition of this one. It respects the order inside the config and cannot have duplicate entries.
+  * @param <T> The type of the elements held in the list.
+  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
+  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
+  */
+  public abstract <T> Collection<T> getSectionObjects(@NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  
+  /**Gets a map of all the keys located inside the section & the object of objectType created from this section. It respects the order inside the config, and cannot have two objects of the same key.
+  * @param <T> The type of the elements held in the list.
+  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
+  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
+  */
+  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets all the yml object containing which can be used as a reference by this yml object.
    Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
