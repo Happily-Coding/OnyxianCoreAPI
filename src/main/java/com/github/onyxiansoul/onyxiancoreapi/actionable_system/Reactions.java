@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Map;
 
 /**Anything that is interested en events*/
-public interface EventInterested extends Actionable<Void>, Serializable, Nameable {
+public interface Reactions extends Actionable<Void>, Serializable, Nameable {
   
   public Map<Class, Collection<ActionGroup>> getActionGroupsMap();
   
