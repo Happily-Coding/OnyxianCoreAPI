@@ -1,6 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroup;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
@@ -76,7 +77,7 @@ public interface OnyxianCoreAPI {
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException;
   
   /**Gets an action group factory, capable of producing action groups.*/
-  public abstract void getActionGroupFactory();
+  public abstract ActionGroupFactory getActionGroupFactory();
   
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
