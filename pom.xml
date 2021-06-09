@@ -54,4 +54,10 @@
             </plugins>
         </pluginManagement>
     </build>
+    <!--Assign enviromental variables.-->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+    </properties>
 </project>
