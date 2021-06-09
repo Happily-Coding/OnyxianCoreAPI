@@ -75,6 +75,9 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException;
   
+  /**Gets an action group factory, capable of producing action groups.*/
+  public abstract void getActionGroupFactory();
+  
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
   /**Sets the section objects of a certain type can reference with copy: or default_from:
