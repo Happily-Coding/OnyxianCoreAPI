@@ -8,7 +8,7 @@ import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class YmlObject implements Nameable{
+public abstract class YmlObject{
   
   /**Gets the key for which this YmlObject is a value*/
   public abstract String getKey();
