@@ -2,7 +2,6 @@ package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.List;
-import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import java.util.Collection;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
