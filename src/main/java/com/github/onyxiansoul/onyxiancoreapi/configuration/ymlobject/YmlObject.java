@@ -172,7 +172,6 @@ public abstract class YmlObject{
    */
   public abstract void setReferenceSection(@Nullable List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
   
-  public abstract void setField(@NotNull String fieldName, @NotNull Object value);
 }
 
 

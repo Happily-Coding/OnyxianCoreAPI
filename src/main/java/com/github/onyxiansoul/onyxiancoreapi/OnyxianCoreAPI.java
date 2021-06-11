@@ -77,6 +77,9 @@ public interface OnyxianCoreAPI {
   /**Gets an action group factory, capable of producing action groups.*/
   public abstract ActionGroupFactory getActionGroupFactory();
   
+  /**Gets a previously registered actionable by name*/
+  public abstract Actionable getRegisteredVariable(String fieldName) throws MissingEntryException;
+  
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
   /**Sets the section objects of a certain type can reference with copy: or default_from:
