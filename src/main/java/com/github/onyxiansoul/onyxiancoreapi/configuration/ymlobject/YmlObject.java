@@ -171,6 +171,8 @@ public abstract class YmlObject{
    * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the YmlObject.
    */
   public abstract void setReferenceSection(@Nullable List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
+  
+  public abstract void setField(@NotNull String fieldName, @NotNull Object value);
 }
 
 
