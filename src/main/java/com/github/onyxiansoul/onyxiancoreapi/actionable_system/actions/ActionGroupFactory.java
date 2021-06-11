@@ -10,6 +10,6 @@ public interface ActionGroupFactory {
   public abstract ActionGroup makeActionGroup(@NotNull Actionable action, @Nullable Actionable<Boolean> condition, @Nullable Class<? extends Event> triggerClass, @NotNull String name);
   
   /** Gets an ActionGroup with certain actions and conditions*/
-  public abstract ActionGroup makeActionGroup(@NotNull List<Actionable> actions, @Nullable List<Actionable<Boolean>> conditions, @Nullable Class<? extends Event> triggerClass, @NotNull String name);
+  public abstract ActionGroup makeActionGroup(@NotNull List<Actionable<?>> actions, @Nullable List<Actionable<Boolean>> conditions, @Nullable Class<? extends Event> triggerClass, @NotNull String name);
   
 }
