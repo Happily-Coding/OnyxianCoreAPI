@@ -7,9 +7,9 @@ import org.jetbrains.annotations.Nullable;
 
 public interface ActionGroupFactory {
   /** Gets an ActionGroup containing an action with a single condition */
-  public abstract ActionGroup getSimpleActionGroup(@NotNull Actionable action, @Nullable Actionable<Boolean> condition, Class triggerClass);
+  public abstract ActionGroup makeActionGroup(@NotNull Actionable action, @Nullable Actionable<Boolean> condition, @Nullable Class triggerClass, @NotNull String name);
   
   /** Gets an ActionGroup with certain actions and conditions*/
-  public abstract ActionGroup getActionGroup(@NotNull List<Actionable> actions, @Nullable List<Actionable<Boolean>> conditions, Class triggerClass);
+  public abstract ActionGroup makeActionGroup(@NotNull List<Actionable> actions, @Nullable List<Actionable<Boolean>> conditions, @Nullable Class triggerClass, @NotNull String name);
   
 }
