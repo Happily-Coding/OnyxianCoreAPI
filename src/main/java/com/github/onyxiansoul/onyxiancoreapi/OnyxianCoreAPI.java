@@ -78,7 +78,7 @@ public interface OnyxianCoreAPI {
   public abstract ActionGroupFactory getActionGroupFactory();
   
   /**Gets a previously registered actionable by name*/
-  public abstract Actionable getRegisteredVariable(String fieldName) throws MissingEntryException;
+  public abstract <T> Actionable<T> getRegisteredVariable(String fieldName) throws MissingEntryException;
   
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
