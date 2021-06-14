@@ -1,5 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ReactionsFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
@@ -76,6 +77,9 @@ public interface OnyxianCoreAPI {
   
   /**Gets an action group factory, capable of producing action groups.*/
   public abstract ActionGroupFactory getActionGroupFactory();
+  
+  /**Gets an action group factory, capable of producing action groups.*/
+  public abstract ReactionsFactory getReactionsFactory();
   
   /**Gets a previously registered actionable by name*/
   public abstract <T> Actionable<T> getRegisteredVariable(String fieldName) throws MissingEntryException;
