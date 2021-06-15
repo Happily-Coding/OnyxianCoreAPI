@@ -162,6 +162,10 @@ public abstract class YmlObject{
   /**Gets the raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
   public abstract Object getDefinition() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
   
+  /** Makes an element of a registered type from this yml object's values. This is NOT a replacement for properly registering a type.
+   *  Instead, its meant to be a a way for a registered type to gain parts from different registered type without requiring a substring inside.*/
+  public abstract <T> T getDefinitonAs(String registeredType) throws UnexpectedConfigurationException;
+  
   /**Gets the value this object was created to wrap.*/
   public abstract Object getRawValue() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
   
