@@ -163,7 +163,9 @@ public abstract class YmlObject{
   public abstract Object getDefinition() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
   
   /** Makes an element of a registered type from this yml object's values. This is NOT a replacement for properly registering a type.
-   *  Instead, its meant to be a a way for a registered type to gain parts from different registered type without requiring a substring inside.*/
+   *  Instead, its meant to be a a way for a registered type to gain parts from different registered type without requiring a substring inside.
+   *  Should only be used inside compound yml objects, not on fields reliant on a single value definition, or may otherwise fail.
+   */
   public abstract <T> T getDefinitonAs(String registeredType) throws UnexpectedConfigurationException;
   
   /**Gets the value this object was created to wrap.*/
@@ -177,8 +179,6 @@ public abstract class YmlObject{
   public abstract void setReferenceSection(@Nullable List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
   
 }
-
-
 
 
 
