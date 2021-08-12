@@ -3,6 +3,7 @@ import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ReactionsFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
+import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurableBuilder;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurablesFactory;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
@@ -76,13 +77,15 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException;
   
-  /**Gets an action group factory, capable of producing action groups.*/
-  public abstract ActionGroupFactory getActionGroupFactory();
+  /**Gets an action group factory, capable of producing action groups.
+   TODO: REMOVE since configurable builder should be able to replace it.*/
+  public @Deprecated abstract ActionGroupFactory getActionGroupFactory();
   
   /**Gets an action group factory, capable of producing action groups.*/
-  public abstract ReactionsFactory getReactionsFactory();
+  //public abstract ReactionsFactory getReactionsFactory();
   
-  public abstract ConfigurablesFactory getConfigurablesFactory();
+  /**Gets a configurable builder of a certain type of configurable*/
+  public abstract ConfigurableBuilder configurableBuilder(String configurableType);
   
   /**Gets a previously registered actionable by name*/
   public abstract <T> Actionable<T> getRegisteredVariable(String fieldName) throws MissingEntryException;
