@@ -5,8 +5,9 @@ import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.Unexpected
 public interface ConfigurableBuilder {
   
   /**Sets the value of a parameter inside the configurable
-   If the value is an actionable, it'll be added as is
-   If its not, it'll be wrapped by an actionable, and added.*/
+   If the value is a(not null) actionable, it'll be added as is
+   If its not, it'll be wrapped by an actionable, and added.
+   */
   public ConfigurableBuilder param(String parameterName, Object parameter);
   
   /**Sets the value of a parameter inside the configurable,
