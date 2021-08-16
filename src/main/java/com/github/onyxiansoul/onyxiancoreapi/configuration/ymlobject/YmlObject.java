@@ -84,6 +84,16 @@ public abstract class YmlObject{
   */
   public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String simpleObjectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
+  /**Gets a list inside a field of this YmlObject ,or a default value, if the yml object doesn't contain that field
+  * @param <T> The type of the elements held in the list.
+  * @param fieldKey The config name of the list. 
+  * @param objectTypeReferenceSection 
+  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
+  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
+  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
+  */
+  public abstract <T> List<T> getListObjectsOrDefault(String fieldKey, String objectType, List<T> defaultValue, List<YmlObject> objectTypeReferenceSection) throws IllegalArgumentException, UnexpectedConfigurationException;
+  
   /**Gets a list inside a field of this YmlObject or the object definition
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
