@@ -56,9 +56,9 @@ public abstract class RuntimeSupplier<T> {
   @Nullable
   public EntityType getExplosionCause(){ return null; }
 
-  /**Get the Exp dropped by the event
+  /**Get the amount of Exp dropped by the event
    * @param e = an event of this type
-   * @return The Entity that generated the explosion. Will be null if it the event doesn't drop xp.
+   * @return amount of Exp dropped by the event. Will be null if it the event doesn't drop xp.
    */
   @Nullable
   public Integer getExpDropped(){ return null; }
@@ -72,7 +72,7 @@ public abstract class RuntimeSupplier<T> {
 
   /**Gets the block face which was interacted with (in one way or another), when the event was triggered
    * @param e = an event of this type
-   * @return the block face which was interacted with (in one way or another), when the event was triggered.
+   * @return the block face which was interacted with (in one way or another), when the event was triggered. (null by default)
    */
   @Nullable
   public BlockFace getBlockFace() { return null; } 
