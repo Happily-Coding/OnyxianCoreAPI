@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import org.bukkit.Material;
 
 //TODO: MOVE TO API!
 public class CollectionUtils {
@@ -97,6 +96,13 @@ public class CollectionUtils {
         V value = defaultValue;
         container.put(key,value);
         return value; 
+      }
+    }
+    
+    /**Adds a variable to a collection, if the variable isnt null */
+    private static <T> void addToCollectionIfNotNull(Collection<T> collection, T value){
+      if(value != null){
+        collection.add(value);
       }
     }
     
