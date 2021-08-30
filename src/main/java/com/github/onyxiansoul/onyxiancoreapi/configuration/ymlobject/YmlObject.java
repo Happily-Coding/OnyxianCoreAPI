@@ -1,8 +1,8 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
-import java.util.List;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -118,6 +118,14 @@ public abstract class YmlObject{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
   public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  
+  /**Gets a map of all the keys located inside the section & the wrapped value of the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
+  * @param <T> The type of the elements held in the list.
+  * @param fieldName The config name of the list. 
+  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
+  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
+  */
+  public abstract <T> Map<String,T> getSectionObjectsWrappedValueMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a collection of all the objects of objectType created from the objects in the definition of this one. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
