@@ -1,13 +1,13 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ReactionsFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurableBuilder;
-import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.DuplicateEntryException;
+import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
+import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -88,6 +88,9 @@ public interface OnyxianCoreAPI {
   
   /**Gets a previously registered actionable by name*/
   public abstract <T> Actionable<T> getRegisteredVariable(String fieldName) throws MissingEntryException;
+  
+  /**Gets a modifier of the resourcepack automatically created by the onyxian core*/
+  public abstract ResourcepackModifier getResourcepackModifier();
   
   //NOTE TO SELF: There is no supplier registry, since each plugin should both create and use their own implmentations of supplier.
 
