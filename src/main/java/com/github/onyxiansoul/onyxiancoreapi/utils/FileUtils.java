@@ -10,8 +10,8 @@ public final class FileUtils {
   private FileUtils() {}
     
   public static void unpackOntoPluginFolder(Plugin plugin, String insidePathWithoutFinalBar, String outsidePathWithoutFinalBar, String fileNameWithExtension) throws IOException{
-    InputStream jarURL = plugin.getResource(insidePathWithoutFinalBar+"/"+fileNameWithExtension);
-    //InputStream jarURL = BlocksEvolved.class.getResourceAsStream(insidePathWithoutFinalBar+"/"+fileNameWithExtension);
+    //InputStream jarURL = plugin.getResource(insidePathWithoutFinalBar+"/"+fileNameWithExtension);
+    InputStream jarURL = plugin.getClass().getResourceAsStream(insidePathWithoutFinalBar+"/"+fileNameWithExtension);
     File outsideFolder = new File(plugin.getDataFolder(),outsidePathWithoutFinalBar);
     if(!outsideFolder.exists()) outsideFolder.mkdirs();
     File fileOutside = new File(outsideFolder, fileNameWithExtension);
