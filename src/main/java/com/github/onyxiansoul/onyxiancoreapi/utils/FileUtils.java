@@ -13,7 +13,7 @@ public final class FileUtils {
   public static void unpackOntoPluginFolder(Plugin plugin, String insidePathWithoutFinalBar, String outsidePathWithoutFinalBar, String fileNameWithExtension) throws UnavailableFileException{
     InputStream jarURL;
     try{
-      //jarURL = plugin.getResource(insidePathWithoutFinalBar+"/"+fileNameWithExtension); 
+      InputStream jarURL1 = plugin.getResource(insidePathWithoutFinalBar+"/"+fileNameWithExtension); 
       jarURL = Objects.requireNonNull(plugin.getClass().getResourceAsStream(insidePathWithoutFinalBar+"/"+fileNameWithExtension));
     }
     catch(RuntimeException e){
