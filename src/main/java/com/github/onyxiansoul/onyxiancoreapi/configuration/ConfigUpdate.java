@@ -1,6 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.configuration;
 
-import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 
 public abstract class ConfigUpdate {
   private final String semanticVersionString;
@@ -9,7 +9,7 @@ public abstract class ConfigUpdate {
     this.semanticVersionString = semanticVersionString;
   }
   
-  public abstract void apply(YmlObject configurationToApplyTo); //TODO: REFACTOR
+  public abstract void apply(StructuredValue configurationToApplyTo); //TODO: REFACTOR
   
   public final String getVersion(){
     return semanticVersionString;
