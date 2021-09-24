@@ -4,7 +4,7 @@ import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGro
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurableBuilder;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
-import com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject.YmlObject;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.DuplicateEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
@@ -21,7 +21,7 @@ public interface OnyxianCoreAPI {
   * @return a Yml Object representing the file's values.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
   */
-  public abstract YmlObject getConfiguration(@NotNull String fileName, @Nullable ConfigUpdate[] configUpdates) throws UnexpectedConfigurationException;
+  public abstract StructuredValue getConfiguration(@NotNull String fileName, @Nullable ConfigUpdate[] configUpdates) throws UnexpectedConfigurationException;
 
   /**Registers an object of an actionable, AKA an element that can run, and can produce a variable, and therefore can be used in the config as both a 'action' & a 'variable')
   * Configurable objects inside Onyxian Plugins, use almost exclusevily producers as variables, this allows for the value of a field to be modifiable by parameters obtained at runtime, such as the value of a placeholder, or the event that triggered an action.
@@ -58,8 +58,8 @@ public interface OnyxianCoreAPI {
    */
   public abstract void registerSimpleFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException;
   
-  /** Registers a class responsible for interpreting a field when its of compound object type, aka a YmlObject, made from a configuration section or map, for example any action that has multiple parameters
-   * That class needs to have a constructor that takes an object and needs to be an actionable of the type that it produces.
+  /** Registers a class responsible for interpreting a field when its of compound object type, aka a StructuredValue, made from a configuration section or map, for example any action that has multiple parameters
+ That class needs to have a constructor that takes an object and needs to be an actionable of the type that it produces.
    * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
    * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
    * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
@@ -108,3 +108,5 @@ public interface OnyxianCoreAPI {
 }
 
 //TODO: MIGRATE ALL CONSTRUCTED VARIABLES TO FACTORY INTERFACES PROVIDED BY THE API
+
+//Note to self: use more facades!
