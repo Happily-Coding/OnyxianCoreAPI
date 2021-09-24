@@ -1,15 +1,16 @@
-package com.github.onyxiansoul.onyxiancoreapi.configuration.ymlobject;
+package com.github.onyxiansoul.onyxiancoreapi.structured_value_system;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class YmlObject{
+public abstract class StructuredValue{
   
-  /**Gets the key for which this YmlObject is a value*/
+  /**Gets the key for which this StructuredValue is a value*/
   public abstract String getKey();
   
   /** * Gets the value of a field, using its fieldName as its objectType and no reference containers.Throws an exception if it the value is invalid or wasn't found
@@ -29,7 +30,7 @@ public abstract class YmlObject{
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRField(@NotNull String fieldName,@Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> T getRField(@NotNull String fieldName,@Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
 
   /**Gets the value of a field, using its fieldName as its objectType and no reference containers, or returns a default value if the field is not available
    * @param <T> The type of the field.
@@ -48,7 +49,7 @@ public abstract class YmlObject{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefault(@NotNull String fieldName, T defaultValue, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefault(@NotNull String fieldName, T defaultValue, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
 
   /**Gets the value of a field, using its fieldName as its objectType, or returns the value of a registered variable, if the field is not available
    * @param <T> The type of the field.
@@ -58,7 +59,7 @@ public abstract class YmlObject{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefaultToVariable(@NotNull String fieldName,@NotNull String variableName, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefaultToVariable(@NotNull String fieldName,@NotNull String variableName, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
   
   /**Gets the result of enacting the value of a field with null runtime cirumstances, or defaults to the default value if its null.*/
   public abstract <T> T getRFieldWrappedValueOrDefault(@NotNull String fieldName, T defaultValue) throws ImpossibleActionException, UnexpectedConfigurationException;
@@ -66,15 +67,15 @@ public abstract class YmlObject{
   /**Gets the result of enacting the value of a field with null runtime circumstances*/
   public abstract <T> T getRFieldWrappedValue(@NotNull String fieldName) throws ImpossibleActionException, UnexpectedConfigurationException;
   
-  /**Gets a sub YmlObject inside of this one
+  /**Gets a sub StructuredValue inside of this one
    * @param <T> The type of the field
    * @param fieldName The key of the field
    * @param referencesContainers
-   * @return The YmlObject located inside of this one.
+   * @return The StructuredValue located inside of this one.
   */
-  public abstract YmlObject getYmlObject(@NotNull String fieldName, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract StructuredValue getYmlObject(@NotNull String fieldName, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets a list inside a field of this YmlObject
+  /**Gets a list inside a field of this StructuredValue
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
   * @param objectTypeReferenceSection 
@@ -82,9 +83,9 @@ public abstract class YmlObject{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
   */
-  public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String simpleObjectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String simpleObjectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets a list inside a field of this YmlObject ,or a default value, if the yml object doesn't contain that field
+  /**Gets a list inside a field of this StructuredValue ,or a default value, if the yml object doesn't contain that field
   * @param <T> The type of the elements held in the list.
   * @param fieldKey The config name of the list. 
   * @param objectTypeReferenceSection 
@@ -92,16 +93,16 @@ public abstract class YmlObject{
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
   */
-  public abstract <T> List<T> getListObjectsOrDefault(String fieldKey, String objectType, List<T> defaultValue, List<YmlObject> objectTypeReferenceSection) throws IllegalArgumentException, UnexpectedConfigurationException;
+  public abstract <T> List<T> getListObjectsOrDefault(String fieldKey, String objectType, List<T> defaultValue, List<StructuredValue> objectTypeReferenceSection) throws IllegalArgumentException, UnexpectedConfigurationException;
   
-  /**Gets a list inside a field of this YmlObject or the object definition
+  /**Gets a list inside a field of this StructuredValue or the object definition
   * @param <T> The type of the elements held in the list.
   * @param fieldName The config name of the list. 
   * @param objectTypeReferenceSection 
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
   */
-  public abstract <T> List<T> getListFieldOrDefinitionObjects(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> objectTypeReferenceSection) throws UnexpectedConfigurationException;
+  public abstract <T> List<T> getListFieldOrDefinitionObjects(@NotNull String fieldName, @NotNull String objectType, @Nullable List<StructuredValue> objectTypeReferenceSection) throws UnexpectedConfigurationException;
   
   /**Gets a collection of all the objects of objectType created from the objects inside the section. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
@@ -109,7 +110,7 @@ public abstract class YmlObject{
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Collection<T> getSectionObjects(@NotNull String fieldName,@NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Collection<T> getSectionObjects(@NotNull String fieldName,@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a map of all the keys located inside the section & the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
   * @param <T> The type of the elements held in the list.
@@ -117,7 +118,7 @@ public abstract class YmlObject{
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a map of all the keys located inside the section & the wrapped value of the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
   * @param <T> The type of the elements held in the list.
@@ -125,25 +126,25 @@ public abstract class YmlObject{
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Map<String,T> getSectionObjectsWrappedValueMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Map<String,T> getSectionObjectsWrappedValueMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a collection of all the objects of objectType created from the objects in the definition of this one. It respects the order inside the config and cannot have duplicate entries.
   * @param <T> The type of the elements held in the list.
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Collection<T> getSectionObjects(@NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Collection<T> getSectionObjects(@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a map of all the keys located inside the section & the object of objectType created from this section. It respects the order inside the config, and cannot have two objects of the same key.
   * @param <T> The type of the elements held in the list.
   * @param objectType The name of the type of variable inside the list (as it was registered in the API)
   * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
   */
-  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String objectType, @Nullable List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets all the yml object containing which can be used as a reference by this yml object.
    Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
-  public abstract List<YmlObject> getReferencesContainers();
+  public abstract List<StructuredValue> getReferencesContainers();
   
   /**Gets all the value of every field of the yml object, included ones inherited from defaulting from other objects.
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
@@ -175,10 +176,13 @@ public abstract class YmlObject{
    * @throws IllegalArgumentException if the field was listed, but is invalid
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field*/
-  public abstract <T> T getRFieldOrDefinition(@NotNull String fieldName) throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  public abstract <T> T getRFieldOrDefinition(@NotNull String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets the raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
-  public abstract Object getDefinition() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
+  /**Gets the definition of the object, aka the only value present, inside of it. For example:
+   * Hello: --> get definition = "text", "onyxtite"
+   *   text: Onyxtitite
+   * raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
+  public abstract Entry<String,Object> getRawDefinition() throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /** Makes an element of a registered type from this yml object's values. This is NOT a replacement for properly registering a type.
    *  Instead, its meant to be a a way for a registered type to gain parts from different registered type without requiring a substring inside.
@@ -189,12 +193,12 @@ public abstract class YmlObject{
   /**Gets the value this object was created to wrap.*/
   public abstract Object getRawValue() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
   
-  /**Sets the defaultFromFieldValue section for this object & completes the YmlObject values using its values for default_from & copy fields
+  /** * Sets the defaultFromFieldValue section for this object & completes the StructuredValue values using its values for default_from & copy fields
    * This is used by the core but its unlikely that you should need it as an external plugin.
-   * @param referencesContainers The section containing ymlobjects used to produced elements of the same type as the object represented by this YmlObject
-   * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the YmlObject.
+   * @param referencesContainers The section containing ymlobjects used to produced elements of the same type as the object represented by this StructuredValue
+   * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the StructuredValue.
    */
-  public abstract void setReferenceSection(@Nullable List<YmlObject> referencesContainers) throws UnexpectedConfigurationException;
+  public abstract void setReferenceSection(@Nullable List<StructuredValue> referencesContainers) throws UnexpectedConfigurationException;
   
 }
 
