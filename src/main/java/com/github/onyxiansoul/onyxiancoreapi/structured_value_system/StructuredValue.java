@@ -73,7 +73,7 @@ public abstract class StructuredValue{
    * @param referencesContainers
    * @return The StructuredValue located inside of this one.
   */
-  public abstract StructuredValue getYmlObject(@NotNull String fieldName, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  public abstract StructuredValue getStructuredValue(@NotNull String fieldName, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets a list inside a field of this StructuredValue
   * @param <T> The type of the elements held in the list.
@@ -85,7 +85,7 @@ public abstract class StructuredValue{
   */
   public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String simpleObjectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets a list inside a field of this StructuredValue ,or a default value, if the yml object doesn't contain that field
+  /**Gets a list inside a field of this StructuredValue ,or a default value, if the structured value doesn't contain that field
   * @param <T> The type of the elements held in the list.
   * @param fieldKey The config name of the list. 
   * @param objectTypeReferenceSection 
@@ -142,27 +142,27 @@ public abstract class StructuredValue{
   */
   public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Gets all the yml object containing which can be used as a reference by this yml object.
-   Its usage is discouraged, since it shouldn't be required unless you are implementing YmlObject, which is unnecessary, since the OnyxianCore already does that.*/
+  /**Gets all the structured value containing which can be used as a reference by this structured value.
+   Its usage is discouraged, since it shouldn't be required unless you are implementing StructuredValue, which is unnecessary, since the OnyxianCore already does that.*/
   public abstract List<StructuredValue> getReferencesContainers();
   
-  /**Gets all the value of every field of the yml object, included ones inherited from defaulting from other objects.
+  /**Gets all the value of every field of the structured value, included ones inherited from defaulting from other objects.
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
   public abstract Map<String,Object> getFullRawValues();
   
-  /**Gets all the value of every field of the yml object, excluiding ones inherited from defaulting from other objects.
+  /**Gets all the value of every field of the structured value, excluiding ones inherited from defaulting from other objects.
    Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
   public abstract Map<String,Object> getObjectRawValues();
   
   /**Gets the raw value of a field.
-   Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
+   Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing structured value) (which is also unnecessary & discouraged)*/
   public abstract Object getFieldRawValue(@NotNull String key) throws UnexpectedConfigurationException;
 
-  /**Gets the raw value of a field, following references for example: (copy:nameOfYmlObjectToImitate)
-   Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing yml object) (which is also unnecessary & discouraged)*/
+  /**Gets the raw value of a field, following references for example: (copy:nameOfStructuredValueToImitate)
+   Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing structured value) (which is also unnecessary & discouraged)*/
   public abstract Object getFieldRawValueFollowingReferences(@NotNull String key) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /**Returns the value of a yml object's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the yml object.
+  /**Returns the value of a structured value's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the structured value.
    * Used mainly on object types that can have a single parameter.
    * for example getFieldOrDefinition("color") in any of this two configs would yield red:
    * MyObject:
@@ -184,9 +184,9 @@ public abstract class StructuredValue{
    * raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
   public abstract Entry<String,Object> getRawDefinition() throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
-  /** Makes an element of a registered type from this yml object's values. This is NOT a replacement for properly registering a type.
+  /** Makes an element of a registered type from this structured value's values. This is NOT a replacement for properly registering a type.
    *  Instead, its meant to be a a way for a registered type to gain parts from different registered type without requiring a substring inside.
-   *  Should only be used inside compound yml objects, not on fields reliant on a single value definition, or may otherwise fail.
+   *  Should only be used inside compound structured values, not on fields reliant on a single value definition, or may otherwise fail.
    */
   public abstract <T> T getDefinitonAs(String registeredType) throws UnexpectedConfigurationException;
   
@@ -195,7 +195,7 @@ public abstract class StructuredValue{
   
   /** * Sets the defaultFromFieldValue section for this object & completes the StructuredValue values using its values for default_from & copy fields
    * This is used by the core but its unlikely that you should need it as an external plugin.
-   * @param referencesContainers The section containing ymlobjects used to produced elements of the same type as the object represented by this StructuredValue
+   * @param referencesContainers The section containing StructuredValues used to produced elements of the same type as the object represented by this StructuredValue
    * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the StructuredValue.
    */
   public abstract void setReferenceSection(@Nullable List<StructuredValue> referencesContainers) throws UnexpectedConfigurationException;
@@ -205,7 +205,7 @@ public abstract class StructuredValue{
 
 
 
-  /** * Returns the value of a yml object's field of objectType.If it doesn't exist, returns the definition of the yml object. for example getFieldOrDefinition("color") in any of this two configs would yield red:
+  /** * Returns the value of a structured value's field of objectType.If it doesn't exist, returns the definition of the structured value. for example getFieldOrDefinition("color") in any of this two configs would yield red:
  MyObject:
    color: red
    stripy: true
@@ -237,7 +237,7 @@ public abstract class StructuredValue{
    * @throws NullPointerException if the field isn't listed.
    * @return the value of the field
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  //public abstract <T> T getFieldOfRType(String fieldName, String objectType, List<YmlObject> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  //public abstract <T> T getFieldOfRType(String fieldName, String objectType, List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
   
   /**Gets the value of a field of objectType(that has been registered on the API) or returns a default value if its not available
    * @param <T> The type of the field.
@@ -248,7 +248,7 @@ public abstract class StructuredValue{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  //public abstract <T> T getFieldOfRTypeOrDefault(String fieldName, String objectType, List<YmlObject> referencesContainers, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
+  //public abstract <T> T getFieldOfRTypeOrDefault(String fieldName, String objectType, List<StructuredValue> referencesContainers, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
 
   /**Gets the value of a field of objectType, or returns the value of a registered variable, if the field is not available
    * @param <T> The type of the field.
@@ -259,4 +259,4 @@ public abstract class StructuredValue{
    * @return the value of the field or the default value if its not listed
    * @throws IllegalArgumentException If the field was listed, but is invalid
    * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  //public abstract <T> T getFieldOfRTypeOrDefaultToVariable(String fieldName, String objectType, List<YmlObject> referencesContainers, String variableName) throws IllegalArgumentException, UnexpectedConfigurationException;
+  //public abstract <T> T getFieldOfRTypeOrDefaultToVariable(String fieldName, String objectType, List<StructuredValue> referencesContainers, String variableName) throws IllegalArgumentException, UnexpectedConfigurationException;
