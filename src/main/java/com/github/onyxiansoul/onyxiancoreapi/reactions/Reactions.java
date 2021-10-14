@@ -1,5 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroup;
+package com.github.onyxiansoul.onyxiancoreapi.reactions;
+import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroup;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import java.io.Serializable;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
+package com.github.onyxiansoul.onyxiancoreapi.reactions;
 
 
 public interface ReactionsFactory {

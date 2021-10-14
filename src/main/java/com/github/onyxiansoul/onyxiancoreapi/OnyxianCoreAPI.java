@@ -1,6 +1,5 @@
 package com.github.onyxiansoul.onyxiancoreapi;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions.ActionGroupFactory;
+import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurableBuilder;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
@@ -11,6 +10,7 @@ import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackPackager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
