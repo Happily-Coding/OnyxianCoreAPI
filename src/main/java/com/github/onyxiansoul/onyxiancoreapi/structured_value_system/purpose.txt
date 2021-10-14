@@ -1,0 +1,4 @@
+The structured value system, is a system that allows representing a group of parameters, so they can be used in the creation of objects.
+It's main purpose is to allow configurations to be easily represented and queried, for the creation of variable objects.
+
+

@@ -1,0 +1,2 @@
+The variable system is a system that allows classes provided by any plugin to be instantiated by any other plugin that uses the onyxian core, without needing to know the implementation.
+It allows for objects of a class provided by any plugin, to be easily created from a structured value obtained from a configuration.

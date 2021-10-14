@@ -1,262 +1,79 @@
 package com.github.onyxiansoul.onyxiancoreapi.structured_value_system;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class StructuredValue{
+/**A key, value pair, which can have a simple vaue, or a list of key value pairs, which can be queried.
+ * It's similar to a virtual representation of a json node.
+ */
+public interface StructuredValue{
   
-  /**Gets the key for which this StructuredValue is a value*/
-  public abstract String getKey();
+  /**Gets the key that holds the value
+   * @return the key*/
+  public abstract @NotNull String getKey();
   
-  /** * Gets the value of a field, using its fieldName as its objectType and no reference containers.Throws an exception if it the value is invalid or wasn't found
-   * @param <T> The type of the field.
-   * @param fieldName: The name of the field.
-   * @throws IllegalArgumentException if the field was listed, but is invalid
-   * @throws NullPointerException if the field isn't listed.
-   * @return the value of the field
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRField(@NotNull String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
+  /**Checks if this is the final value of a tree, meaning, it has no inner values*/
+  public abstract @NotNull boolean lacksInnerStructuredValues();
   
-  /** * Gets the value of a field, using its fieldName as its objectType.Throws an exception if it the value is invalid or wasn't found
-   * @param <T> The type of the field.
-   * @param fieldName: The name of the field.
-   * @param referencesContainers
-   * @throws IllegalArgumentException if the field was listed, but is invalid
-   * @throws NullPointerException if the field isn't listed.
-   * @return the value of the field
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRField(@NotNull String fieldName,@Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-
-  /**Gets the value of a field, using its fieldName as its objectType and no reference containers, or returns a default value if the field is not available
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param defaultValue The default value for the field
-   * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefault(@NotNull String fieldName, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
-  
-  /**Gets the value of a field, using its fieldName as its objectType, or returns a default value if the field is not available
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param defaultValue The default value for the field
-   * @param referencesContainers
-   * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefault(@NotNull String fieldName, T defaultValue, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
-
-  /**Gets the value of a field, using its fieldName as its objectType, or returns the value of a registered variable, if the field is not available
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param variableName The name the variable was registered by.
-   * @param referencesContainers
-   * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  public abstract <T> T getRFieldOrDefaultToVariable(@NotNull String fieldName,@NotNull String variableName, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, UnexpectedConfigurationException;
-  
-  /**Gets the result of enacting the value of a field with null runtime cirumstances, or defaults to the default value if its null.*/
-  public abstract <T> T getRFieldWrappedValueOrDefault(@NotNull String fieldName, T defaultValue) throws ImpossibleActionException, UnexpectedConfigurationException;
-
-  /**Gets the result of enacting the value of a field with null runtime circumstances*/
-  public abstract <T> T getRFieldWrappedValue(@NotNull String fieldName) throws ImpossibleActionException, UnexpectedConfigurationException;
-  
-  /**Gets a sub StructuredValue inside of this one
-   * @param <T> The type of the field
-   * @param fieldName The key of the field
-   * @param referencesContainers
-   * @return The StructuredValue located inside of this one.
-  */
-  public abstract StructuredValue getStructuredValue(@NotNull String fieldName, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a list inside a field of this StructuredValue
-  * @param <T> The type of the elements held in the list.
-  * @param fieldName The config name of the list. 
-  * @param objectTypeReferenceSection 
-  * @param simpleObjectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
-  */
-  public abstract <T> List<T> getListObjects(@NotNull String fieldName, @NotNull String simpleObjectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a list inside a field of this StructuredValue ,or a default value, if the structured value doesn't contain that field
-  * @param <T> The type of the elements held in the list.
-  * @param fieldKey The config name of the list. 
-  * @param objectTypeReferenceSection 
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
-  */
-  public abstract <T> List<T> getListObjectsOrDefault(String fieldKey, String objectType, List<T> defaultValue, List<StructuredValue> objectTypeReferenceSection) throws IllegalArgumentException, UnexpectedConfigurationException;
-  
-  /**Gets a list inside a field of this StructuredValue or the object definition
-  * @param <T> The type of the elements held in the list.
-  * @param fieldName The config name of the list. 
-  * @param objectTypeReferenceSection 
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
-  */
-  public abstract <T> List<T> getListFieldOrDefinitionObjects(@NotNull String fieldName, @NotNull String objectType, @Nullable List<StructuredValue> objectTypeReferenceSection) throws UnexpectedConfigurationException;
-  
-  /**Gets a collection of all the objects of objectType created from the objects inside the section. It respects the order inside the config and cannot have duplicate entries.
-  * @param <T> The type of the elements held in the list.
-  * @param fieldName The config name of the list. 
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  */
-  public abstract <T> Collection<T> getSectionObjects(@NotNull String fieldName,@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a map of all the keys located inside the section & the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
-  * @param <T> The type of the elements held in the list.
-  * @param fieldName The config name of the list. 
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  */
-  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a map of all the keys located inside the section & the wrapped value of the object of objectType created from the section. It respects the order inside the config, and cannot have two objects of the same key.
-  * @param <T> The type of the elements held in the list.
-  * @param fieldName The config name of the list. 
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  */
-  public abstract <T> Map<String,T> getSectionObjectsWrappedValueMap(@NotNull String fieldName, @NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a collection of all the objects of objectType created from the objects in the definition of this one. It respects the order inside the config and cannot have duplicate entries.
-  * @param <T> The type of the elements held in the list.
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  */
-  public abstract <T> Collection<T> getSectionObjects(@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets a map of all the keys located inside the section & the object of objectType created from this section. It respects the order inside the config, and cannot have two objects of the same key.
-  * @param <T> The type of the elements held in the list.
-  * @param objectType The name of the type of variable inside the list (as it was registered in the API)
-  * @return A list of the actionables produced from every value inside the config list, in the order they were on the config list.
-  */
-  public abstract <T> Map<String,T> getSectionObjectsMap(@NotNull String objectType, @Nullable List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets all the structured value containing which can be used as a reference by this structured value.
-   Its usage is discouraged, since it shouldn't be required unless you are implementing StructuredValue, which is unnecessary, since the OnyxianCore already does that.*/
-  public abstract List<StructuredValue> getReferencesContainers();
-  
-  /**Gets all the value of every field of the structured value, included ones inherited from defaulting from other objects.
-   Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
-  public abstract Map<String,Object> getFullRawValues();
-  
-  /**Gets all the value of every field of the structured value, excluiding ones inherited from defaulting from other objects.
-   Its usage is discouraged since most operations can be performed in an easier and less error prone way using other method provided.*/
-  public abstract Map<String,Object> getObjectRawValues();
-  
-  /**Gets the raw value of a field.
-   Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing structured value) (which is also unnecessary & discouraged)*/
-  public abstract Object getFieldRawValue(@NotNull String key) throws UnexpectedConfigurationException;
-
-  /**Gets the raw value of a field, following references for example: (copy:nameOfStructuredValueToImitate)
-   Discouraged since the actionable system should be used and therefore getRField (or it's variants) should be used (unless implementing structured value) (which is also unnecessary & discouraged)*/
-  public abstract Object getFieldRawValueFollowingReferences(@NotNull String key) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Returns the value of a structured value's field using its fieldName as its objectType. If it doesn't exist, returns the definition of the structured value.
-   * Used mainly on object types that can have a single parameter.
-   * for example getFieldOrDefinition("color") in any of this two configs would yield red:
-   * MyObject:
-   *   color: red
-   *   stripy: true
-   * 
-   * MyObject: red
-   * 
-   * @param <T> The type of the field.
-   * @param fieldName: The name of the field.
-   * @throws IllegalArgumentException if the field was listed, but is invalid
-   * @throws NullPointerException if the field isn't listed.
-   * @return the value of the field*/
-  public abstract <T> T getRFieldOrDefinition(@NotNull String fieldName) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets the definition of the object, aka the only value present, inside of it. For example:
-   * Hello: --> get definition = "text", "onyxtite"
-   *   text: Onyxtitite
-   * raw value of the field, following references if necessairy. Meant to be used by direct wrappers (ie 'text', 'boolean', etc, which don't have any fields other than the definition)*/
-  public abstract Entry<String,Object> getRawDefinition() throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /** Makes an element of a registered type from this structured value's values. This is NOT a replacement for properly registering a type.
-   *  Instead, its meant to be a a way for a registered type to gain parts from different registered type without requiring a substring inside.
-   *  Should only be used inside compound structured values, not on fields reliant on a single value definition, or may otherwise fail.
+  /**Gets the value of this value if it doens't have any inner value
+   * @return the value assigned to this value's key, which can be null if it was configured that way
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException if this value has any inner values
    */
-  public abstract <T> T getDefinitonAs(String registeredType) throws UnexpectedConfigurationException;
+  public abstract @NotNull Object getInnerNonStructuredValue() throws UnexpectedConfigurationException;
   
-  /**Gets the value this object was created to wrap.*/
-  public abstract Object getRawValue() throws IllegalArgumentException, NullPointerException,  UnexpectedConfigurationException;
-  
-  /** * Sets the defaultFromFieldValue section for this object & completes the StructuredValue values using its values for default_from & copy fields
-   * This is used by the core but its unlikely that you should need it as an external plugin.
-   * @param referencesContainers The section containing StructuredValues used to produced elements of the same type as the object represented by this StructuredValue
-   * @throws UnexpectedConfigurationException if there was a problem while using the new defaultFromFieldValue section to modify the values of the StructuredValue.
+  /**Gets the list of inner values this value holds.
+   * for example, in this configuration it'd give the value of key 'value1' and the one of key 'value 2'
+   * key:
+   *   value1: value
+   *   value2:
+   *     subvalue: 2
+   *     subvalue: 3
+   * returns an empty list if its a final value.
    */
-  public abstract void setReferenceSection(@Nullable List<StructuredValue> referencesContainers) throws UnexpectedConfigurationException;
+  public abstract @NotNull List<StructuredValue> getInnerValues();
+  
+  /** Checks if this value has an inner value of a certain name.
+   * @param name the key of the inner value
+   * @return true if it has an inner value
+   */
+  public abstract @NotNull boolean hasInnerValueOfName(String name);
+  
+  /**Gets an inner value of a certain name,
+   * @param name the key that the inner value has
+   * @return the requested inner value
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException if that value doesn't exist.
+   */
+  public abstract @NotNull StructuredValue getInnerValue(String name) throws UnexpectedConfigurationException;
+  
+  /**Gets the xth inner value present in this value.
+   * @param valueNumber the number of inner value to retrieve (must be < to the number of inner values present)
+   * @return the requested inner value
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException
+   */
+  public abstract @NotNull StructuredValue getInnerValue(int valueNumber) throws UnexpectedConfigurationException;
+  
+  /**Checks if this value has a single value, be it a value, or an object
+   * @return true if it has a single value, be it an inner field or a final value*/
+  public abstract @NotNull boolean hasSingleValue();
+  
+  /**Gets the only value present inside this value
+   * @return the only value this object has.
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException If it has no, or multiple values
+   */
+  public abstract @NotNull StructuredValue getOnlyInnerValue() throws UnexpectedConfigurationException;
+
+  /**Checks if this object was originated from another value*/
+  public abstract @NotNull boolean hasParent();
+  
+  /**Gets the value that originated this one.*/
+  public abstract @Nullable StructuredValue getParent();
+  
+  /** Gets the full node path to this value (basically a concatenation of the keys of all parents up to this point (included)) */
+  public abstract @NotNull String getPath();
+  
+  /**Get this object, as a relatively simple string
+   * @return a simplified version of this object as string*/
+  public abstract @NotNull String toSimplifiedString();
   
 }
-
-
-
-
-  /** * Returns the value of a structured value's field of objectType.If it doesn't exist, returns the definition of the structured value. for example getFieldOrDefinition("color") in any of this two configs would yield red:
- MyObject:
-   color: red
-   stripy: true
- 
- MyObject: red
-   * 
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param objectType The name of the type of variable to use to interpret this field
-   * @throws IllegalArgumentException if the field was listed, but is invalid
-   * @throws NullPointerException if the field isn't listed.
-   * @return the value of the field*/
-  //public abstract <T> T getFieldOfRTypeOrDefinition(String fieldName, String objectType) throws IllegalArgumentException;
-
-
-
-
-
-  //Removed because its unnecesairy since field sinonyms can be registered and might generate confusion.
-  //----------------------------------------------------------------------------------------------------
-
-
-  /**Gets the value of a field of objectType(that has been registered on the API) or throws an exception if it is invalid or wasn't found
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param objectType The name of the type of variable to use to interpret this field (as it was registered in the API)
-   * @param referencesContainers
-   * @throws IllegalArgumentException if the field was listed, but is invalid
-   * @throws NullPointerException if the field isn't listed.
-   * @return the value of the field
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  //public abstract <T> T getFieldOfRType(String fieldName, String objectType, List<StructuredValue> referencesContainers) throws IllegalArgumentException, NullPointerException, UnexpectedConfigurationException;
-  
-  /**Gets the value of a field of objectType(that has been registered on the API) or returns a default value if its not available
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param objectType The name of the type of variable (as it was registered in the API)
-   * @param referencesContainers
-   * @param defaultValue The default value for the field
-   * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  //public abstract <T> T getFieldOfRTypeOrDefault(String fieldName, String objectType, List<StructuredValue> referencesContainers, T defaultValue) throws IllegalArgumentException, UnexpectedConfigurationException;
-
-  /**Gets the value of a field of objectType, or returns the value of a registered variable, if the field is not available
-   * @param <T> The type of the field.
-   * @param fieldName The name of the field.
-   * @param objectType The name of the type of variable to use to interpret this field (as it was registered in the API)
-   * @param referencesContainers
-   * @param variableName The name the variable was registered by.
-   * @return the value of the field or the default value if its not listed
-   * @throws IllegalArgumentException If the field was listed, but is invalid
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException*/
-  //public abstract <T> T getFieldOfRTypeOrDefaultToVariable(String fieldName, String objectType, List<StructuredValue> referencesContainers, String variableName) throws IllegalArgumentException, UnexpectedConfigurationException;

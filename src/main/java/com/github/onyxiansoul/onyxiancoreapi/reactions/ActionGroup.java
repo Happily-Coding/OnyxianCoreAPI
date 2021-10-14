@@ -1,8 +1,8 @@
-package com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions;
+package com.github.onyxiansoul.onyxiancoreapi.reactions;
 
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import org.bukkit.event.Event;
 import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 /** A group of actions that are to be executed under certain conditions.
  * In most cases you will not need to create this,
  * But in particular cases, such as expanding an action map to allow friendlier configuration, you might.

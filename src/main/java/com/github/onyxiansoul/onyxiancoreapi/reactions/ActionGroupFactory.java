@@ -1,9 +1,9 @@
-package com.github.onyxiansoul.onyxiancoreapi.actionable_system.actions;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
+package com.github.onyxiansoul.onyxiancoreapi.reactions;
 import java.util.List;
 import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 
 public interface ActionGroupFactory {
   /** Gets an ActionGroup containing an action with a single condition */
