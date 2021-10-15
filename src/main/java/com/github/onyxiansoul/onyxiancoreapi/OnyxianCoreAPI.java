@@ -1,20 +1,24 @@
 package com.github.onyxiansoul.onyxiancoreapi;
-import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurableBuilder;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
-import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.DuplicateEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
+import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackPackager;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
+import com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge.VariableCrafter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
 
+  /**Gets a value from which values can be intepreted */
+  public abstract VariableCrafter getVariableCrafter(StructuredValue structuredValue);
+  
   /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
   * @param fileName The name of the file itself without yml
   * @param configUpdates The updates that will be applied to the configuration if its not up to date.
