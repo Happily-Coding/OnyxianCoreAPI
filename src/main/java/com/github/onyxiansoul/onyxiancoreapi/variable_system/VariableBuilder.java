@@ -7,7 +7,8 @@ import org.jetbrains.annotations.NotNull;
 
 /**Creates variables, AKA objects of any class registered as such. 
  * Please note that for registering the class will require a constructor that takes StructuredValue as a parameter, because the values for its creation will be passed via a structured value.
- * If you want to use a 'normal' object, such as a string, simply create a class that can act as a wrapper for that object type and register it. */
+ * If you want to use a 'normal' object, such as a string, simply create a class that can act as a wrapper for that object type and register it.
+ * @deprecated it doens't fit in the current configuration system and will be refactored */
 public interface VariableBuilder {
   
   /**Crafts a variable of a type from a value source, be it by returning the value of a <variable> that it represents, or constructing a variable of the class registered for the type.

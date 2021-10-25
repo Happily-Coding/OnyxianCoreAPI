@@ -9,15 +9,15 @@ import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackPackager;
 import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
+import com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge.VariableSource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge.VariableSource;
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
 
   /**Gets a value from which values can be intepreted */
-  public abstract VariableSource getVariableCrafter(StructuredValue structuredValue);
+  public abstract VariableSource getVariableCrafter(VariableSource variableSource);
   
   /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
   * @param fileName The name of the file itself without yml
