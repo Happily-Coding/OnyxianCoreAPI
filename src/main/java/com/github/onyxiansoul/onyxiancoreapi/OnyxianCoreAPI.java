@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 public interface OnyxianCoreAPI {
 
   /**Gets a value from which values can be intepreted */
-  public abstract VariableSource getVariableCrafter(VariableSource variableSource);
+  public abstract VariableSource makeVariableSource(StructuredValue structuredValue);
   
   /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
   * @param fileName The name of the file itself without yml
