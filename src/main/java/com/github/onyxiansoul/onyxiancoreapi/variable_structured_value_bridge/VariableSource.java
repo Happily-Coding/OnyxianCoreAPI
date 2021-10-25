@@ -7,6 +7,9 @@ import java.util.Collection;
 /**An element capable of producing registered variables from a structured value used in its creation. */
 public interface VariableSource{
   
+  /**Get the key of the structured value being used as a source*/
+  public String getSourceKey();
+  
   /**Crafts an element of the registered type for the structured value's key, using it as value source.
    * @param <T> The type of the element.
    * @return The object belonging to the registered class.
