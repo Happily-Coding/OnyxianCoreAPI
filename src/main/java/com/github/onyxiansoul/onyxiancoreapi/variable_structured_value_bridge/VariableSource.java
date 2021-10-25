@@ -28,7 +28,7 @@ public interface VariableSource{
   
   public VariableSource getVariableSourceOfOnlyField() throws UnexpectedConfigurationException;
   
-  public VariableSource getGetVariableSourceOfOnlyFieldOrFieldOfName(String fieldName) throws UnexpectedConfigurationException;
+  public VariableSource getVariableSourceOfOnlyFieldOrFieldOfName(String fieldName) throws UnexpectedConfigurationException;
   
   public Collection<VariableSource> getVariableSourcesOfAllFields() throws UnexpectedConfigurationException;
   
