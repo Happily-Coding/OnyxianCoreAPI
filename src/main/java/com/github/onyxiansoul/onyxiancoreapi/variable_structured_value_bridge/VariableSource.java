@@ -25,6 +25,12 @@ public interface VariableSource{
   */
   public <T> T craft(String variableType) throws UnexpectedConfigurationException, MissingEntryException;
   
+  /**Gets the non structured value of this object, or throws an error if it doens't exist.
+   Allows for values like booleans, numbers or strings to be accessible for intepretation by the plugin on the end nodes of configuration
+   for example: 
+   * server name: my cool server*/
+  public Object getInnerNonStructuredValue() throws UnexpectedConfigurationException;
+  
   public VariableSource getVariableSourceOfField(String fieldName) throws UnexpectedConfigurationException;
   
   public VariableSource getVariableSourceOfField(int fieldNumber) throws UnexpectedConfigurationException;
