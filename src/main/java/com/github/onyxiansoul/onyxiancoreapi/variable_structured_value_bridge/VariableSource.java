@@ -1,5 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge;
 
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import java.util.Collection;
@@ -51,4 +52,7 @@ public interface VariableSource{
   
   public <T> T getFieldOrRegisteredVariable(String fieldName, String registeredVariableName) throws UnexpectedConfigurationException, MissingEntryException;
   
+  /**Gets the variable value of a certain field, and then enacts it to get the actual value.
+   Its meant to be used when reading configuration values that need to be immediately available, not reliying on runtime circumstances for example 'enable bstats'*/
+  public <T> T getFieldWrappedValue(String fieldName) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
 }
