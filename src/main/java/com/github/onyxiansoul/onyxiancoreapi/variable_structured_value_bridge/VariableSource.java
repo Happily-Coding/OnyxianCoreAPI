@@ -55,4 +55,8 @@ public interface VariableSource{
   /**Gets the variable value of a certain field, and then enacts it to get the actual value.
    Its meant to be used when reading configuration values that need to be immediately available, not reliying on runtime circumstances for example 'enable bstats'*/
   public <T> T getFieldWrappedValue(String fieldName) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
+
+  /**Checks if this value source has no other sources inside
+   * returns true if this value has no inner value sources, meaning its a simple value*/
+  public boolean lacksInnerStructuredValues();
 }
