@@ -48,10 +48,11 @@ public interface OnyxianCoreAPI {
     * It allows you to read a field of your choosing be read in the same way another field is, without requiring owning/having access to the original wrapper class.
     * @param fieldName The name that will represent this wrapper in the OnyxianCore index.
     * @param wrapperName The name of the field whose wrapper will be used.
-   * @throws MissingEntryException if there is no previously registered variable type called wrapperName
-   * @throws DuplicateEntryException if wrapperName tries to provide instructions compound or simple wrapping but fieldName already has instructions for that type of wrapping.
-  */
-  public abstract void assignFieldWrapper(@NotNull String fieldName, @NotNull String wrapperName) throws MissingEntryException, DuplicateEntryException;
+    * @param additionalParameters Additional parameters which will be used during the construction of the original wrapper class. This is only required if the constructor of that wrapper class needs extra parameters.
+    * @throws MissingEntryException if there is no previously registered variable type called wrapperName
+    * @throws DuplicateEntryException if wrapperName tries to provide instructions compound or simple wrapping but fieldName already has instructions for that type of wrapping.
+   */
+  public abstract void assignFieldWrapper(@NotNull String fieldName, @NotNull String wrapperName, Object... additionalParameters) throws MissingEntryException, DuplicateEntryException;
 
   /** Registers a class responsible for interpreting a field when its of  (non-YML)object type, aka a field that is not a configuration section or map, and therefore has no sub-fields, for example a boolean or a biome from name.
    * That class needs to have a constructor that takes an object and needs to be an actionable of the type that it produces.
