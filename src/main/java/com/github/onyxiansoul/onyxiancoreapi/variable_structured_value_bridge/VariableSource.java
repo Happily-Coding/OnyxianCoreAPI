@@ -55,8 +55,16 @@ public interface VariableSource{
   /**Gets the variable value of a certain field, and then enacts it to get the actual value.
    Its meant to be used when reading configuration values that need to be immediately available, not reliying on runtime circumstances for example 'enable bstats'*/
   public <T> T getFieldWrappedValue(String fieldName) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
+  
+  /**Gets the variable value of a certain field, and then enacts it to get the actual value, or if that field doesn't exist, returns the default value
+   Its meant to be used when reading configuration values that need to be immediately available, not reliying on runtime circumstances for example 'enable bstats', but that may not exist.*/
+  public <T> T getFieldWrappedValueOrDefault(String fieldName, T defaultValue) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
 
+  /**Checks if this variable source has an inner source of a certain name*/
+  public boolean containsField(String fieldName);
+  
   /**Checks if this value source has no other sources inside
    * returns true if this value has no inner value sources, meaning its a simple value*/
   public boolean lacksInnerStructuredValues();
+  
 }
