@@ -52,15 +52,22 @@ public interface VariableSource{
   
   public <T> T getFieldOrRegisteredVariable(String fieldName, String registeredVariableName) throws UnexpectedConfigurationException, MissingEntryException;
   
-  /**Gets the variable value of a certain field, and then enacts it to get the actual value.
+  /**Gets the variable value of a certain field that produces an action, or a registered variable, and then enacts it to get the actual value.*/
+  public <T> T getFieldOrRegisteredVariableWrappedValue(String fieldName, String registeredVariableName) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
+  
+  /**Gets the variable value of a certain field that produces an action, and then enacts it to get the actual value.
    Its meant to be used when reading configuration values that need to be immediately available, not reliying on runtime circumstances for example 'enable bstats'*/
   public <T> T getFieldWrappedValue(String fieldName) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
-  
+    
   /**Gets the variable value of a certain field, and then enacts it to get the actual value, or if that field doesn't exist, returns the default value
    Its meant to be used when reading configuration values that need to be immediately available, not reliying on runtime circumstances for example 'enable bstats', but that may not exist.*/
   public <T> T getFieldWrappedValueOrDefault(String fieldName, T defaultValue) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
 
-  /**Checks if this variable source has an inner source of a certain name*/
+  /**Gets the value of a field, or returns a default value if its not available. Meant to be used mainly for fields that arent actionable*/
+  public <T> T getFieldOrDefault(String field, T defaultValue) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
+  
+  /**Checks if this variable source has an inner source of a certain name
+   @deprecated may be removed since it doesn't seem to have any use with the way you should read configurations*/
   public boolean containsField(String fieldName);
   
   /**Checks if this value source has no other sources inside
