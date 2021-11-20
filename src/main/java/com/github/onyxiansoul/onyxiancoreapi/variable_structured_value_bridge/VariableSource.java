@@ -40,6 +40,10 @@ public interface VariableSource{
   
   public VariableSource getVariableSourceOfOnlyFieldOrFieldOfName(String fieldName) throws UnexpectedConfigurationException;
   
+  /**If this variable source has no inner fields, return this source, if the variable source has a single field return the source of that field, if the variable source has multiple fields, return the source of the field of fieldName
+   * Basicly, its a way to allow pre-processing of a field with another field type, ie(processing a biome name string), and using that string to create the biome variable*/
+  public VariableSource getVariableSourceOfOnlyFieldOrFieldOfNameOrThis(String fieldName) throws UnexpectedConfigurationException;
+  
   public Collection<VariableSource> getVariableSourcesOfAllFields() throws UnexpectedConfigurationException;
   
   public <T> T getField(String fieldName) throws UnexpectedConfigurationException, MissingEntryException;
@@ -49,6 +53,10 @@ public interface VariableSource{
   public <T> T getOnlyField() throws UnexpectedConfigurationException, MissingEntryException;
   
   public <T> T getOnlyFieldOrFieldOfName(String fieldName) throws UnexpectedConfigurationException, MissingEntryException;
+  
+  /**Create a variable of a cretain type from: This variable source if it has no inner fields OR the variable source of the only field this variable source has (if it has only one) OR the variable source of the field of fieldName, if it has multiple fields
+   * Basicly, its a way to allow pre-processing of a field to create a variable, that can be used to create the intended variable. For example: processing a biome name string, and using that string to create the biome variable*/
+  public <T> T getOnlyFieldOrFieldOfNameOrThisAs(String fieldName, String variableType) throws UnexpectedConfigurationException;
   
   public <T> T getFieldOrRegisteredVariable(String fieldName, String registeredVariableName) throws UnexpectedConfigurationException, MissingEntryException;
   
