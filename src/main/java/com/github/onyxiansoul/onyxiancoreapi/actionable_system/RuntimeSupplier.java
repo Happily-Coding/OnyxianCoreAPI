@@ -13,8 +13,9 @@ import org.jetbrains.annotations.Nullable;
  * Only onyxian plugins should extend this interface directly.
  * All other plugins should extend the implementation located on the api of one of the onyxianPlugins.
  * @param <T> The type of object it uses internally for supplying methods.
+ * @param <T2> The type of object it considers it raw source.
  */
-public abstract class RuntimeSupplier<T> {
+public abstract class RuntimeSupplier<T, T2> {
   
   protected final T t;
 
@@ -98,8 +99,8 @@ public abstract class RuntimeSupplier<T> {
 
   /**Get the element this obtainer is using as its source*/
   @NotNull
-  public T getRawSource(){
-    return t;
+  public T2 getRawSource(){
+    return (T2) t;
   }
     
 }
