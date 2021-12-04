@@ -98,7 +98,7 @@ public abstract class RuntimeSupplier<T> {
 
   /**Get the element this obtainer is using as its source*/
   @NotNull
-  public final T getRawSource(){
+  public T getRawSource(){
     return t;
   }
     
