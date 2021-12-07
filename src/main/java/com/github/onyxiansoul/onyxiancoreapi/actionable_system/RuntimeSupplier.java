@@ -1,6 +1,8 @@
 package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.validation.constraints.NotNull;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -12,15 +14,19 @@ import org.jetbrains.annotations.Nullable;
 /** The base for any RuntimeSupplier aka any class that from an object is able to return useful data for at least one of the methods in this class.All Onyxian plugins that require obtaining data have their unique implementation of this class
  * Only onyxian plugins should extend this interface directly.
  * All other plugins should extend the implementation located on the api of one of the onyxianPlugins.
- * @param <T> The type of object it uses internally for supplying methods.
- * @param <T2> The type of object it considers it raw source.
+ * @param <TriggerT> The type of object(usually an event), that triggered the reaction.
+ * @param <TriggeredT> The type of object that reacted to the trigger (for example a block evolution)
  */
-public abstract class RuntimeSupplier<T, T2> {
+public abstract class RuntimeSupplier<TriggerT, TriggeredT> {
   
-  protected final T t;
+  protected final TriggerT trigger;
+  protected final TriggeredT triggered;
+  protected final Map<String,Object> supplierStorage;
 
-  public RuntimeSupplier(@NotNull T runtimeObject){
-    this.t = runtimeObject;
+  public RuntimeSupplier(@NotNull TriggerT trigger, @NotNull TriggeredT triggered){
+    this.trigger = trigger;
+    this.triggered = triggered;
+    this.supplierStorage = new HashMap<>();
   }
 
   /**Get the class required by this supplier
@@ -39,27 +45,27 @@ public abstract class RuntimeSupplier<T, T2> {
 
   /** Get the blocks affected by this event.
    * @param e = an event of this type
-   * @return  The blocks affected by this event.Should always have a block. Can't be null or empty*/
+   * @return  The blocks affected by this event.Should always have a block. Can'trigger be null or empty*/
   @Nullable
   public List<Block> getAffectedBlocks() {return null;}
 
   /** Get the Player who triggered the event
    * @param e = an event of this type
-   * @return The player who triggered the event. Can be null if the event wasn't caused by a player.
+   * @return The player who triggered the event. Can be null if the event wasn'trigger caused by a player.
    */
   @Nullable
   public Player getTriggerPlayer() { return null ; }
 
   /**Get the Explosion cause of this event
    * @param e = an event of this type
-   * @return The Entity that generated the explosion. Will be null if it the event wasn't caused by an explosion or if the explosion wasn't caused by an entity.
+   * @return The Entity that generated the explosion. Will be null if it the event wasn'trigger caused by an explosion or if the explosion wasn'trigger caused by an entity.
    */
   @Nullable
   public EntityType getExplosionCause(){ return null; }
 
   /**Get the amount of Exp dropped by the event
    * @param e = an event of this type
-   * @return amount of Exp dropped by the event. Will be null if it the event doesn't drop xp.
+   * @return amount of Exp dropped by the event. Will be null if it the event doesn'trigger drop xp.
    */
   @Nullable
   public Integer getExpDropped(){ return null; }
@@ -80,7 +86,7 @@ public abstract class RuntimeSupplier<T, T2> {
 
   /**Check if the block is instabroken as a result of the event.
    * @param e = an event of this type
-   * @return false if the event doesn't break the block instantly or doesn't break the block at all.
+   * @return false if the event doesn'trigger break the block instantly or doesn'trigger break the block at all.
    */
   @NotNull
   public boolean isBlockInstaBroken() { return false; } 
@@ -97,10 +103,23 @@ public abstract class RuntimeSupplier<T, T2> {
   @Nullable
   public List<BlockState> getInvolvedStates(){ return null; }
 
-  /**Get the element this obtainer is using as its source*/
+  /**Get the element uses as its source, and whose interpretation it allows*/
   @NotNull
-  public T2 getRawSource(){
-    return (T2) t;
+  public TriggerT getTrigger(){
+    return trigger;
+  }
+  
+  /**Gets the element that was triggered by the trigger, that needs this runtime supplier to be able to react to the trigger.*/
+  public TriggeredT getTriggered(){
+    return triggered;
+  }
+  
+  /**Gets the storage specific for this runtime supplier. Since a runtime supplier is created for each event, keep in mind it will be cleared across events
+   * Also keep in mind, a runtime supplier is created for each triggered, and therefore, this storage isn't shared between them.
+   * This storage is mainly meant for when you need an action to get and store a value, that will be used by other actions (inside the same triggered element) 
+   */
+  public @NotNull Map<String,?> getStorage(){
+    return supplierStorage;
   }
     
 }
