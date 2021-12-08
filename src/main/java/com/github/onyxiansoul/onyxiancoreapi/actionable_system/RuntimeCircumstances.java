@@ -11,10 +11,10 @@ import javax.validation.constraints.NotNull;
  *  - Which element contains that action group,
  *  - What caused that element to trigger the action group
  * It also allows the action to store values, making them available to other actions of the same action group, which are triggered later.
- * @param <SourceT> The type of object(usually an event), that triggered the reaction.
+ * @param <InterpretedT> The type of object(usually an event), that triggered the reaction.
  * @param <TriggeredT> The type of object that reacted to the trigger (for example a block evolution)
  */
-public class RuntimeCircumstances<SourceT, TriggeredT> {
+public class RuntimeCircumstances<InterpretedT, TriggeredT> {
   /**The element that has action groups. Persistent across all events, but shared only by runtime suppliers whose action group belongs to the same triggered*/
   protected final TriggeredT triggered;
   
@@ -22,13 +22,13 @@ public class RuntimeCircumstances<SourceT, TriggeredT> {
   protected final ActionGroup actionGroup;
   
   /**The interpreted element (usually an event) that the RuntimeCircumstances uses as its source, and whose interpretation it allows. Not persistent through the events, but shared across all runtime suppliers that react to an event.*/
-  protected final InterpretedElement<SourceT> trigger;
+  protected final InterpretedElement<InterpretedT> trigger;
   
   /**A storage space available for the runtime supplier. As such, its not persistent through the events, and its exclusive to each action group*/
   protected final Map<String,Object> supplierStorage;
 
 
-  public RuntimeCircumstances(@NotNull InterpretedElement<SourceT> trigger, @NotNull TriggeredT triggered, @NotNull ActionGroup actionGroup){
+  public RuntimeCircumstances(@NotNull InterpretedElement<InterpretedT> trigger, @NotNull TriggeredT triggered, @NotNull ActionGroup actionGroup){
     this.trigger = trigger;
     this.triggered = triggered;
     this.actionGroup = actionGroup;
@@ -36,7 +36,7 @@ public class RuntimeCircumstances<SourceT, TriggeredT> {
   }
 
   /**Get the easy to query version of the element that triggered the reaction*/
-  public @NotNull InterpretedElement<SourceT> getTrigger(){
+  public @NotNull InterpretedElement<InterpretedT> getTrigger(){
     return trigger;
   }
   
@@ -51,7 +51,7 @@ public class RuntimeCircumstances<SourceT, TriggeredT> {
   }
   
   /**Gets the storage specific for this runtime supplier, its not persistent throughout the events, and its exclusive to each action group. */
-  public @NotNull Map<String,?> getSupplierStorage(){
+  public @NotNull Map<String,Object> getStorage(){
     return supplierStorage;
   }
     
