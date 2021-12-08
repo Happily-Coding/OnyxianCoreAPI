@@ -13,7 +13,7 @@ import java.util.Map;
    * @return A variable resulting from the action, or Void if its not meant to be a producer.
    * @throws com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException If an action is impossible to perform.
    */
-  T enact(RuntimeSupplier supplier) throws ImpossibleActionException;
+  T enact(RuntimeCircumstances supplier) throws ImpossibleActionException;
   
   /**Executes the action, with no circumstances. Might throw an impossibleActionException if it required circumstances*/
   default T enact()throws ImpossibleActionException{ 
