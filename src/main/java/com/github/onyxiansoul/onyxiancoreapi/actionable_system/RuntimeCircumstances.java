@@ -1,5 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
 
+import com.github.onyxiansoul.onyxiancoreapi.identity.StorageHolder;
 import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroup;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @param <InterpretedT> The type of object(usually an event), that triggered the reaction.
  * @param <TriggeredT> The type of object that reacted to the trigger (for example a block evolution)
  */
-public class RuntimeCircumstances<InterpretedT, TriggeredT> {
+public class RuntimeCircumstances<InterpretedT, TriggeredT> implements StorageHolder<String,Object> {
   /**The element that has action groups. Persistent across all events, but shared only by runtime suppliers whose action group belongs to the same triggered*/
   protected final TriggeredT triggered;
   
@@ -51,6 +52,7 @@ public class RuntimeCircumstances<InterpretedT, TriggeredT> {
   }
   
   /**Gets the storage specific for this runtime supplier, its not persistent throughout the events, and its exclusive to each action group. */
+  @Override
   public @NotNull Map<String,Object> getStorage(){
     return supplierStorage;
   }
