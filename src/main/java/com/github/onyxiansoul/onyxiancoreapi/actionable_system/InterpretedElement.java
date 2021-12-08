@@ -91,8 +91,9 @@ public abstract class InterpretedElement<InterpretableT> {
   @Nullable
   public List<BlockState> getInvolvedStates(){ return null; }
   
-  /**Gets the element that was triggered by the trigger, that needs this runtime supplier to be able to react to the trigger.*/
-  public @NotNull InterpretableT getTriggered(){
+  /**Gets the element is being interpreted
+   * @return the element that is being interpreted, and was used to created this intepreted element.*/
+  public @NotNull InterpretableT getRawSource(){
     return interpretable;
   }
 }

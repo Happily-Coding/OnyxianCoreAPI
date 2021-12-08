@@ -21,7 +21,7 @@ public class RuntimeCircumstances<SourceT, TriggeredT> {
   /**The action group which is one of the triggered reactions. Persistent across al events, but not shared by any runtime suppliers.*/
   protected final ActionGroup actionGroup;
   
-  /**The interpreted element (usually an event) that the RuntimeSupplier uses as its source, and whose interpretation it allows. Not persistent through the events, but shared across all runtime suppliers that react to an event.*/
+  /**The interpreted element (usually an event) that the RuntimeCircumstances uses as its source, and whose interpretation it allows. Not persistent through the events, but shared across all runtime suppliers that react to an event.*/
   protected final InterpretedElement<SourceT> trigger;
   
   /**A storage space available for the runtime supplier. As such, its not persistent through the events, and its exclusive to each action group*/
