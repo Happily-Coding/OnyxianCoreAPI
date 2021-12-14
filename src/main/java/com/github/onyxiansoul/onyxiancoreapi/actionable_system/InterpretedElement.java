@@ -7,6 +7,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 public abstract class InterpretedElement<InterpretableT> {
@@ -90,6 +91,10 @@ public abstract class InterpretedElement<InterpretableT> {
   */
   @Nullable
   public List<BlockState> getInvolvedStates(){ return null; }
+  
+  /**Gets the itemstack involved in this event*/
+  @Nullable
+  public ItemStack getItemStack(){ return null; }
   
   /**Gets the element is being interpreted
    * @return the element that is being interpreted, and was used to created this intepreted element.*/
