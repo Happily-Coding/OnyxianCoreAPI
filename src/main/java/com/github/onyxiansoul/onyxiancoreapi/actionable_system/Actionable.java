@@ -1,6 +1,5 @@
 package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
 import java.io.Serializable;
-import java.util.Map;
 
 /**Anything that can be executed.
  * To create an aditional action type, you should implement this & register it with the core's API
@@ -24,7 +23,8 @@ import java.util.Map;
    * @return the class of object this transformer produces*/
   default Class<?> getT() {
     try {
-        return this.getClass().getMethod("enact", Map.class).getReturnType();
+        return this.getClass().getMethod("enact").getReturnType();
+        //return this.getClass().getMethod("enact", Map.class).getReturnType();
     } catch (NoSuchMethodException | SecurityException ex) {
         throw new IllegalArgumentException("Could not find the type of an actionable. This is really unexpected! "+ this.getClass());
     }
