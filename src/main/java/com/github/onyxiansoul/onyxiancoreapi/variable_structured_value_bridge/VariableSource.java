@@ -3,10 +3,17 @@ package com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 import java.util.Collection;
+import org.jetbrains.annotations.NotNull;
 
-/**An element capable of producing registered variables from a structured value used in its creation. */
+/**An element capable of producing registered variables from a structured value used in its creation.
+*  Its main purpose is to allow the interpretation of the structured value it holds
+*/
 public interface VariableSource{
+  
+  /** Gets the value this source is interpreting from*/
+  public StructuredValue getSource();
   
   /**Get the key of the structured value being used as a source*/
   public String getSourceKey();
@@ -44,7 +51,8 @@ public interface VariableSource{
    * Basicly, its a way to allow pre-processing of a field with another field type, ie(processing a biome name string), and using that string to create the biome variable*/
   public VariableSource getVariableSourceOfOnlyFieldOrFieldOfNameOrThis(String fieldName) throws UnexpectedConfigurationException;
   
-  public Collection<VariableSource> getVariableSourcesOfAllFields() throws UnexpectedConfigurationException;
+  /**Gets the variable sources of all fields contained inside this one, in order, or an empty list, if its a final one */
+  public @NotNull Collection<VariableSource> getVariableSourcesOfAllFields() throws UnexpectedConfigurationException;
   
   public <T> T getField(String fieldName) throws UnexpectedConfigurationException, MissingEntryException;
   
