@@ -1,32 +1,22 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
-import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigUpdate;
-import com.github.onyxiansoul.onyxiancoreapi.configuration.ConfigurableBuilder;
-import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.DuplicateEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackPackager;
-import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
-import com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge.VariableSource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
-
-  /**Gets a value from which values can be intepreted */
-  public abstract VariableSource makeVariableSource(StructuredValue structuredValue);
   
-  /**Load a configuration from a file in the plugin folder, creating that file from the template inside the jar if it doesn't exist.
-  * @param fileName The name of the file itself without yml
-  * @param configUpdates The updates that will be applied to the configuration if its not up to date.
-  * @return a Yml Object representing the file's values.
-  * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException  if the file couldn't be read.
-  */
-  public abstract StructuredValue getConfiguration(@NotNull String fileName, @Nullable ConfigUpdate[] configUpdates) throws UnexpectedConfigurationException;
-
+  /**Gets a factory capable of making structured values, be it from configuration files, or key value pairs */
+  public abstract @NotNull StructuredValueFactory getStructuredValueFactory();
+  
+  /**Gets a factory capable of creating variable sources to wrap and interpret structured values*/
+  public abstract @NotNull VariableSourceFactory getVariableSourceFactory();
+  
   /**Registers an object of an actionable, AKA an element that can run, and can produce a variable, and therefore can be used in the config as both a 'action' & a 'variable')
   * Configurable objects inside Onyxian Plugins, use almost exclusevily producers as variables, this allows for the value of a field to be modifiable by parameters obtained at runtime, such as the value of a placeholder, or the event that triggered an action.
   * @param <T1> The type of variable that will be produced by the actionable. Can be Void if its an action that doesn't produce any variable.
@@ -88,9 +78,6 @@ public interface OnyxianCoreAPI {
   
   /**Gets an action group factory, capable of producing action groups.*/
   //public abstract ReactionsFactory getReactionsFactory();
-  
-  /**Gets a configurable builder of a certain type of configurable*/
-  public abstract ConfigurableBuilder configurableBuilder(String configurableType);
   
   /**Gets a previously registered actionable by name*/
   public abstract <T> Actionable<T> getRegisteredVariable(String fieldName) throws MissingEntryException;
