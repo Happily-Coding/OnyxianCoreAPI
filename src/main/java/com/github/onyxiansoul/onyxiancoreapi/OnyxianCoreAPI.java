@@ -5,6 +5,8 @@ import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackPackager;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValueFactory;
+import com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge.VariableSourceFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
