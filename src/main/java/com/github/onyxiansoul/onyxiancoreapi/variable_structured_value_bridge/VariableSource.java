@@ -86,6 +86,12 @@ public interface VariableSource{
   /**Gets the value of a field, or returns a default value if its not available. Meant to be used mainly for fields that arent actionable*/
   public <T> T getFieldOrDefault(String field, T defaultValue) throws UnexpectedConfigurationException, MissingEntryException, ImpossibleActionException;
   
+  /** Gets the variable source of the parent of the interpreted element
+   * @return the variable source of the parent of the interpreted element
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException if it doesn't have a parent
+   */
+  public @NotNull VariableSource getParent() throws UnexpectedConfigurationException;
+  
   /**Checks if this variable source has an inner source of a certain name
    @deprecated may be removed since it doesn't seem to have any use with the way you should read configurations*/
   public boolean containsField(String fieldName);
