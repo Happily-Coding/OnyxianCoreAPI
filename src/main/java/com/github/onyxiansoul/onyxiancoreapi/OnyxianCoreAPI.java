@@ -1,17 +1,24 @@
 package com.github.onyxiansoul.onyxiancoreapi;
+import com.github.onyxiansoul.onyxiancoreapi.files.yaml.YmlFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.Actionable;
+import com.github.onyxiansoul.onyxiancoreapi.files.FileFactory;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.DuplicateEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroupFactory;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackModifier;
 import com.github.onyxiansoul.onyxiancoreapi.resourcepack.ResourcepackPackager;
 import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValueFactory;
-import com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge.VariableSourceFactory;
+import com.github.onyxiansoul.onyxiancoreapi.variable_source.VariableSourceFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**The OnyxianCoreAPI. Developers can access it to get info or expand the functionality of every OnyxianPlugin on the server.*/
 public interface OnyxianCoreAPI {
+  /**Gets a factory capable of unpacking files from the plugin jar, getting them from the plugin folder and creating file objects */
+  public abstract @NotNull FileFactory getFileFactory();
+  
+  /** Gets a factory capable of making YamlConfiguration objects from existing configurations*/
+  public abstract @NotNull YmlFactory getYmlFactory ();
   
   /**Gets a factory capable of making structured values, be it from configuration files, or key value pairs */
   public abstract @NotNull StructuredValueFactory getStructuredValueFactory();
