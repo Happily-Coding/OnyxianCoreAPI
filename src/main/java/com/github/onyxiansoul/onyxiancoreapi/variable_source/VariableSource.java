@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.variable_structured_value_bridge;
+package com.github.onyxiansoul.onyxiancoreapi.variable_source;
 
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**An element capable of producing registered variables from a structured value used in its creation.
 *  Its main purpose is to allow the interpretation of the structured value it holds
+*  This includes allowing registered classes with a structured value constructor to be instantiated by any plugin that uses the onyxian core, without needing to know the implementation.
 */
 public interface VariableSource{
   
