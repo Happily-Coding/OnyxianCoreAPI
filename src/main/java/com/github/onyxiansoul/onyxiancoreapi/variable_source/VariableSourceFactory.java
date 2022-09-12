@@ -1,7 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi.variable_source;
 
-import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 import com.github.onyxiansoul.onyxiancoreapi.files.UnavailableFileException;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 import org.jetbrains.annotations.NotNull;
 
 /**The place that allows creating variable sources*/

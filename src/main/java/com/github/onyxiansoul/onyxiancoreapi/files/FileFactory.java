@@ -9,7 +9,7 @@ public interface FileFactory {
    * @param pluginFolderSubPath the path where the file should be located in the plugin folder, for example "" for the file to be in the main folder, or "configs" to be inside the configs folder, or "configs/world" to be inside the world folder inside configs.
    * @param pluginJarSubPath the path of the file inside the jar, for example "" for the file to be in the main folder, or "configs" to be inside the configs folder, or "configs/world" to be inside the world folder inside configs.
    * @return The file, located outside the plugin folder.
-   * @throws com.github.onyxiansoul.onyxiancoreapi.utils.UnavailableFileException If the file couldn't be obtained.
+   * @throws com.github.onyxiansoul.onyxiancoreapi.files.UnavailableFileException If the file couldn't be obtained.
    */
   public File unpackIfNecessairyAndGet(@NotNull String fileNameWithExtension, @NotNull String pluginFolderSubPath, @NotNull String pluginJarSubPath) throws UnavailableFileException;
   
