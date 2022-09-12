@@ -1,5 +1,6 @@
 package com.github.onyxiansoul.onyxiancoreapi.variable_source;
 
+import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import com.github.onyxiansoul.onyxiancoreapi.files.UnavailableFileException;
 import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.StructuredValue;
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,7 @@ public interface VariableSourceFactory {
    * @param pluginJarSubPath the path of the file inside the jar, for example "" for the file to be in the main folder, or "configs" to be inside the configs folder, or "configs/world" to be inside the world folder inside configs.
    * @return The file, located outside the plugin folder.
    * @throws com.github.onyxiansoul.onyxiancoreapi.files.UnavailableFileException If the file couldn't be obtained.
+   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException if it couldn't be interpreted.
    */
-  public VariableSource makeVariableSourceFromFile(@NotNull String fileNameWithExtension, @NotNull String pluginFolderSubPath, @NotNull String pluginJarSubPath) throws UnavailableFileException;
+  public VariableSource makeVariableSourceFromFile(@NotNull String fileNameWithExtension, @NotNull String pluginFolderSubPath, @NotNull String pluginJarSubPath) throws UnavailableFileException, UnexpectedConfigurationException;
 }
