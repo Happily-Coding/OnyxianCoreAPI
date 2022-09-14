@@ -26,13 +26,13 @@ public interface OnyxianCoreAPI {
   /** Gets an access point to the actionable index, for registering or getting registered actionables which can be used by any plugin using the OnyxianCore*/
   public abstract @NotNull ActionableIndexAccessPoint getActionableIndexAccessPoint();
   
-  /** Gets an access point to the actionable type index, for registering or getting registered actionable types, which can be used to create actionables by any plugin using the OnyxianCore */
+  /** Gets an access point to the actionable type index, for registering actionable types, which can be used to create actionables (via variablesources) by any plugin using the OnyxianCore */
   public abstract @NotNull ActionableTypeIndexAccessPoint getActionableTypeIndexAccessPoint();
   
   /**Gets an object capable of modifiying the files of the resourcepack used by the onyxian core*/
   public abstract ResourcepackModifier getResourcepackModifier();
   
-  /**Gets an object capable of re-packaging the resourcepack used by the onyxian core*/
+  /** Gets an object capable of re-packaging the resourcepack used by the onyxian core*/
   public abstract ResourcepackPackager getResourcepackPackager();
   
 }
