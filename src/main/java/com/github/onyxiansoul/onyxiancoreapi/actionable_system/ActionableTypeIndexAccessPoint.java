@@ -5,7 +5,7 @@ import com.github.onyxiansoul.onyxiancoreapi.index_system.MissingEntryException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/** An access point to the actionable type index, for registering or getting registered actionable types, which can be used to create actionables by any plugin using the OnyxianCore
+/** An access point to the actionable type index, for registering actionable types, which can be used to create actionables (via variablesources) by any plugin using the OnyxianCore
  * As you can see, this has no way of getting an actionable type, since its not necessairy. If you'd like to make an actionable of a certain type, please create and use a variable source.
  */
 public interface ActionableTypeIndexAccessPoint {
