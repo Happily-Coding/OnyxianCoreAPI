@@ -1,7 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
+package com.github.onyxiansoul.onyxiancoreapi.event_reaction_system;
 
 import com.github.onyxiansoul.onyxiancoreapi.identity.StorageHolder;
-import com.github.onyxiansoul.onyxiancoreapi.reactions.ActionGroup;
 import java.util.HashMap;
 import java.util.Map;
 import javax.validation.constraints.NotNull;
@@ -16,11 +15,12 @@ import javax.validation.constraints.NotNull;
  * @param <TriggeredT> The type of object that reacted to the trigger (for example a block evolution)
  */
 public class RuntimeCircumstances<InterpretedT, TriggeredT> implements StorageHolder<String,Object> {
-  /**The element that has action groups. Persistent across all events, but shared only by runtime suppliers whose action group belongs to the same triggered*/
+  
+  /**The element that has action groups, for example a block type. Its Persistent across all events.*/
   protected final TriggeredT triggered;
   
   /**The action group which is one of the triggered reactions. Persistent across al events, but not shared by any runtime suppliers.*/
-  protected final ActionGroup actionGroup;
+  protected final Reaction actionGroup;
   
   /**The interpreted element (usually an event) that the RuntimeCircumstances uses as its source, and whose interpretation it allows. Not persistent through the events, but shared across all runtime suppliers that react to an event.*/
   protected final InterpretedElement<InterpretedT> trigger;
@@ -29,10 +29,10 @@ public class RuntimeCircumstances<InterpretedT, TriggeredT> implements StorageHo
   protected final Map<String,Object> supplierStorage;
 
 
-  public RuntimeCircumstances(@NotNull InterpretedElement<InterpretedT> trigger, @NotNull TriggeredT triggered, @NotNull ActionGroup actionGroup){
+  public RuntimeCircumstances(@NotNull InterpretedElement<InterpretedT> trigger, @NotNull TriggeredT triggered, @NotNull Reaction reaction){
     this.trigger = trigger;
     this.triggered = triggered;
-    this.actionGroup = actionGroup;
+    this.actionGroup = reaction;
     this.supplierStorage = new HashMap<>();
   }
 
@@ -47,7 +47,7 @@ public class RuntimeCircumstances<InterpretedT, TriggeredT> implements StorageHo
   }
   
   /** Gets the action group to which this action belongs to.*/
-  public @NotNull ActionGroup getActionGroup(){
+  public @NotNull Reaction getActionGroup(){
     return actionGroup;
   }
   
