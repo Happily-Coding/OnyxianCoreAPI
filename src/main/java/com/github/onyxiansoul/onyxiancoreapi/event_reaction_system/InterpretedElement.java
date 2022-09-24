@@ -1,5 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.actionable_system;
-
+package com.github.onyxiansoul.onyxiancoreapi.event_reaction_system;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import org.bukkit.block.Block;
@@ -102,3 +101,4 @@ public abstract class InterpretedElement<InterpretableT> {
     return interpretable;
   }
 }
+
