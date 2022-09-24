@@ -1,0 +1,2 @@
+This is an alternative way of implementation, which as of the moment is deemed unnecessairy, but will be commited for future refrence.
+Basically it allows creating events from interpreted elements, which could be listened to directly.
