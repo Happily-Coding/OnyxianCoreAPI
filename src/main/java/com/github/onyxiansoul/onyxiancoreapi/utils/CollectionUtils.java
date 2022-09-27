@@ -4,13 +4,14 @@ import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.Impossible
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-//TODO: MOVE TO API!
+//TODO: MOVE TO API, Hide implementation?
 public class CollectionUtils {
     
     //Should be called externaly only when trying to read particular map entries from a list.
@@ -105,6 +106,21 @@ public class CollectionUtils {
         collection.add(value);
       }
     }
+    
+    /**Gets a set of all the keys, whose values in this map equals the value to match.*/
+    public static <KeyT,ValueT> Set<KeyT> getKeysWhoseValueMatches(Map<KeyT,ValueT> containerMap, ValueT valueToMatch){
+        Set<KeyT> matchingKeys = new HashSet<>();
+
+        for(Map.Entry<KeyT,ValueT> containerMapEntry: containerMap.entrySet()){
+          ValueT valueToTest =containerMapEntry.getValue();
+          if(valueToMatch.equals(valueToTest)){
+            KeyT keyOfMatchingValue = containerMapEntry.getKey();
+            matchingKeys.add(keyOfMatchingValue);
+          }
+      }
+        return matchingKeys;
+    }
+
     
     /** Transform a map that has creators as values to a map that has their creation as values.
      * @param <K> The key type
