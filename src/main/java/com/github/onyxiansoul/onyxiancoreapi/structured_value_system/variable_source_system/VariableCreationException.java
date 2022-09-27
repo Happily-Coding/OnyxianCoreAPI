@@ -1,6 +1,6 @@
-package com.github.onyxiansoul.onyxiancoreapi.variable_source;
+package com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system;
 
-import com.github.onyxiansoul.onyxiancoreapi.variable_source.VariableSource;
+import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system.VariableSource;
 
 /**An exception thrown when ta variable could not be created from its source values
  @deprecated : Will be replaced by a factory method accessible by any plugins who want to throw this exception, in order separate and prevent exposing the implementation */

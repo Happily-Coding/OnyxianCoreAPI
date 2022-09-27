@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.event_reaction_system;
+package com.github.onyxiansoul.onyxiancoreapi.actionable_system.runtime_circumstances_system.interpreted_element_system;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import org.bukkit.block.Block;
@@ -6,10 +6,13 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class InterpretedElement<InterpretableT> {
+/**The basic interpreted element, which can be extended to create event interpreters for events of any type.  */
+public abstract class InterpretedElement<InterpretableT extends Event> {
+  
   /**The original element (usually an event) to be interpreted. Put simply, the data source available for all methods to query */
   protected final InterpretableT interpretable;
   

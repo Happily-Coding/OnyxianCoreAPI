@@ -1,4 +1,4 @@
-package com.github.onyxiansoul.onyxiancoreapi.variable_source;
+package com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system;
 
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ImpossibleActionException;
 import com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException;
