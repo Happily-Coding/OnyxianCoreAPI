@@ -6,6 +6,7 @@ import com.github.onyxiansoul.onyxiancoreapi.identity.Nameable;
 import javax.validation.constraints.NotNull;
 import org.bukkit.event.Event;
 
+/**A factory capable of creating runtime circumstances from events, which can be used to activate actions*/
 public interface RuntimeCircumstancesFactory {
   
   /** Create runtime circumstances, which can be used to react to an event.
