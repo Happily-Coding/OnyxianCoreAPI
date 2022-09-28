@@ -1,6 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ActionableIndexAccessPoint;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ActionableTypeIndexAccessPoint;
+import com.github.onyxiansoul.onyxiancoreapi.actionable_system.runtime_circumstances_system.RuntimeCircumstancesFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.runtime_circumstances_system.interpreted_element_system.InterpretedElementFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.runtime_circumstances_system.interpreted_element_system.InterpretedElementTypeIndexAccessPoint;
 import com.github.onyxiansoul.onyxiancoreapi.files.FileFactory;
@@ -36,6 +37,9 @@ public interface OnyxianCoreAPI {
   
   /** Gets an access point to the interpreted element type index, for registering interpreted element types, which can be used to create interpreted elements of events by any plugin using the OnyxianCore */
   public abstract @NotNull InterpretedElementTypeIndexAccessPoint getInterpretedElementTypeIndexAccessPoint();
+  
+  /** Gets a factory capable of creating runtime circumstances from events, which can be used to activate actions*/
+  public abstract @NotNull RuntimeCircumstancesFactory getRuntimeCircumstancesFactory();
   
   /**Gets an object capable of modifiying the files of the resourcepack used by the onyxian core*/
   public abstract ResourcepackModifier getResourcepackModifier();
