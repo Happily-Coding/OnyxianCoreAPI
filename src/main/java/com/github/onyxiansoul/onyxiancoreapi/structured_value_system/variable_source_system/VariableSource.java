@@ -34,15 +34,6 @@ public interface VariableSource{
   */
   public <T> T craft(String variableType) throws UnexpectedConfigurationException, MissingEntryException;
   
-  /**Crafts an element of a certain type, using this value source, and some additional parameters
-   * @param <T> The type of the element.
-   * @param variableType The name used to register the class of that type of element
-   * @param additionalParameters additional parameter to pass to the constructor called
-   * @return The object belonging to the registered class.
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException | MissingEntryException if there is an error retrieving the field or crafting the variable
-  */
-  public <T> T craft(String variableType, Object... additionalParameters) throws UnexpectedConfigurationException, MissingEntryException;
-  
   /**Gets the non structured value of this object, or throws an error if it doens't exist.
    Allows for values like booleans, numbers or strings to be accessible for intepretation by the plugin on the end nodes of configuration
    for example: 
