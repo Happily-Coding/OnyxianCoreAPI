@@ -1,5 +1,4 @@
 package com.github.onyxiansoul.onyxiancoreapi;
-import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ActionableIndexAccessPoint;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.ActionableTypeIndexAccessPoint;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.runtime_circumstances_system.RuntimeCircumstancesFactory;
 import com.github.onyxiansoul.onyxiancoreapi.actionable_system.runtime_circumstances_system.interpreted_element_system.InterpretedElementFactory;
@@ -28,9 +27,6 @@ public interface OnyxianCoreAPI {
 
   /**Gets a factory capable of creating interpreted elements to wrap and interpret events*/
   public abstract @NotNull InterpretedElementFactory getInterpretedElementFactory();
-  
-  /** Gets an access point to the actionable index, for registering or getting registered actionables which can be used by any plugin using the OnyxianCore*/
-  public abstract @NotNull ActionableIndexAccessPoint getActionableIndexAccessPoint();
   
   /** Gets an access point to the actionable type index, for registering actionable types, which can be used to create actionables (via variablesources) by any plugin using the OnyxianCore */
   public abstract @NotNull ActionableTypeIndexAccessPoint getActionableTypeIndexAccessPoint();
