@@ -14,7 +14,7 @@ public interface InterpretedElementTypeIndexAccessPoint {
   * @param interpretedElementClass The class of the interpreted element type (the class of the event interpreter, which has a constructor taking that event type as only parameter).
   * @throws DuplicateEntryException if a variable referenceName has been registered to referenceName
   */
-  public abstract <InterpretableT extends Event ,InterpretedElementT extends InterpretedElement<InterpretableT>> void registerInterpretedElementType(@NotNull Class<InterpretableT> interpretableClass, @NotNull Class<InterpretedElement> interpretedElementClass) throws DuplicateEntryException;
+  public abstract <InterpretableT extends Event ,InterpretedElementT extends InterpretedElement<InterpretableT>> void registerInterpretedElementType(@NotNull Class<InterpretableT> interpretableClass, @NotNull Class<InterpretedElementT> interpretedElementClass) throws DuplicateEntryException;
   
   /** Removes the interpreted element types registered by this plugin. You can use this to make your plugin's config reload friendly:
    * Read the new interpreted element types, place them on a list, if no errors popup then
