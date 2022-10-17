@@ -22,17 +22,17 @@ public interface VariableSource{
   /**Crafts an element of the registered type for the structured value's key, using it as value source.
    * @param <T> The type of the element.
    * @return The object belonging to the registered class.
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException | MissingEntryException if there is an error retrieving the field or crafting the variable
+   * @throws com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system.VariableCreationException if there is a problem crafting the variable
   */
-  public <T> T craft() throws UnexpectedConfigurationException, MissingEntryException;
+  public <T> T craft() throws VariableCreationException;
   
   /**Crafts an element of a certain type, using this value source
    * @param <T> The type of the element.
    * @param variableType The name used to register the class of that type of element
    * @return The object belonging to the registered class.
-   * @throws com.github.onyxiansoul.onyxiancoreapi.configuration.exceptions.UnexpectedConfigurationException | MissingEntryException if there is an error retrieving the field or crafting the variable
-  */
-  public <T> T craft(String variableType) throws UnexpectedConfigurationException, MissingEntryException;
+   * @throws com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system.VariableCreationException if there is a problem crafting the variable
+   */
+  public <T> T craft(String variableType) throws VariableCreationException;
   
   /**Gets the non structured value of this object, or throws an error if it doens't exist.
    Allows for values like booleans, numbers or strings to be accessible for intepretation by the plugin on the end nodes of configuration
