@@ -1,9 +1,7 @@
 package com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system;
 
-import com.github.onyxiansoul.onyxiancoreapi.structured_value_system.variable_source_system.VariableSource;
-
 /**An exception thrown when ta variable could not be created from its source values
- @deprecated : Will be replaced by a factory method accessible by any plugins who want to throw this exception, in order separate and prevent exposing the implementation */
+ warning: this might become an interface and constructors might be replaced by a factory method accessible by any plugins who want to throw this exception, in order separate and prevent exposing the implementation */
 public class VariableCreationException extends Exception{
   private static final String FOUND_A_PROBLEM = "Found a problem while ";
   private static final String THIS_HAPPENED = ". This happened while using the variable source: ";
