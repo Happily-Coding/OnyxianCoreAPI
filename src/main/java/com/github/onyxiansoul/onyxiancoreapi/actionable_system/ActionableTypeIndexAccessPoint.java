@@ -41,16 +41,23 @@ public interface ActionableTypeIndexAccessPoint {
    */
   public abstract void registerCompoundFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException, Exception;
   
-  /** Assigns a field wrapper to a certain field. Field wrappers provide to transform a direct config value to a  an Actionable providing a usable version of the value.For example, in a 'biome' field, they could allow the transformation of the name of the biome, written by the user in the config, into the Biome found inside the biome enum.This allows the definition of values for the biome field such as "biome: Taiga". Please keep in mind field wrappers NEED to have a constructor taking a single, 'Object' parameter, & they should produce the usable version of the parameter using the enact method.
+  /** Registers a class responsible for interpreting a field that can be represented in at least this two different forms: As a variable with a single field, or as a variable with only the inline value,
+   * If your actionable uses getOnlyFieldOrFieldOfName or a similar method, you should use this for registration.
+   * for example: 
+   * player of name: onyxtite
+   * player of name:
+   *   name: onyxtite
+   * It registers it as both a simple and a compound field wrapper and  it makes it so the plugin never tries to interpret variable values for this variable as the compressible variable values, and therefore they are interpreted as the value of the field.
+   * for example, this would make the following statement yield the player onyxtite and not the string onyxtite.
+   * player of name: <server owner name> 
    * @param fieldName The name of the field & the name that will represent this wrapper in the OnyxianCore index.
    * @param wrapperClass The class of wrapper that will be constructed with the value of the field, in order to wrap it.
-   * @param customWrapsCompound Wether the field has unique instructions on how to wrap a compound object (usually is the case for actions since the have parameters)
-   * @param customWrapsLine Wether the field has unique instructions on how to wrap a single line object (usually the case for simple wrappers such as 'message' etc).
+   * That class needs to have a constructor that takes an object and needs to be an actionable of the type that it produces.
    * @param additionalWrapperParameters The additional parameters that will be used in the construction of the wrapper class.
-   * @throws IllegalArgumentException If the field is already being wrapped by a class previously registered by a plugin.
-   * @throws Exception If there was a problem interpreting the entry thats being registered, for example the class is missing the relevant constructor.
+   * @throws DuplicateEntryException If the field is already being wrapped by a class previously registered by a plugin.
+   * @throws Exception If there was a problem interpreting the entry that's being registered, for example the class is missing the relevant constructor.
    */
-  public abstract void registerFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, boolean customWrapsCompound, boolean customWrapsLine, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException, Exception;
+  public abstract void registerFlexibleFieldWrapper(@NotNull String fieldName, @NotNull Class wrapperClass, @Nullable Object... additionalWrapperParameters) throws DuplicateEntryException, Exception;
 
   /** Removes the actionable types registered by this plugin. You can use this to make your plugin's config reload friendly:
    * Read the new actionable types, place them on a list, if no errors popup then
